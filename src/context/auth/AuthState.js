@@ -29,7 +29,7 @@ const AuthState = (props) => {
   const loadUser = async () => {
     setAuthToken(localStorage.token);
     try {
-      const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/auth`);
+      const res = await axios.get(`http://localhost:${process.env.REACT_APP_API_URL}/api/auth`);
       dispatch({
         type: USER_LOADED,
         payload: res.data,
@@ -49,7 +49,7 @@ const AuthState = (props) => {
 
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/users`,
+        `http://localhost:${process.env.REACT_APP_API_URL}/api/users`,
         formData,
         config
       );
@@ -82,7 +82,7 @@ const AuthState = (props) => {
 
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/auth`,
+        `http://localhost:${process.env.REACT_APP_API_URL}/api/auth`,
         formData,
         config
       );
@@ -91,7 +91,7 @@ const AuthState = (props) => {
         type: LOGIN_SUCCESS,
         payload: res.data,
       });
-
+   
       loadUser();
       return { success: true };
     } catch (err) {
@@ -112,7 +112,7 @@ const AuthState = (props) => {
     };
     try {
       const res = await axios.post(
-        `${process.env.REACT_APP_API_URL}/api/auth/social-media`,
+        `http://localhost:${process.env.REACT_APP_API_URL}/api/auth/social-media`,
         data,
         config
       );

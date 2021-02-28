@@ -86,18 +86,24 @@ export default function SignUp({ history }) {
   // Handle form submit
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    const res = register({
-      fullname,
-      username,
-      password,
-    });
-
-    if (res.success) {
-      showMessage("You have been successfully registerd.\nYou will be automatically login!");
-    } else {
-      showMessage("Invalid registration!");
+    if(fullname===''||username===''||password==='')
+    { 
+      showMessage("Please enter all fields");
     }
+    else{
+      const res = await register({
+        fullname,
+        username,
+        password,
+      });
+      
+      if (res.success) {
+        showMessage("You have been successfully registed.\nYou will be automatically login!");
+      } else {
+        showMessage("Invalid registration!");
+      }
+    }
+    
   };
 
   // Show toast

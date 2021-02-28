@@ -71,11 +71,11 @@ const PlayGame = () => {
         alignItems="center"
         style={{ marginTop: "25px" }}
       >
-        <Grid item>
+        <Grid item xs={5} container>
           <RoomSearchHeader />
         </Grid>
 
-        <Grid item xs={12} sm container justify="flex-end">
+        <Grid item xs={7} sm container  alignItems="center" justify="center">
           <Button variant="contained" color="secondary" onClick={goToQuickGame}>QUICK GAME</Button>
           <Popup
             modal

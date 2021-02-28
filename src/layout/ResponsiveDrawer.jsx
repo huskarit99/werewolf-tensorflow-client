@@ -25,7 +25,7 @@ import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import MenuIcon from "@material-ui/icons/Menu";
 import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
-import Logo from "../images/Logo.svg";
+import Logo from "../images/Logo.png";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import clsx from "clsx";
 import { Link } from "react-router-dom";
@@ -44,7 +44,8 @@ const useStyles = makeStyles((theme) => ({
     justifyContent: "center",
   },
   logo: {
-    height: "24px",
+    height: "30px",
+    width: "70%"
   },
   drawer: {
     [theme.breakpoints.up("sm")]: {
