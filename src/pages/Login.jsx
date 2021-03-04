@@ -104,16 +104,16 @@ export default function Login({ history }) {
 
     if (username === "" || password === "") {
       // setAlert("Please fill in all fields");
-      alert("Please fill in all fields");
+      showMessage("Please fill in all fields");
     } else {
       const res = await login({
         username,
         password,
       });
       if (res.success) {
-        showMessage("You have successfully logged in.");
-        // showMessage("You have successfully logged in. You will be redirected to homepage.");
-        // setTimeout(() => history.push("/"), 4300);
+       // showMessage("You have successfully logged in.");
+        showMessage("You have successfully logged in. You will be redirected to homepage.");
+        setTimeout(() => history.push("/"), 4300);
       } else {
         showMessage("Invalid Login Credentials");
       }

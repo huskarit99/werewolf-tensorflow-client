@@ -76,7 +76,7 @@ export default function SignUp({ history }) {
       }
     }
     // eslint-disable-next-line
-  }, [isAuthenticated, error]);
+  }, [isAuthenticated]);
 
   // Handle input change
   const handleInputChange = (e) => {

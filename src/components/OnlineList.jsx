@@ -34,11 +34,12 @@ const OnlineList = () => {
   const classes = useStyles();
   const [users, setUsers] = useState([]);
   const socket = useContext(ThemeContext)
-
+// eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
-    socket.on("getOnlineUsers", ({ users }) => {
+    socket.on("getOnlineUsers",  ({ users }) => {
       setUsers(users);
     });
+    
   }, [socket])
 
   return (

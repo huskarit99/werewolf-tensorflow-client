@@ -23,11 +23,11 @@ import { makeStyles } from "@material-ui/core/styles";
 import io from "socket.io-client";
 
 let socket;
-const ENDPOINT = process.env.REACT_APP_API_URL;
+const ENDPOINT = `http://localhost:${process.env.REACT_APP_API_URL}`;
 socket = io(ENDPOINT, {
   transports: ["websocket", "polling", "flashsocket"],
 });
-
+console.log(socket)
 export const ThemeContext = React.createContext("");
 
 const useStyles = makeStyles((theme) => ({
@@ -57,7 +57,7 @@ const App = () => {
                     <Route exact path="/logout" component={Logout} />
                     {/*  */}
                   
-                    <Route exact path="/room" component={PlayGame} />
+                    <Route exact path="/play-game" component={PlayGame} />
                     
                   </Switch>
                 </div>
