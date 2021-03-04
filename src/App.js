@@ -15,6 +15,7 @@ import Login from "./pages/Login";
 import Logout from "./pages/Logout";
 
 import PlayGame from "./pages/PlayGame";
+import Room from "./pages/Room";
 
 
 
@@ -58,6 +59,7 @@ const App = () => {
                     {/*  */}
                   
                     <Route exact path="/play-game" component={PlayGame} />
+                    <Route exact path="/room" component={Room} />
                     
                   </Switch>
                 </div>
