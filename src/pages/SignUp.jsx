@@ -121,7 +121,7 @@ export default function SignUp({ history }) {
   };
 
   return (
-    <OnlineListWrapper>
+    
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -209,6 +209,6 @@ export default function SignUp({ history }) {
           key='signup_toast'
         />
       </Container>
-    </OnlineListWrapper>
+    
   );
 }

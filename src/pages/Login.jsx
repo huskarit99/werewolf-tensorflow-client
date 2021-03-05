@@ -121,7 +121,7 @@ export default function Login({ history }) {
   };
 
   return (
-    <OnlineListWrapper>
+    
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
@@ -202,6 +202,6 @@ export default function Login({ history }) {
           />
         </div>
       </Container>
-    </OnlineListWrapper>
+    
   );
 }
