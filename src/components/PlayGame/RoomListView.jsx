@@ -101,17 +101,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-/* const rooms = [
-  { name: 'ASFRNYU', level: 5, host: 'ken.yoho', status: 'waiting', participants: 1 },
-  { name: 'ASFRNYU', level: 2, host: 'thucuyen01', status: 'playing', participants: 6 },
-  { name: 'HJSBNSB', level: 3, host: 'vanhuy', status: 'waiting', participants: 1 },
-  { name: 'H9HSJ45', level: 3, host: 'tuandat', status: 'playing', participants: 5 },
-  { name: 'HHJSHS7', level: 1, host: 'datit', status: 'waiting', participants: 1 },
-  { name: '48HHNVS', level: 4, host: 'huyit12', status: 'waiting', participants: 1 },
-  { name: '52GSHSH', level: 2, host: 'huyphan', status: 'waiting', participants: 1 },
-  { name: '98GSHGS', level: 2, host: 'nikochin', status: 'waiting', participants: 1 },
-  { name: '8FGHS09', level: 1, host: 'tuyennguyen', status: 'waiting', participants: 1 },
-]; */
+
 
 export default function RoomListView({ rooms }) {
   const { user } = useContext(AuthContext);
@@ -120,14 +110,14 @@ export default function RoomListView({ rooms }) {
   const classes = useStyles();
   const history = useHistory();
 
-  const goToRoom = (name, room, roomName, level) => {
-    history.push(`/room?name=${name}&room=${room}&roomName=${roomName}&level=${level}`);
+  const goToRoom = (name, room, roomName, numOfPlayers) => {
+    history.push(`/room?name=${name}&room=${room}&roomName=${roomName}&numOfPlayers=${numOfPlayers}`);
   };
 
   return (
     <div className={classes.root}>
       <Grid container spacing={3}>
-        {rooms.filter((room) => room.status !== "quickly").map(({ id, level, name, host, player2, guests, status }) => (
+        {rooms.filter((room) => room.status !== "quickly").map(({ id, numOfPlayers, name, host, status, numOfWaiting }) => (
           <Grid item xs={4} key={uuid()}>
             <Container spacing={3} className={classes.cardItem}>
               <Grid item>
@@ -140,7 +130,7 @@ export default function RoomListView({ rooms }) {
                     width: "100%",
                   }}
                   onClick={() => {
-                    goToRoom(username, id, name, level)
+                    goToRoom(username, id, name, numOfPlayers)
                   }}
                 >
                   <span
@@ -170,10 +160,10 @@ export default function RoomListView({ rooms }) {
               </Grid>
               <Grid item xs={12} sm container spacing={1} style={{ justifyContent: "center", alignItems: "center", marginTop: "8px" }}>
                 <Grid item>
-                  <Typography component="legend">Level</Typography>
+                  <Typography component="legend">Number of players: </Typography>
                 </Grid>
                 <Grid item>
-                  <Rating name="read-only" value={parseInt(level)} readOnly />
+                  <Typography>{numOfWaiting}/{numOfPlayers}</Typography>
                 </Grid>
               </Grid>
               <Grid item xs={12} sm container style={{ justifyContent: "space-between", alignItems: "center", marginTop: "12px" }}>
@@ -184,13 +174,13 @@ export default function RoomListView({ rooms }) {
                         <Avatar alt="gamer 01" src="" ></Avatar>
                       </Tooltip>
                       <Typography variant="body2">
-                        Player 01
+                        {host?.name}
                       </Typography>
                     </div>
                   </Grid>)
                   : (<Grid item>
                     <AvatarGroup max={4}>
-                      {[host, player2, ...guests].map(({ name }, i) => (
+                      {[host].map(({ name }, i) => (
                         <Tooltip title={name}>
                           <Avatar key={i} alt="avatar" src=""></Avatar>
                         </Tooltip>

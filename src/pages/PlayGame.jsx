@@ -37,7 +37,9 @@ const PlayGame = () => {
 
   useEffect(() => {
     // Reload data 
-    socket.emit('reloadRooms');
+    socket.on('reloadRooms',({rooms})=>{
+      setRoomItems(rooms)
+    });
 
     socket.on('getRooms', ({ rooms }) => {
       console.log("[PlayGame] ..rooms =", rooms);
@@ -47,14 +49,14 @@ const PlayGame = () => {
     socket.on('quickRoom', ({ room }) => {
       console.log("[PlayGame] ..quickRoom =", room);
       if (room.host && room.player2) {
-        history.push(`/room?name=${name}&room=${room.id}&roomName=${room.name}&level=${room.level}`);
+        history.push(`/room?name=${name}&room=${room.id}&roomName=${room.name}&numOfPlayers=${room.numOfPlayers}`);
       }
     });
   // eslint-disable-next-line
   }, [socket]);
 
-  const goToRoom = (name, room, roomName, level) => {
-    history.push(`/room?name=${name}&room=${room}&roomName=${roomName}&level=${level}`);
+  const goToRoom = (name, room, roomName, numOfPlayers) => {
+    history.push(`/room?name=${name}&room=${room}&roomName=${roomName}&numOfPlayers=${numOfPlayers}`);
   };
 
   const goToQuickGame = () => {

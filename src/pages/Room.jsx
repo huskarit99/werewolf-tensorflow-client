@@ -7,7 +7,7 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 
-
+import Game from "../components/Game";
 import Chat from "../components/Chat/Chat/Chat";
 import { ThemeContext } from '../App';
 
@@ -33,7 +33,7 @@ const Room = ({ location }) => {
   // eslint-disable-next-line no-unused-vars
   const [name, setName] = useState('');
   // eslint-disable-next-line no-unused-vars
-  const [level, setLevel] = useState('');
+  const [numOfPlayers, setNumOfPlayers] = useState('');
   // eslint-disable-next-line no-unused-vars
   const [room, setRoom] = useState('');
   const [roomCode, setRoomCode] = useState('');
@@ -41,18 +41,18 @@ const Room = ({ location }) => {
   const socket = useContext(ThemeContext)
 
   useEffect(() => {
-    const { name, room, roomName, level } = queryString.parse(location.search);
+    const { name, room, roomName, numOfPlayers } = queryString.parse(location.search);
 
     setName(name ?? '');
     setRoom(roomName);
-    setLevel(level);
+    setNumOfPlayers(numOfPlayers);
     setRoomCode(room)
 
     if (room) {
-      socket.emit('joinRoom', { roomId: room, roomName: roomName, roomLevel: level }, (user, room) => {
+      socket.emit('joinRoom', { roomId: room, roomName: roomName, numOfPlayers: numOfPlayers }, (user, room) => {
         if (room) {
           setRoom(room.name);
-          setLevel(room.level);
+          setNumOfPlayers(room.numOfPlayers);
         }
       });
     }
@@ -60,7 +60,7 @@ const Room = ({ location }) => {
 
   return room ? (<Grid container>
     <Grid item lg={8} xs={12}>
-   
+      <Game/>
     </Grid>
     <Grid item lg={4} xs={12}>
       <Card className={classes.root} variant="outlined">

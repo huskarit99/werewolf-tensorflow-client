@@ -2,7 +2,8 @@ import React, { useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 import VideogameAsset from "@material-ui/icons/VideogameAsset";
-import Rating from '@material-ui/lab/Rating';
+import Input from '@material-ui/core/Input';
+
 import {
   Avatar,
   Button,
@@ -48,10 +49,10 @@ const RoomCreateModal = ({ close, onClick }) => {
   const classes = useStyles();
   const socket = useContext(ThemeContext)
 
-  const [formData, setFormData] = useState({ room: socket.id, level: 3 });
+  const [formData, setFormData] = useState({ room: socket.id, numOfPlayers: 3 });
 
   const handleInputChange = (e) => {
-    if (e.target.name === 'level') {
+    if (e.target.name === 'numOfPlayers') {
       setFormData({ ...formData, [e.target.name]: parseInt(e.target.value) });
       return;
     }
@@ -99,15 +100,11 @@ const RoomCreateModal = ({ close, onClick }) => {
             autoFocus
           />
           <Grid container xs={3} sm item className={classes.inputField}>
-            <Grid item style={{ marginRight: ".75rem" }}>
-              <Typography component="legend">Difficulty level </Typography>
+            <Grid item style={{ marginRight: ".75rem" }} xs={6}>
+              <Typography component="legend">Number of players:  </Typography>
             </Grid>
-            <Grid item>
-              <Rating
-                value={formData.level}
-                name="level"
-                onChange={handleInputChange}
-              />
+            <Grid item xs={3}>
+              <Input name="quantity" type="number" min="3" max="10" onChange={handleInputChange} defaultValue={3}></Input>
             </Grid>
           </Grid>
           <Button
@@ -119,8 +116,8 @@ const RoomCreateModal = ({ close, onClick }) => {
             onClick={(e) => {
               e.preventDefault();
               
-              const { room, roomName, level} = formData;
-              onClick(name, room, roomName, level);
+              const { room, roomName, numOfPlayers} = formData;
+              onClick(name, room, roomName, numOfPlayers);
               close();
             }}
           >
