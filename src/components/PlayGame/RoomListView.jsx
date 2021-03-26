@@ -110,8 +110,15 @@ export default function RoomListView({ rooms }) {
   const classes = useStyles();
   const history = useHistory();
 
-  const goToRoom = (name, room, roomName, numOfPlayers) => {
-    history.push(`/room?name=${name}&room=${room}&roomName=${roomName}&numOfPlayers=${numOfPlayers}`);
+  const goToRoom = (name, roomId, roomName, numOfPlayers) => {
+    const checkRoom = rooms.find((room)=>room.id===roomId);
+    if(checkRoom.numOfWaiting<checkRoom.numOfPlayers)
+    {
+      history.push(`/room?name=${name}&room=${roomId}&roomName=${roomName}&numOfPlayers=${numOfPlayers}`);
+    }
+    else{
+      alert("Room is full!");
+    }
   };
 
   return (

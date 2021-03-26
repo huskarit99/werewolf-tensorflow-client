@@ -47,10 +47,7 @@ const RoomJoinModal = ({ close, onClick }) => {
   const [formData, setFormData] = useState();
 
   const handleInputChange = (e) => {
-    if (e.target.name === 'level') {
-      setFormData({ ...formData, [e.target.name]: parseInt(e.target.value) });
-      return;
-    }
+    
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
@@ -88,9 +85,8 @@ const RoomJoinModal = ({ close, onClick }) => {
             className={classes.submit}
             onClick={(e) => {
               e.preventDefault();
-              
               const { room } = formData;
-              onClick(name, room);
+              onClick(room);
               close();
             }}
           >
