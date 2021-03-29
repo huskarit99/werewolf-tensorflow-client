@@ -117,7 +117,7 @@ const RoomCreateModal = ({ close, onClick }) => {
                   name="numOfPlayers"
                   type="number"
                   variant="outlined"
-                  InputProps={{ inputProps: { min: 1, max: 10} }}
+                  InputProps={{ inputProps: { min: 3, max: 10} }}
                   onChange={handleInputChange}
                   required
                 />

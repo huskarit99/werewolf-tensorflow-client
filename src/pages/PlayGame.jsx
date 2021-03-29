@@ -47,8 +47,9 @@ const PlayGame = () => {
     });
 
     socket.on("joinRoomByCode",({room})=>{
-      console.log(room);
-      if(room.numOfWaiting<room.numOfPlayers)
+      if(room!=null)
+      {
+        if(room.numOfWaiting<room.numOfPlayers)
       {
         history.push(
           `/room?name=${name}&room=${room.id}&roomName=${room.name}&numOfPlayers=${room.numOfPlayers}`
@@ -57,6 +58,11 @@ const PlayGame = () => {
       else{
         alert("Room is full");
       }
+    }
+    else{
+      alert("Room is not exist");
+      return;
+    }
     })
 
     socket.on("quickRoom", ({ room }) => {

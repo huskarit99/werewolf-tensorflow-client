@@ -29,7 +29,7 @@ const Logout = () => {
       </div>
     </Grid>
     <Grid item lg={2} xs={12}>
-      <OnlineList />
+      
     </Grid>
   </Grid>;
 };
