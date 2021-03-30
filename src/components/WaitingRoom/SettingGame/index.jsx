@@ -2,8 +2,9 @@ import React, { useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 import Checkbox from "@material-ui/core/Checkbox";
-
+import SettingsIcon from '@material-ui/icons/Settings';
 import {
+  Avatar,
   Button,
   CssBaseline,
   TextField,
@@ -55,17 +56,24 @@ const SettingGame = ({ close, onClick, numOfPlayers }) => {
   });
 
   const handleInputChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    if (e.target.name === "wereWolfs" || e.target.name === "villagers") {
+      setFormData({ ...formData, [e.target.name]: parseInt(e.target.value) });
+      return;
+    }
+    setFormData({ ...formData, [e.target.name]: e.target.checked });
   };
 
   return (
     <div className="tictactoe-modal">
-      <a className="close" onClick={close}>
+      <a  className="close" onClick={close}>
       &times;
       </a>
       <div className="content">
         <CssBaseline />
         <div className={classes.paper}>
+        <Avatar className={classes.avatar}>
+            <SettingsIcon fontSize="large" />
+          </Avatar>
           <Typography
             component="h1"
             variant="h5"
@@ -84,7 +92,7 @@ const SettingGame = ({ close, onClick, numOfPlayers }) => {
                   name="wereWolfs"
                   type="number"
                   variant="outlined"
-                  InputProps={{ inputProps: { min: 1, max: numOfPlayers }, style:{height: '40px'} }}
+                  InputProps={{ inputProps: { min: 1, max: numOfPlayers-1 }, style:{height: '40px'} }}
                   onChange={handleInputChange}
                   required
                 />
@@ -101,6 +109,7 @@ const SettingGame = ({ close, onClick, numOfPlayers }) => {
                   defaultChecked={false}
                   color="primary"
                   inputProps={{ "aria-label": "secondary checkbox" }}
+                  onChange={handleInputChange}
                 />
               </Grid>
             </Grid>
@@ -114,6 +123,8 @@ const SettingGame = ({ close, onClick, numOfPlayers }) => {
                   defaultChecked={false}
                   color="primary"
                   inputProps={{ "aria-label": "secondary checkbox" }}
+                  onChange={handleInputChange}
+
                 />
               </Grid>
             </Grid>
@@ -127,6 +138,8 @@ const SettingGame = ({ close, onClick, numOfPlayers }) => {
                   defaultChecked={false}
                   color="primary"
                   inputProps={{ "aria-label": "secondary checkbox" }}
+                  onChange={handleInputChange}
+                  
                 />
               </Grid>
             </Grid>
@@ -140,7 +153,7 @@ const SettingGame = ({ close, onClick, numOfPlayers }) => {
                   name="villagers"
                   type="number"
                   variant="outlined"
-                  InputProps={{ inputProps: { min: 1, max: numOfPlayers },style:{height: '40px'} }}
+                  InputProps={{ inputProps: { min: 1, max: numOfPlayers-1 },style:{height: '40px'} }}
                   onChange={handleInputChange}
                   required
                 />
@@ -151,7 +164,6 @@ const SettingGame = ({ close, onClick, numOfPlayers }) => {
               <Button
               name="confirm"
               type="submit"
-              
               variant="contained"
               color="primary"
               className={classes.submit}
@@ -159,6 +171,7 @@ const SettingGame = ({ close, onClick, numOfPlayers }) => {
                 e.preventDefault();
                 const { wereWolfs, witch, hunter, guard, villagers } = formData;
                 onClick(wereWolfs, witch, hunter, guard, villagers);
+                close();
               }}
             >
               Confirm

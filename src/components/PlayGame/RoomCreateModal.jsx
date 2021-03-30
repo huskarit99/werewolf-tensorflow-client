@@ -2,7 +2,6 @@ import React, { useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 import VideogameAsset from "@material-ui/icons/VideogameAsset";
-import Input from "@material-ui/core/Input";
 
 import {
   Avatar,
@@ -117,7 +116,7 @@ const RoomCreateModal = ({ close, onClick }) => {
                   name="numOfPlayers"
                   type="number"
                   variant="outlined"
-                  InputProps={{ inputProps: { min: 3, max: 10} }}
+                  InputProps={{ inputProps: { min: 3, max: 10},style:{height: '40px'} }}
                   onChange={handleInputChange}
                   required
                 />

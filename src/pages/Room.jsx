@@ -41,7 +41,7 @@ const Room = ({ location }) => {
   const [roomId, setRoomId] = useState();
   const [numOfPlayers,setNumOfPlayers] = useState();
   const socket = useContext(ThemeContext);
-  const [roomSetting,setRoomSetting]=useState({wereWolfs:0,witch:0, hunter:0, guard:0, villagers:0});
+  const [gameSetting,setGameSetting]=useState({wereWolfs:0,witch:false, hunter:false, guard:false, villagers:0});
   useEffect(() => {
     const { name, room, roomName, numOfPlayers } = queryString.parse(
       location.search
@@ -61,7 +61,7 @@ const Room = ({ location }) => {
             setRoomName(room.name);
             setRoomId(room.id);
             setNumOfPlayers(room.numOfPlayers);
-            setRoomSetting({villagers: numOfPlayers});
+            setGameSetting({villagers: numOfPlayers});
           }
           if(error)
           {
@@ -70,14 +70,21 @@ const Room = ({ location }) => {
           }
         }
       );
+      socket.on('gameInfo',({room})=>{
+        if(room){
+          if(room.gameSetting)
+            setGameSetting(room.gameSetting);
+        }
+      })
       socket.on('waitingRoom',({room})=>{
         if(room)
           {           
             setPlayers(room.players);
           }
       })
+      
     }
-    
+      
   }, [socket, location.search]);
 
   return players ? (
@@ -119,11 +126,11 @@ const Room = ({ location }) => {
           <ListPlayer host={host} players={players}/>
         </Grid>
         <Grid item xs={12}>
-          <Controller host={host} numOfPlayers={numOfPlayers}/>
+          <Controller host={host} numOfPlayers={numOfPlayers} roomId={roomId}/>
         </Grid>
       </Grid>
       <Grid item lg={4} xs={12}>
-        <GameInfo roomSetting ={roomSetting}/>
+        <GameInfo gameSetting ={gameSetting}/>
         <Chat name={roomName} room={roomName} />
       </Grid>
     </Grid>

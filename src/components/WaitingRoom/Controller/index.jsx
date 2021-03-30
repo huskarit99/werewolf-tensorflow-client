@@ -17,15 +17,32 @@ const useStyles = makeStyles((theme) => ({
     padding: "5px 15px",
   },
 }));
-const handleSetting= ()=>{
 
-}
-const Controller = ({ host, numOfPlayers }) => {
+const Controller = ({ host, numOfPlayers, roomId }) => {
   const classes = useStyles();
   const socket = useContext(ThemeContext);
 
+  const handleSetting = (wereWolfs, witch, hunter, guard, villagers) => {
+    let numOfSetting = 0;
+    if (wereWolfs != null && villagers != null) {
+      if (witch === true) numOfSetting++;
+      else witch = false;
+      if (hunter === true) numOfSetting++;
+      else hunter = false;
+      if (guard === true) numOfSetting++;
+      else guard = false;
+      numOfSetting += wereWolfs + villagers;
+      if (numOfSetting === parseInt(numOfPlayers)) {
+        const gameSetting = { wereWolfs, witch, hunter, guard, villagers };
+        socket.emit("gameSetting", { gameSetting, roomId });
+      } else alert("Setting is not reasonable!");
+    } else {
+      alert("Please fill in all setting!");
+      return false;
+    }
+  };
+
   return (
-      
     <div>
       <CssBaseline />
       <Grid container>
@@ -37,19 +54,23 @@ const Controller = ({ host, numOfPlayers }) => {
           </Grid>
           {host.id === socket.id ? (
             <Grid item>
-                <Popup
-              modal
-              lockScroll={true}
-              nested
-              trigger={
-              <Button variant="outlined" className={classes.button} onClick={handleSetting}>
-                <Image src={SettingIcon} style={{ width: "100%" }} />
-              </Button>
-              }
+              <Popup
+                modal
+                lockScroll={true}
+                nested
+                trigger={
+                  <Button variant="outlined" className={classes.button}>
+                    <Image src={SettingIcon} style={{ width: "100%" }} />
+                  </Button>
+                }
               >
-                  {(close) =>
-                  {<Setting close={close} onClick={handleSetting} numOfPlayers={numOfPlayers}/>}
-              }
+                {(close) => (
+                  <Setting
+                    close={close}
+                    onClick={handleSetting}
+                    numOfPlayers={numOfPlayers}
+                  />
+                )}
               </Popup>
             </Grid>
           ) : (

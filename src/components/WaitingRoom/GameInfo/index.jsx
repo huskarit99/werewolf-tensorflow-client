@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const GameInfo = ({ roomSetting }) => {
+const GameInfo = ({ gameSetting }) => {
   const { user } = useContext(AuthContext);
   const [name] = useState(user?.username ?? "");
 
@@ -66,7 +66,7 @@ const GameInfo = ({ roomSetting }) => {
               <Typography>Ma sói:</Typography>
             </Grid>
             <Grid xs={3}>
-              <Typography>{roomSetting.wereWolfs}</Typography>
+              <Typography>{gameSetting.wereWolfs}</Typography>
             </Grid>
           </Grid>
           <Grid container>
@@ -76,9 +76,10 @@ const GameInfo = ({ roomSetting }) => {
             <Grid xs={6}>
               <Checkbox
                 name="witch"
-                defaultChecked={roomSetting.witch}
+                checked={gameSetting.witch}
                 color="primary"
                 inputProps={{ "aria-label": "secondary checkbox" }}
+                disabled
               />
             </Grid>
           </Grid>
@@ -89,9 +90,10 @@ const GameInfo = ({ roomSetting }) => {
             <Grid xs={6}>
               <Checkbox
                 name="hunter"
-                defaultChecked={roomSetting.hunter}
+                checked={gameSetting.hunter}
                 color="primary"
                 inputProps={{ "aria-label": "secondary checkbox" }}
+                disabled
               />
             </Grid>
           </Grid>
@@ -102,9 +104,10 @@ const GameInfo = ({ roomSetting }) => {
             <Grid xs={6}>
               <Checkbox
                 name="guard"
-                defaultChecked={roomSetting.guard}
+                checked={gameSetting.guard}
                 color="primary"
                 inputProps={{ "aria-label": "secondary checkbox" }}
+                disabled
               />
             </Grid>
           </Grid>
@@ -113,7 +116,7 @@ const GameInfo = ({ roomSetting }) => {
               <Typography>Dân làng:</Typography>
             </Grid>
             <Grid xs={3}>
-              <Typography>{roomSetting.villagers}</Typography>
+              <Typography>{gameSetting.villagers}</Typography>
             </Grid>
           </Grid>
         </div>
