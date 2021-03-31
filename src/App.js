@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment,useContext } from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import "./App.css";
 import "./style.css";
@@ -41,6 +41,7 @@ setAuthToken(localStorage.token);
 
 const App = () => {
   const classes = useStyles();
+  
 
   return (
     <Router>
@@ -57,6 +58,7 @@ const App = () => {
                     <Route exact path="/sign-up" component={SignUp} />
                     <Route exact path="/logout" component={Logout} />
                     {/*  */}
+                    
                     <Route exact path="/play-game" component={PlayGame} />
                     <Route exact path="/room" component={Room} />
                     

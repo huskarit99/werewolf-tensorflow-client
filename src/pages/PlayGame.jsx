@@ -35,35 +35,31 @@ const PlayGame = () => {
   const socket = useContext(ThemeContext);
   const [roomItems, setRoomItems] = useState([]);
 
+
   useEffect(() => {
     // Reload data
-    socket.on("reloadRooms", ({ rooms }) => {
+    socket.emit("reloadRooms", ({ rooms }) => {
       setRoomItems(rooms);
     });
 
     socket.on("getRooms", ({ rooms }) => {
-      console.log("[PlayGame] ..rooms =", rooms);
       setRoomItems(rooms);
     });
 
-    socket.on("joinRoomByCode",({room})=>{
-      if(room!=null)
-      {
-        if(room.numOfWaiting<room.numOfPlayers)
-      {
-        history.push(
-          `/room?name=${name}&room=${room.id}&roomName=${room.name}&numOfPlayers=${room.numOfPlayers}`
-        );
+    socket.on("joinRoomByCode", ({ room }) => {
+      if (room != null) {
+        if (room.numOfWaiting < room.numOfPlayers) {
+          history.push(
+            `/room?name=${name}&room=${room.id}&roomName=${room.name}&numOfPlayers=${room.numOfPlayers}`
+          );
+        } else {
+          alert("Room is full");
+        }
+      } else {
+        alert("Room is not exist");
+        return;
       }
-      else{
-        alert("Room is full");
-      }
-    }
-    else{
-      alert("Room is not exist");
-      return;
-    }
-    })
+    });
 
     socket.on("quickRoom", ({ room }) => {
       console.log("[PlayGame] ..quickRoom =", room);
@@ -73,24 +69,23 @@ const PlayGame = () => {
         );
       }
     });
-    
+
     // eslint-disable-next-line
   }, [socket]);
 
   const goToRoom = (name, room, roomName, numOfPlayers) => {
-    if ((roomName != null && numOfPlayers != null)) {
+    if (roomName != null && numOfPlayers != null) {
       history.push(
         `/room?name=${name}&room=${room}&roomName=${roomName}&numOfPlayers=${numOfPlayers}`
       );
-    } else
-    { 
-      alert("Please fill in all fields")
+    } else {
+      alert("Please fill in all fields");
       return false;
     }
   };
-  const joinRoomByCode = (roomId)=>{
-    socket.emit("requestJoinRoomByCode",(roomId));
-  }
+  const joinRoomByCode = (roomId) => {
+    socket.emit("requestJoinRoomByCode", roomId);
+  };
 
   const goToQuickGame = () => {
     socket.emit("requestQuickGame");

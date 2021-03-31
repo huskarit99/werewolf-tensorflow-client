@@ -42,12 +42,16 @@ const Room = ({ location }) => {
   const [numOfPlayers,setNumOfPlayers] = useState();
   const socket = useContext(ThemeContext);
   const [gameSetting,setGameSetting]=useState({wereWolfs:0,witch:false, hunter:false, guard:false, villagers:0});
+  useEffect(()=>{
+
+  })
   useEffect(() => {
     const { name, room, roomName, numOfPlayers } = queryString.parse(
       location.search
     );
     
     if (room) {
+      
       socket.emit(
         "joinRoom",
         { roomId: room, roomName: roomName, numOfPlayers: numOfPlayers },
@@ -56,12 +60,15 @@ const Room = ({ location }) => {
           {
             setHost(host)
           }
-          if (room) {
             setPlayers(room.players);
             setRoomName(room.name);
             setRoomId(room.id);
             setNumOfPlayers(room.numOfPlayers);
+          if (!room.gameSetting) {
             setGameSetting({villagers: numOfPlayers});
+          }
+          else{
+            setGameSetting(room.gameSetting);
           }
           if(error)
           {
@@ -72,16 +79,11 @@ const Room = ({ location }) => {
       );
       socket.on('gameInfo',({room})=>{
         if(room){
+          setPlayers(room.players);
           if(room.gameSetting)
             setGameSetting(room.gameSetting);
         }
-      })
-      socket.on('waitingRoom',({room})=>{
-        if(room)
-          {           
-            setPlayers(room.players);
-          }
-      })
+      })     
       
     }
       
