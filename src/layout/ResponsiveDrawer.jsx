@@ -104,7 +104,7 @@ function ResponsiveDrawer(props) {
         <img className={classes.logo} src={Logo} alt="" />
       </div>
       <Divider />
-      <List>
+      {isAuthenticated?<List>
         <Link to="/" className={classes.link}>
           <ListItem button>
             <ListItemIcon>
@@ -113,93 +113,101 @@ function ResponsiveDrawer(props) {
             <ListItemText primary="Home" />
           </ListItem>
         </Link>
-        {isAuthenticated?<Link to="/profile" className={classes.link}>
+        <Link to="/profile" className={classes.link}>
           <ListItem button>
             <ListItemIcon>
               <PersonIcon />
             </ListItemIcon>
             <ListItemText primary="Profile" />
           </ListItem>
-        </Link>:""}
-        {isAuthenticated?<Link to="/play-game" className={classes.link}>
+        </Link>
+        <Link to="/play-game" className={classes.link}>
           <ListItem button>
             <ListItemIcon>
               <VideogameAsset />
             </ListItemIcon>
             <ListItemText primary="Play Game" />
           </ListItem>
-        </Link>:""}
-        {isAuthenticated?<Link to="/room" className={classes.link}>
+        </Link>
+        <Link to="/room" className={classes.link}>
           <ListItem button>
             <ListItemIcon>
               <VideogameAsset />
             </ListItemIcon>
             <ListItemText primary="Room" />
           </ListItem>
-        </Link>:""}
-        {isAuthenticated?<Link to="/rank" className={classes.link}>
+        </Link>
+        <Link to="/rank" className={classes.link}>
           <ListItem button>
             <ListItemIcon>
               <AssessmentIcon />
             </ListItemIcon>
             <ListItemText primary="Rank" />
           </ListItem>
-        </Link>:""}
-        {isAuthenticated?<Link to="/online" className={classes.link}>
+        </Link>
+        <Link to="/online" className={classes.link}>
           <ListItem button>
             <ListItemIcon>
               <SupervisorAccountIcon />
             </ListItemIcon>
             <ListItemText primary="Online" />
           </ListItem>
-        </Link>:""}
-        {isAuthenticated?<Link to="/guide" className={classes.link}>
+        </Link>
+        <Link to="/guide" className={classes.link}>
           <ListItem button>
             <ListItemIcon>
               <AnnouncementIcon />
             </ListItemIcon>
             <ListItemText primary="Guide" />
           </ListItem>
-        </Link>:""}
-        {isAuthenticated?<Link to="/history" className={classes.link}>
+        </Link>
+        <Link to="/history" className={classes.link}>
           <ListItem button>
             <ListItemIcon>
               <HistoryIcon />
             </ListItemIcon>
             <ListItemText primary="History" />
           </ListItem>
-        </Link>:""}
-      </List>
-      {!isAuthenticated?<Divider />:""}
-      <List>
-        {!isAuthenticated?<Link to="/login" className={classes.link}>
+        </Link>
+      </List>:""}
+      <Divider />
+      {!isAuthenticated?<List>
+        <Link to="/" className={classes.link}>
+          <ListItem button>
+            <ListItemIcon>
+              <HomeIcon />
+            </ListItemIcon>
+            <ListItemText primary="Home" />
+          </ListItem>
+        </Link>
+        <Link to="/login" className={classes.link}>
           <ListItem button>
             <ListItemIcon>
               <AssignmentIndIcon />
             </ListItemIcon>
             <ListItemText primary="Login" />
           </ListItem>
-        </Link>:""}
-        {!isAuthenticated?<Link to="/sign-up" className={classes.link}>
+        </Link>
+        <Link to="/sign-up" className={classes.link}>
           <ListItem button>
             <ListItemIcon>
               <AssignmentIcon />
             </ListItemIcon>
             <ListItemText primary="Sign-up" />
           </ListItem>
-        </Link>:""}
-      </List>
+        </Link>
+      </List>:""}
       <Divider />
-      <List>
-        {isAuthenticated?<Link to="/logout" className={classes.link}>
+      {isAuthenticated?<List>
+        <Link to="/logout" className={classes.link}>
         <ListItem button onClick={handleLogout}>
           <ListItemIcon>
             <ExitToAppIcon />
           </ListItemIcon>
           <ListItemText primary="Logout" />
         </ListItem>
-        </Link>:""}
-      </List>
+        </Link>
+      </List>:""}
     </div>
   );
 

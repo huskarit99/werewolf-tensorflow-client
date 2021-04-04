@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Controller = ({ host, numOfPlayers, roomId }) => {
+const Controller = ({ host,players, numOfPlayers, roomId }) => {
   const classes = useStyles();
   const socket = useContext(ThemeContext);
   const history= useHistory();
@@ -46,6 +46,14 @@ const Controller = ({ host, numOfPlayers, roomId }) => {
   const handleExit =()=>{
     socket.emit('exitRoom',{host,roomId});
     history.push('/play-game');
+  }
+  const handleReady = ()=>{
+    const index = players.findIndex((player)=>player.id===socket.id);
+    if(players[index].status!=='ready')
+      socket.emit('setReady');
+    else{
+      socket.emit('setUnReady');
+    }
   }
 
   return (
@@ -95,7 +103,7 @@ const Controller = ({ host, numOfPlayers, roomId }) => {
             </Grid>
           ) : (
             <Grid item>
-              <Button variant="outlined" className={classes.button}>
+              <Button variant="outlined" className={classes.button} onClick={handleReady}>
                 <Image src={ReadyIcon} style={{ width: "100%" }} />
               </Button>
             </Grid>

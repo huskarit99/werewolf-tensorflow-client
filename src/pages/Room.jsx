@@ -56,11 +56,7 @@ const Room = ({ location }) => {
         "joinRoom",
         { roomId: room, roomName: roomName, numOfPlayers: numOfPlayers }
       );  
-      socket.on('roomBlock',({error})=>{
-        console.log(error);
-        alert('You are not allowed to join this room!');
-        history.push('/play-game');
-      })
+      
       socket.on('gameInfo',({room,error})=>{
           if(room)
           {
@@ -75,26 +71,20 @@ const Room = ({ location }) => {
           }
           else{
             setGameSetting(room.gameSetting);
-          }
-          if(error)
-          {
-            alert(error);
-            return false;
-          }
-        
+          } 
       })
-      socket.on('isKicked',()=>{
-        alert('You was kicked out of room!');
-        history.push('/play-game');
-      });
+      
 
-    }catch(error){
+    }
+    catch(error){
       alert(error);
+      history.push('/play-game');
+      return;
     }
     }
       
   }, [socket, location.search, history]);
-
+  // 
   
 
   return players ? (
@@ -136,7 +126,7 @@ const Room = ({ location }) => {
           <ListPlayer host={host} players={players}/>
         </Grid>
         <Grid item xs={12}>
-          <Controller host={host} numOfPlayers={numOfPlayers} roomId={roomId}/>
+          <Controller host={host} players={players} numOfPlayers={numOfPlayers} roomId={roomId}/>
         </Grid>
       </Grid>
       <Grid item lg={4} xs={12}>

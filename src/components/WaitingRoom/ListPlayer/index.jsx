@@ -14,6 +14,8 @@ import CardContent from "@material-ui/core/CardContent";
 import CancelIcon from "@material-ui/icons/Cancel";
 import SvgIcon from "@material-ui/core/SvgIcon";
 import { yellow } from "@material-ui/core/colors";
+import ReadyIcon from "../../../icons/check.png";
+import Image from "material-ui-image";
 
 const useStyles = makeStyles((theme) => ({
   listPlayer: {},
@@ -24,10 +26,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ListPlayer = ({host,players}) => {
+const ListPlayer = ({ host, players }) => {
   const classes = useStyles();
   const socket = useContext(ThemeContext);
-  
 
   const HomeIcon = (props) => {
     return (
@@ -38,12 +39,10 @@ const ListPlayer = ({host,players}) => {
   };
 
   //handle kick player
-  const handleKick = (player)=>{
-    
+  const handleKick = (player) => {
     console.log("Player:", player);
-    socket.emit("kickPlayer",player);
-    
-  }
+    socket.emit("kickPlayer", player);
+  };
   return (
     <div>
       <Grid container spacing={1}>
@@ -59,26 +58,48 @@ const ListPlayer = ({host,players}) => {
             </CardContent>
           </Card>
         </Grid>
-        {players.filter(player=>player.id !== host.id).map((player) => (
-          <Grid item xs={3}>
-            <Card variant="outlined" className={classes.listPlayer}>
-              <CardContent className={classes.cardContent}>
-                <Typography>
-                  {host.id === player.id ? "Chủ phòng" : "Người chơi"}
-                </Typography>
-                <Typography>{player.name}</Typography>
-                <Typography>Rank: {player.rank}</Typography>
-                {(host.id === socket.id) ? (
-                  <Button key={player.id} value={player.name}  onClick={e=>handleKick(player)}>
-                    <CancelIcon fontSize="large" color="secondary"></CancelIcon>
-                  </Button>
-                ) : (
-                  ""
-                )}
-              </CardContent>
-            </Card>
-          </Grid>
-        ))}
+        {players
+          .filter((player) => player.id !== host.id)
+          .map((player) => (
+            <Grid item xs={3}>
+              <Card variant="outlined" className={classes.listPlayer}>
+                <CardContent className={classes.cardContent}>
+                  <Typography>
+                    {host.id === player.id ? "Chủ phòng" : "Người chơi"}
+                  </Typography>
+                  <Typography>{player.name}</Typography>
+                  <Typography>Rank: {player.rank}</Typography>
+                  <Grid container>
+                    <Grid item xs={6}>
+                      {host.id === socket.id ? (
+                        <Button
+                          key={player.id}
+                          value={player.name}
+                          onClick={(e) => handleKick(player)}
+                        >
+                          <CancelIcon
+                            fontSize="large"
+                            color="secondary"
+                          ></CancelIcon>
+                        </Button>
+                      ) : (
+                        ""
+                      )}
+                    </Grid>
+                    <Grid item xs={6}>
+                      {player.status == "ready" ? (
+                        <Button disabled variant="" className={classes.button}>
+                          <Image src={ReadyIcon} style={{ width: "100%" }} />
+                        </Button>
+                      ) : (
+                        ""
+                      )}
+                    </Grid>
+                  </Grid>
+                </CardContent>
+              </Card>
+            </Grid>
+          ))}
       </Grid>
     </div>
   );
