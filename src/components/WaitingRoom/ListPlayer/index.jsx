@@ -27,7 +27,6 @@ const useStyles = makeStyles((theme) => ({
 const ListPlayer = ({host,players}) => {
   const classes = useStyles();
   const socket = useContext(ThemeContext);
-  const play = players.filter((player)=>player.id !== host.id);
   
 
   const HomeIcon = (props) => {
@@ -37,6 +36,14 @@ const ListPlayer = ({host,players}) => {
       </SvgIcon>
     );
   };
+
+  //handle kick player
+  const handleKick = (player)=>{
+    
+    console.log("Player:", player);
+    socket.emit("kickPlayer",player);
+    
+  }
   return (
     <div>
       <Grid container spacing={1}>
@@ -62,7 +69,7 @@ const ListPlayer = ({host,players}) => {
                 <Typography>{player.name}</Typography>
                 <Typography>Rank: {player.rank}</Typography>
                 {(host.id === socket.id) ? (
-                  <Button>
+                  <Button key={player.id} value={player.name}  onClick={e=>handleKick(player)}>
                     <CancelIcon fontSize="large" color="secondary"></CancelIcon>
                   </Button>
                 ) : (

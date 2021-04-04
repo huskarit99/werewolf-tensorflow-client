@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect, useContext,  } from "react";
 import queryString from "query-string";
 
 import { Grid } from "@material-ui/core";
@@ -13,6 +13,7 @@ import ListPlayer from "../components/WaitingRoom/ListPlayer";
 import GameInfo from "../components/WaitingRoom/GameInfo";
 import Chat from "../components/Chat/Chat/Chat";
 import { ThemeContext } from "../App";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles({
   root: {
@@ -36,34 +37,39 @@ const Room = ({ location }) => {
 
   // eslint-disable-next-line no-unused-vars
   const [players, setPlayers] = useState();
-  const [host, setHost] = useState("");
+  const [host, setHost] = useState();
   const [roomName, setRoomName]=useState();
   const [roomId, setRoomId] = useState();
   const [numOfPlayers,setNumOfPlayers] = useState();
   const socket = useContext(ThemeContext);
   const [gameSetting,setGameSetting]=useState({wereWolfs:0,witch:false, hunter:false, guard:false, villagers:0});
-  useEffect(()=>{
+  const history= useHistory();
 
-  })
   useEffect(() => {
     const { name, room, roomName, numOfPlayers } = queryString.parse(
       location.search
     );
     
     if (room) {
-      
+      try{
       socket.emit(
         "joinRoom",
-        { roomId: room, roomName: roomName, numOfPlayers: numOfPlayers },
-        (host, room, error) => {
-          if(host)
+        { roomId: room, roomName: roomName, numOfPlayers: numOfPlayers }
+      );  
+      socket.on('roomBlock',({error})=>{
+        console.log(error);
+        alert('You are not allowed to join this room!');
+        history.push('/play-game');
+      })
+      socket.on('gameInfo',({room,error})=>{
+          if(room)
           {
-            setHost(host)
-          }
+            setHost(room.host)
             setPlayers(room.players);
             setRoomName(room.name);
             setRoomId(room.id);
             setNumOfPlayers(room.numOfPlayers);
+          }
           if (!room.gameSetting) {
             setGameSetting({villagers: numOfPlayers});
           }
@@ -75,19 +81,21 @@ const Room = ({ location }) => {
             alert(error);
             return false;
           }
-        }
-      );
-      socket.on('gameInfo',({room})=>{
-        if(room){
-          setPlayers(room.players);
-          if(room.gameSetting)
-            setGameSetting(room.gameSetting);
-        }
-      })     
-      
+        
+      })
+      socket.on('isKicked',()=>{
+        alert('You was kicked out of room!');
+        history.push('/play-game');
+      });
+
+    }catch(error){
+      alert(error);
+    }
     }
       
-  }, [socket, location.search]);
+  }, [socket, location.search, history]);
+
+  
 
   return players ? (
     <Grid container spacing={2}>

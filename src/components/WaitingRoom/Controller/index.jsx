@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext} from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Button, CssBaseline, Grid } from "@material-ui/core";
 import Image from "material-ui-image";
@@ -10,6 +10,7 @@ import ReadyIcon from "../../../icons/check.png";
 import PlayIcon from "../../../icons/play-button.png";
 import Popup from "reactjs-popup";
 import Setting from "./../SettingGame";
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -21,6 +22,7 @@ const useStyles = makeStyles((theme) => ({
 const Controller = ({ host, numOfPlayers, roomId }) => {
   const classes = useStyles();
   const socket = useContext(ThemeContext);
+  const history= useHistory();
 
   const handleSetting = (wereWolfs, witch, hunter, guard, villagers) => {
     let numOfSetting = 0;
@@ -41,6 +43,10 @@ const Controller = ({ host, numOfPlayers, roomId }) => {
       return false;
     }
   };
+  const handleExit =()=>{
+    socket.emit('exitRoom',{host,roomId});
+    history.push('/play-game');
+  }
 
   return (
     <div>
@@ -48,7 +54,7 @@ const Controller = ({ host, numOfPlayers, roomId }) => {
       <Grid container>
         <Grid container spacing={1} justify="flex-end" alignItems="flex-end">
           <Grid item>
-            <Button variant="outlined" className={classes.button}>
+            <Button variant="outlined" className={classes.button} onClick={handleExit}>
               <Image src={ExitIcon} style={{ width: "100%" }} />
             </Button>
           </Grid>

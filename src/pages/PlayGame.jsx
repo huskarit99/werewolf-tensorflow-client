@@ -75,6 +75,7 @@ const PlayGame = () => {
 
   const goToRoom = (name, room, roomName, numOfPlayers) => {
     if (roomName != null && numOfPlayers != null) {
+      
       history.push(
         `/room?name=${name}&room=${room}&roomName=${roomName}&numOfPlayers=${numOfPlayers}`
       );

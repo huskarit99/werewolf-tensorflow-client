@@ -49,7 +49,7 @@ const RoomCreateModal = ({ close, onClick }) => {
   const socket = useContext(ThemeContext);
 
   const [formData, setFormData] = useState({
-    room: socket.id,
+    room: Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15),
   });
 
   const handleInputChange = (e) => {
