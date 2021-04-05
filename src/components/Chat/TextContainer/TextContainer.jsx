@@ -8,7 +8,7 @@ const TextContainer = ({ users }) => (
   <div className='textContainer'>
     <div>
       <h1>
-        Tictactoe
+        Werewolf-Tensorflow
         <br />
         Application
       </h1>

@@ -49,7 +49,7 @@ const GameInfo = ({ gameSetting }) => {
   const classes = useStyles();
 
   return (
-    <div className="tictactoe-modal">
+    <div className="werewoft-modal">
       <div className="content">
         <CssBaseline />
         <div className={classes.paper}>

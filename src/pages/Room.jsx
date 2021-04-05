@@ -6,8 +6,8 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Typography from "@material-ui/core/Typography";
+import Snackbar from '@material-ui/core/Snackbar';
 
-import WaitingRoom from "../components/WaitingRoom";
 import Controller from "../components/WaitingRoom/Controller";
 import ListPlayer from "../components/WaitingRoom/ListPlayer";
 import GameInfo from "../components/WaitingRoom/GameInfo";
@@ -43,7 +43,20 @@ const Room = ({ location }) => {
   const [numOfPlayers,setNumOfPlayers] = useState();
   const socket = useContext(ThemeContext);
   const [gameSetting,setGameSetting]=useState({wereWolfs:0,witch:false, hunter:false, guard:false, villagers:0});
+  const [message, setMessage] = useState({ open: false, text: "" });
   const history= useHistory();
+  const showMessage = (msg) => {
+    setMessage({ open: true, text: msg });
+
+    setTimeout(() => {
+      handleClose();
+    }, 4000)
+  };
+
+  const handleClose = () => {
+    setMessage({ open: false, text: "" });
+  };
+
 
   useEffect(() => {
     const { name, room, roomName, numOfPlayers } = queryString.parse(
@@ -73,12 +86,19 @@ const Room = ({ location }) => {
             setGameSetting(room.gameSetting);
           } 
       })
-      
+      socket.on('isKicked',()=>{
+        showMessage('You was kicked out of room!');
+        setTimeout(() => history.push("/play-game"), 4000);
 
+      });
+      socket.on('roomBlock',({error})=>{
+        showMessage('You are not allowed to join this room!');
+        history.push('/play-game');
+      })
     }
     catch(error){
-      alert(error);
-      history.push('/play-game');
+      showMessage(error);
+      setTimeout(() => history.push("/play-game"), 4000);
       return;
     }
     }
@@ -88,10 +108,10 @@ const Room = ({ location }) => {
   
 
   return players ? (
-    <Grid container spacing={2}>
+    <Grid container spacing={2} className={classes.root}>
       <Grid container item lg={8} spacing={2} style={{height: "100%",}}>
         <Grid item xs={6} >
-          <Card className={classes.root} variant="outlined">
+          <Card  variant="outlined">
             <CardContent>
               <Typography
                 className={classes.title}
@@ -107,7 +127,7 @@ const Room = ({ location }) => {
           </Card>
         </Grid>
         <Grid item xs={6} >
-          <Card className={classes.root} variant="outlined">
+          <Card variant="outlined">
             <CardContent>
               <Typography
                 className={classes.title}
@@ -133,7 +153,15 @@ const Room = ({ location }) => {
         <GameInfo gameSetting ={gameSetting}/>
         <Chat name={roomName} room={roomName} />
       </Grid>
+      <Snackbar
+    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+    open={message.open}
+    onClose={handleClose}
+    message={message.text}
+    key='toast'
+    />
     </Grid>
+    
   ) : (
     <h5>There is no game for you. Please select a room!</h5>
   );

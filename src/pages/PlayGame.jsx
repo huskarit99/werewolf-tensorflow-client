@@ -5,6 +5,7 @@ import Card from "@material-ui/core/Card";
 import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Grid from "@material-ui/core/Grid";
+import Snackbar from '@material-ui/core/Snackbar';
 
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
@@ -34,6 +35,7 @@ const PlayGame = () => {
 
   const socket = useContext(ThemeContext);
   const [roomItems, setRoomItems] = useState([]);
+  const [message, setMessage] = useState({ open: false, text: "" });
 
 
   useEffect(() => {
@@ -53,10 +55,10 @@ const PlayGame = () => {
             `/room?name=${name}&room=${room.id}&roomName=${room.name}&numOfPlayers=${room.numOfPlayers}`
           );
         } else {
-          alert("Room is full");
+          showMessage("Room is full");
         }
       } else {
-        alert("Room is not exist");
+        showMessage("Room is not exist");
         return;
       }
     });
@@ -80,7 +82,7 @@ const PlayGame = () => {
         `/room?name=${name}&room=${room}&roomName=${roomName}&numOfPlayers=${numOfPlayers}`
       );
     } else {
-      alert("Please fill in all fields");
+      showMessage("Please fill in all fields");
       return false;
     }
   };
@@ -92,6 +94,17 @@ const PlayGame = () => {
     socket.emit("requestQuickGame");
   };
 
+  const showMessage = (msg) => {
+    setMessage({ open: true, text: msg });
+
+    setTimeout(() => {
+      handleClose();
+    }, 4000)
+  };
+
+  const handleClose = () => {
+    setMessage({ open: false, text: "" });
+  };
   return (
     <Fragment>
       <OnlineListWrapper>
@@ -170,6 +183,13 @@ const PlayGame = () => {
         ) : (
           <h5 style={{ marginTop: "50px" }}>There are no result.</h5>
         )}
+        <Snackbar
+    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+    open={message.open}
+    onClose={handleClose}
+    message={message.text}
+    key='toast'
+    />
       </OnlineListWrapper>
     </Fragment>
   );

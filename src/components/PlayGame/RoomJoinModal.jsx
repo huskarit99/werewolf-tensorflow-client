@@ -51,7 +51,7 @@ const RoomJoinModal = ({ close, onClick }) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  return <div className="tictactoe-modal">
+  return <div className="werewoft-modal">
     <a href="#/" className="close" onClick={close}>
       &times;
     </a>

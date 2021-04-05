@@ -1,10 +1,8 @@
-import React, { useState, useContext, useEffect } from "react";
+import React, {useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 
 import {
   Button,
-  CssBaseline,
-  TextField,
   Grid,
   Typography,
 } from "@material-ui/core";
@@ -40,7 +38,6 @@ const ListPlayer = ({ host, players }) => {
 
   //handle kick player
   const handleKick = (player) => {
-    console.log("Player:", player);
     socket.emit("kickPlayer", player);
   };
   return (

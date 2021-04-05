@@ -16,9 +16,7 @@ import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Snackbar from '@material-ui/core/Snackbar';
 import { makeStyles } from "@material-ui/core/styles";
 import AuthContext from "../context/auth/authContext";
-import AlertContext from "../context/alert/alertContext";
 
-import OnlineListWrapper from "../components/OnlineListWrapper";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -58,10 +56,7 @@ export default function Login({ history }) {
     user,
   } = authContext;
 
-  // Use alert context
-  const alertContext = useContext(AlertContext);
-  // eslint-disable-next-line no-unused-vars
-  const { alerts, setAlert } = alertContext;
+
   const [message, setMessage] = useState({ open: false, text: "" });
 
   // Init form data

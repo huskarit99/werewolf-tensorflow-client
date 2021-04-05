@@ -16,7 +16,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Information = (content, { close, btnYes = "OK" }) => {
 
-  return <div className="tictactoe-modal">
+  return <div className="werewoft-modal">
     <a href="#/" className="close" onClick={close}>
       &times;
     </a>
@@ -39,7 +39,7 @@ const Information = (content, { close, btnYes = "OK" }) => {
 const Confirm = (content, { close, onClick, btnYes = "OK", btnNo = "Cancel" }) => {
   const classes = useStyles();
 
-  return <div className="tictactoe-modal">
+  return <div className="werewoft-modal">
     <a href="#/" className="close" onClick={close}>
       &times;
     </a>

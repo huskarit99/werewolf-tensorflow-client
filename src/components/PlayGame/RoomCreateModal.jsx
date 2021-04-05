@@ -62,7 +62,7 @@ const RoomCreateModal = ({ close, onClick }) => {
   };
 
   return (
-    <div className="tictactoe-modal">
+    <div className="werewoft-modal">
       <a href="#/" className="close" onClick={close}>
         &times;
       </a>

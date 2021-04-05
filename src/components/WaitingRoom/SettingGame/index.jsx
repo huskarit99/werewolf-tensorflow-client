@@ -64,7 +64,7 @@ const SettingGame = ({ close, onClick, numOfPlayers }) => {
   };
 
   return (
-    <div className="tictactoe-modal">
+    <div className="werewoft-modal">
       <a  className="close" onClick={close}>
       &times;
       </a>
