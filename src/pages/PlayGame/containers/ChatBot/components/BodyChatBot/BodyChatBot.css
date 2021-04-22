@@ -1,0 +1,29 @@
+.messageBox {
+    background: #F3F3F3;
+    border-radius: 20px;
+    padding: 10px 15px;
+    color: white;
+    display: inline-block;
+    max-width: 80%;
+  }
+  
+  .messageText {
+    width: 100%;
+    letter-spacing: 0;
+    float: left;
+    font-size: 13px;
+    word-wrap: break-word;
+  }
+  
+  .messageContainer {
+    display: flex;
+    margin-top: 5%;
+  }
+
+  .justifyStart {
+    justify-content: flex-start;
+  }
+
+  .backgroundBlue {
+    background: #24242E;
+  }
