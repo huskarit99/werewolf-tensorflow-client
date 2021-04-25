@@ -12,17 +12,15 @@ const BtnSignIn = (props) => {
   };
 
   return (
-    <Grid item xs={12}>
-      <Button
-        fullWidth
-        type="submit"
-        variant="contained"
-        onClick={handleSubmit}
-        className={classes.submit}
-      >
-        Sign In
-      </Button>
-    </Grid>
+    <Button
+      fullWidth
+      type="submit"
+      variant="contained"
+      onClick={handleSubmit}
+      className={classes.submit}
+    >
+      Sign In
+    </Button>
   );
 };
 

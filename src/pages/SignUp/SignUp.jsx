@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import { Link, useHistory } from "react-router-dom";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import { Grid, Avatar, Typography, Paper } from "@material-ui/core/";
+import { Grid, Typography, Paper } from "@material-ui/core/";
 
 import useStyles from "./style";
 import { signUpApi } from "services/api/publicApi";
@@ -29,36 +28,56 @@ const SignUp = () => {
   };
 
   return (
-    <Grid container component="main">
-      <Grid item xs={10}>
-        <Grid
-          container
-          justify="center"
-          alignItems="center"
-          style={{ minHeight: "70vh" }}
+    <Grid
+      container
+      direction="row"
+      justify="left"
+      alignItems="left"
+      style={{ minHeight: "70vh" }}
+    >
+      <Paper className={classes.paper}>
+        <Typography
+          component="h1"
+          variant="h5"
+          style={{ color: "white", fontSize: "2.3rem", fontWeight: "bold" }}
         >
-          <Paper className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign up
-            </Typography>
-            <form className={classes.form} noValidate>
-              <TFFullname ref={fullnameRef} />
-              <TFUsername ref={usernameRef} />
-              <TFPassword ref={passwordRef} />
-              <BtnSignUp handleClick={handleSubmit} />
-              <div style={{ textAlign: "right" }}>
-                <Link className={classes.link} to="/sign-in" variant="body2">
-                  Already have an account? Sign in
-                </Link>
-              </div>
-            </form>
-          </Paper>
-        </Grid>
-      </Grid>
-      <Grid item xs={2} />
+          Sign up
+        </Typography>
+        <Typography
+          component="h1"
+          variant="h5"
+          style={{
+            width: "70%",
+            color: "#84848A",
+            fontSize: "0.875rem",
+            marginTop: "2%",
+            marginBottom: "3%",
+          }}
+        >
+          Thank you for using WereWolf, remember that it will always be free to
+          create a new account.
+        </Typography>
+        <TFFullname ref={fullnameRef} />
+        <TFUsername ref={usernameRef} />
+        <TFPassword ref={passwordRef} />
+        <BtnSignUp handleClick={handleSubmit} />
+        <Typography
+          component="h1"
+          variant="h5"
+          style={{
+            width: "70%",
+            color: "#84848A",
+            fontSize: "0.875rem",
+            marginTop: "2%",
+            marginBottom: "3%",
+          }}
+        >
+          Already have an account?
+          <Link to="/sign-in" className={classes.link}>
+            {" Sign in your account"}
+          </Link>
+        </Typography>
+      </Paper>
     </Grid>
   );
 };

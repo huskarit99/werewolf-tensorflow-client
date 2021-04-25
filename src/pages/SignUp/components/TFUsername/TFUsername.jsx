@@ -1,19 +1,35 @@
 import React, { forwardRef } from "react";
-import { Grid, TextField } from "@material-ui/core";
+import { AccountCircle } from "@material-ui/icons";
+import { TextField, Typography, InputAdornment } from "@material-ui/core";
+
+import useStyles from "./style";
 
 const TFUsername = forwardRef((props, usernameRef) => {
+  const classes = useStyles();
+
   const TFUsername = () => {
     return (
-      <Grid item xs={12}>
+      <React.Fragment>
+        <Typography className={classes.typography}>Username</Typography>
         <TextField
+          size="small"
           required
           fullWidth
           margin="normal"
-          label="Username"
           variant="outlined"
           inputRef={usernameRef}
+          className={classes.textField}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AccountCircle
+                  style={{ color: "#004c9e", backgroundColor: "#00000000" }}
+                />
+              </InputAdornment>
+            ),
+          }}
         />
-      </Grid>
+      </React.Fragment>
     );
   };
   return <TFUsername />;

@@ -5,23 +5,18 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     paddingTop: "3%",
     paddingBottom: "5%",
-    width: "75%",
-    borderRadius: "20px",
+    width: "80%",
     flexDirection: "column",
-    alignItems: "center",
-    textAlign: "center",
-    backgroundColor: "rgba(255, 255, 255)",
+    boxShadow: "none",
+    backgroundColor: "rgba(255, 255, 255, 0)",
   },
   avatar: {
     margin: theme.spacing(1),
     backgroundColor: "#004c9e",
   },
-  form: {
-    width: "70%",
-    marginTop: theme.spacing(1),
-  },
   link: {
-    color: "blue",
+    color: "#004c9e",
+    textDecoration: "none"
   }
 }));
 

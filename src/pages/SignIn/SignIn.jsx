@@ -27,35 +27,55 @@ const SignIn = () => {
   };
 
   return (
-    <Grid container component="main">
-      <Grid item xs={10}>
-        <Grid
-          container
-          justify="center"
-          alignItems="center"
-          style={{ minHeight: "70vh" }}
+    <Grid
+      container
+      direction="row"
+      justify="left"
+      alignItems="left"
+      style={{ minHeight: "70vh" }}
+    >
+      <Paper className={classes.paper}>
+        <Typography
+          component="h1"
+          variant="h5"
+          style={{ color: "white", fontSize: "2.3rem", fontWeight: "bold" }}
         >
-          <Paper className={classes.paper}>
-            <Avatar className={classes.avatar}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component="h1" variant="h5">
-              Sign in
-            </Typography>
-            <form className={classes.form} noValidate>
-              <TFUsername ref={usernameRef} />
-              <TFPassword ref={passwordRef} />
-              <BtnSignIn handleClick={handleSubmit} />
-              <div style={{ textAlign: "right" }}>
-                <Link className={classes.link} justify="right" to="/sign-up">
-                  {"Don't have an account? Sign Up"}
-                </Link>
-              </div>
-            </form>
-          </Paper>
-        </Grid>
-      </Grid>
-      <Grid item xs={2} />
+          Sign in
+        </Typography>
+        <Typography
+          component="h1"
+          variant="h5"
+          style={{
+            width: "70%",
+            color: "#84848A",
+            fontSize: "0.875rem",
+            marginTop: "2%",
+            marginBottom: "3%",
+          }}
+        >
+          Thank you for using WereWolf, remember that it will always be free to
+          play.
+        </Typography>
+        <TFUsername ref={usernameRef} />
+        <TFPassword ref={passwordRef} />
+        <BtnSignIn handleClick={handleSubmit} />
+        <Typography
+          component="h1"
+          variant="h5"
+          style={{
+            width: "70%",
+            color: "#84848A",
+            fontSize: "0.875rem",
+            marginTop: "2%",
+            marginBottom: "3%",
+          }}
+        >
+          Don't have an account yet?
+          <Link to="/sign-up" className={classes.link}>
+            {" Create your account"}
+          </Link>
+        </Typography>
+      </Paper>
     </Grid>
   );
 };

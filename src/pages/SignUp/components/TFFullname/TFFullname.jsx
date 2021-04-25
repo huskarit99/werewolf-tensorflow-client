@@ -1,20 +1,35 @@
 import React, { forwardRef } from "react";
-import { Grid, TextField } from "@material-ui/core";
+import { AssignmentInd } from "@material-ui/icons";
+import { TextField, Typography, InputAdornment } from "@material-ui/core";
 
-const TFFullname = forwardRef((props, usernameRef) => {
+import useStyles from "./style";
+
+const TFFullname = forwardRef((props, fullnameRef) => {
+  const classes = useStyles();
+
   const TFFullname = () => {
     return (
-      <Grid item xs={12}>
+      <React.Fragment>
+        <Typography className={classes.typography}>Fullname</Typography>
         <TextField
-          autoFocus
+          size="small"
           required
           fullWidth
           margin="normal"
-          label="Fullname"
           variant="outlined"
-          inputRef={usernameRef}
+          inputRef={fullnameRef}
+          className={classes.textField}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <AssignmentInd
+                  style={{ color: "#004c9e", backgroundColor: "#00000000" }}
+                />
+              </InputAdornment>
+            ),
+          }}
         />
-      </Grid>
+      </React.Fragment>
     );
   };
   return <TFFullname />;

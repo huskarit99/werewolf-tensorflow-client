@@ -19,6 +19,7 @@ import isAuthenticatedState from "state/isAuthenticatedState";
 import PublicMenu from "parts/components/PublicMenu/PublicMenu";
 import OnlineList from "parts/components/OnlineList/OnlineList";
 import PrivateMenu from "parts/components/PrivateMenu/PrivateMenu";
+import RecommendGame from "parts/components/RecommendGame/RecommendGame";
 
 const MenuBar = (props) => {
   const classes = useStyles();
@@ -79,7 +80,18 @@ const MenuBar = (props) => {
           <Grid item xs={12}>
             <main>
               {isAuthenticated !== stateOfAuthentication.PROCESSING ? (
-                props.children
+                isAuthenticated === stateOfAuthentication.SUCCESS ? (
+                  props.chidren
+                ) : (
+                  <Grid container style={{ minHeight: "81vh" }}>
+                    <Grid item xs={7}>
+                      {props.children}
+                    </Grid>
+                    <Grid item xs={5}>
+                      <RecommendGame />
+                    </Grid>
+                  </Grid>
+                )
               ) : (
                 <Loading />
               )}
