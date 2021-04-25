@@ -28,13 +28,7 @@ const SignUp = () => {
   };
 
   return (
-    <Grid
-      container
-      direction="row"
-      justify="left"
-      alignItems="left"
-      style={{ minHeight: "70vh" }}
-    >
+    <Grid container direction="row" style={{ minHeight: "70vh" }}>
       <Paper className={classes.paper}>
         <Typography
           component="h1"

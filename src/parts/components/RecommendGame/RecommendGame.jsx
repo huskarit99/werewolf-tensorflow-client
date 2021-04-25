@@ -15,7 +15,6 @@ const RecommendGame = () => {
   const [indexImage, setIndexImage] = React.useState(2);
 
   const showImage = (index) => {
-    console.log("show: ");
     index = index === 0 ? 4 : index;
     switch (index) {
       case 1: {
@@ -40,7 +39,6 @@ const RecommendGame = () => {
   };
 
   const hiddenImage = (index) => {
-    console.log("hidden: ");
     index = index === 0 ? 4 : index;
     switch (index) {
       case 1: {

@@ -1,7 +1,6 @@
 import React, { useRef } from "react";
 import { Link } from "react-router-dom";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-import { Grid, Avatar, Typography, Paper } from "@material-ui/core";
+import { Grid, Typography, Paper } from "@material-ui/core";
 
 import useStyles from "./style";
 import { createBrowserHistory } from "history";
@@ -27,13 +26,7 @@ const SignIn = () => {
   };
 
   return (
-    <Grid
-      container
-      direction="row"
-      justify="left"
-      alignItems="left"
-      style={{ minHeight: "70vh" }}
-    >
+    <Grid container direction="row" style={{ minHeight: "70vh" }}>
       <Paper className={classes.paper}>
         <Typography
           component="h1"

@@ -23,12 +23,7 @@ const SettingAndAvatar = () => {
         <Grid item xs={9}>
           <Grid container>
             <Grid item xs={8}>
-              <Grid
-                container
-                direction="column"
-                alignItems="right"
-                justify="center"
-              >
+              <Grid container direction="column" justify="center">
                 <Grid
                   item
                   xs={12}
@@ -37,10 +32,7 @@ const SettingAndAvatar = () => {
                     marginRight: "1.5vh",
                   }}
                 >
-                  <Typography
-                    variant="h7"
-                    style={{ color: "white", lineHeight: "1.5" }}
-                  >
+                  <Typography style={{ color: "white", lineHeight: "1.5" }}>
                     Nguyen Thai Hoc
                   </Typography>
                 </Grid>

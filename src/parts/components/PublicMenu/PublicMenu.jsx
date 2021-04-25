@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react";
 import { Link } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import AssignmentIcon from "@material-ui/icons/Assignment";
@@ -9,11 +9,16 @@ import { useStyles, ListItem } from "./style";
 
 const PublicMenu = () => {
   const classes = useStyles();
+  const homeRef = useRef();
+
+  React.useEffect(() => {
+    console.log(homeRef.current);
+  }, []);
 
   return (
     <List>
       <Link to="/" className={classes.link}>
-        <ListItem button selected>
+        <ListItem ref={homeRef} button selected>
           <Grid container justify="center" alignItems="center">
             <Grid item xs={3}>
               <Typography variant="subtitle2">Home</Typography>

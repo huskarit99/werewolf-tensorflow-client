@@ -73,7 +73,7 @@ const MenuBar = (props) => {
         </div>
       </Grid>
       <Grid item xs={9}>
-        <Grid contaner>
+        <Grid container>
           <Grid item xs={12}>
             <Header />
           </Grid>
@@ -81,15 +81,17 @@ const MenuBar = (props) => {
             <main>
               {isAuthenticated !== stateOfAuthentication.PROCESSING ? (
                 isAuthenticated === stateOfAuthentication.SUCCESS ? (
-                  props.chidren
+                  <React.Fragment>{props.children}</React.Fragment>
                 ) : (
                   <Grid container style={{ minHeight: "81vh" }}>
                     <Grid item xs={7}>
                       {props.children}
                     </Grid>
-                    <Grid item xs={5}>
-                      <RecommendGame />
-                    </Grid>
+                    <Hidden smDown>
+                      <Grid item xs={5}>
+                        <RecommendGame />
+                      </Grid>
+                    </Hidden>
                   </Grid>
                 )
               ) : (

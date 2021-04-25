@@ -1,5 +1,5 @@
 import Axios from 'axios';
-import { setToken, getToken, clearToken } from '../../utils/tokenUtil';
+import { getToken } from '../../utils/tokenUtil';
 
 const ENDPOINT = `http://localhost:${process.env.REACT_APP_API_URL}/api/private-controller`;
 

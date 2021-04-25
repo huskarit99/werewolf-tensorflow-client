@@ -22,8 +22,8 @@ const BodyChatBot = () => {
     <Paper className={classes.paperMessageBot}>
       <List>
         {messages.length !== 0 &&
-          messages.map((message) => (
-            <ListItem>
+          messages.map((message, index) => (
+            <ListItem key={index}>
               <Grid container>
                 <Grid item xs={12}>
                   <Grid container>

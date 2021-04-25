@@ -10,7 +10,6 @@ const useStyles = makeStyles((theme) => ({
     width: "40%",
     height: "40px",
     boxShadow: "none",
-    margin: theme.spacing(3, 0, 2),
     textTransform: "none",
     border: "2px solid",
     "&:hover": {

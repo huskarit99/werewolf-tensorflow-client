@@ -20,7 +20,6 @@ const Header = () => {
     <Grid
       container
       justify="center"
-      alignItems="top"
       style={{ minHeight: "12vh", marginTop: "7vh" }}
     >
       <Grid item xs={8}>
