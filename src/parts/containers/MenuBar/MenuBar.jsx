@@ -73,15 +73,15 @@ const MenuBar = (props) => {
         </div>
       </Grid>
       <Grid item xs={9}>
-        <Grid container>
+        <Grid container direction="column">
           <Grid item xs={12}>
             <Header />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} style={{ overflow: "scroll" }}>
             <main>
               {isAuthenticated !== stateOfAuthentication.PROCESSING ? (
                 isAuthenticated === stateOfAuthentication.SUCCESS ? (
-                  <React.Fragment>{props.children}</React.Fragment>
+                  props.children
                 ) : (
                   <Grid container style={{ minHeight: "81vh" }}>
                     <Grid item xs={7}>
@@ -89,7 +89,7 @@ const MenuBar = (props) => {
                     </Grid>
                     <Hidden smDown>
                       <Grid item xs={5}>
-                        <RecommendGame />
+                        <RecommendGame userState="nonLogin" />
                       </Grid>
                     </Hidden>
                   </Grid>

@@ -1,169 +1,173 @@
-import React, { useState, useEffect, useContext,  } from "react";
-import queryString from "query-string";
+import React from "react";
+import {
+  Grid,
+  Paper,
+  Box,
+  Typography,
+  Avatar,
+  Button,
+  Hidden,
+} from "@material-ui/core";
 
-import { Grid } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Typography from "@material-ui/core/Typography";
-import Snackbar from '@material-ui/core/Snackbar';
+// import ListRoom from "./containers/ListRoom/ListRoom";
 
-import Controller from "../../components/WaitingRoom/Controller";
-import ListPlayer from "../../components/WaitingRoom/ListPlayer";
-import GameInfo from "../../components/WaitingRoom/GameInfo";
-import Chat from "./containers/Chat/Chat/Chat";
-import { ThemeContext } from "../../App";
-import { useHistory } from "react-router-dom";
+import ChatBot from "./containers/ChatBot/ChatBot";
+import useStyles from "./style";
 
-const useStyles = makeStyles({
-  root: {
-    
-  },
-  bullet: {
-    display: "inline-block",
-    margin: "0 2px",
-    transform: "scale(0.8)",
-  },
-  title: {
-    fontSize: 14,
-  },
-  pos: {
-    marginBottom: 12,
-  },
-});
+// import { useRecoilValue } from "recoil";
+// import socketState from "state/socketState";
 
-const Room = ({ location }) => {
+const listUser = [];
+for (let i = 0; i < 10; i++)
+  listUser.push({
+    name: "thaihoc",
+    fullname: "Nguyễn Thái Học",
+    icon: (
+      <Avatar
+        style={{
+          width: "35%",
+          height: "65%",
+          fontSize: "2rem",
+          backgroundColor: "red",
+        }}
+      >
+        H
+      </Avatar>
+    ),
+  });
+
+const Room = () => {
   const classes = useStyles();
-
-  // eslint-disable-next-line no-unused-vars
-  const [players, setPlayers] = useState();
-  const [host, setHost] = useState();
-  const [roomName, setRoomName]=useState();
-  const [roomId, setRoomId] = useState();
-  const [numOfPlayers,setNumOfPlayers] = useState();
-  const socket = useContext(ThemeContext);
-  const [gameSetting,setGameSetting]=useState({wereWolfs:0,witch:false, hunter:false, guard:false, villagers:0});
-  const [message, setMessage] = useState({ open: false, text: "" });
-  const history= useHistory();
-  const showMessage = (msg) => {
-    setMessage({ open: true, text: msg });
-
-    setTimeout(() => {
-      handleClose();
-    }, 4000)
-  };
-
-  const handleClose = () => {
-    setMessage({ open: false, text: "" });
-  };
-
-
-  useEffect(() => {
-    const { name, room, roomName, numOfPlayers } = queryString.parse(
-      location.search
-    );
-    
-    if (room) {
-      try{
-      socket.emit(
-        "joinRoom",
-        { roomId: room, roomName: roomName, numOfPlayers: numOfPlayers }
-      );  
-      
-      socket.on('gameInfo',({room,error})=>{
-          if(room)
-          {
-            setHost(room.host)
-            setPlayers(room.players);
-            setRoomName(room.name);
-            setRoomId(room.id);
-            setNumOfPlayers(room.numOfPlayers);
-          }
-          if (!room.gameSetting) {
-            setGameSetting({villagers: numOfPlayers});
-          }
-          else{
-            setGameSetting(room.gameSetting);
-          } 
-      })
-      socket.on('isKicked',()=>{
-        showMessage('You was kicked out of room!');
-        setTimeout(() => history.push("/play-game"), 4000);
-
-      });
-      socket.on('roomBlock',({error})=>{
-        showMessage('You are not allowed to join this room!');
-        history.push('/play-game');
-      })
-    }
-    catch(error){
-      showMessage(error);
-      setTimeout(() => history.push("/play-game"), 4000);
-      return;
-    }
-    }
-      
-  }, [socket, location.search, history]);
-  // 
-  
-
-  return players ? (
-    <Grid container spacing={2} className={classes.root}>
-      <Grid container item lg={8} spacing={2} style={{height: "100%",}}>
-        <Grid item xs={6} >
-          <Card  variant="outlined">
-            <CardContent>
-              <Typography
-                className={classes.title}
-                color="textSecondary"
-                gutterBottom
+  // const socket = useRecoilValue(socketState);
+  // const [name] = useState("ThaiHoc");
+  // const history = useHistory();
+  return (
+    <Grid container>
+      <Grid item xs={8}>
+        <Grid container>
+          <Grid item xs={12}></Grid>
+          <Grid item xs={12} style={{ minHeight: "81vh" }}>
+            <Paper
+              style={{
+                overflow: "auto",
+                width: "96%",
+                maxHeight: "70vh",
+                backgroundColor: "#00000000",
+                boxShadow: "none",
+              }}
+            >
+              <Box
+                display="flex"
+                flexWrap="wrap"
+                justifyContent="center"
+                bgcolor="#00000000"
+                css={{ maxWidth: "80vw" }}
+                style={{ marginBottom: "10%" }}
               >
-                ROOM:
-              </Typography>
-              <Typography variant="h5" component="h2" color="primary">
-                {roomName}
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={6} >
-          <Card variant="outlined">
-            <CardContent>
-              <Typography
-                className={classes.title}
-                color="textSecondary"
-                gutterBottom
-              >
-                Copy ROOM CODE to clipboard
-              </Typography>
-              <Typography variant="h5" component="h2" color="primary">
-                {roomId}
-              </Typography>
-            </CardContent>
-          </Card>
-        </Grid>
-        <Grid item xs={12}>
-          <ListPlayer host={host} players={players}/>
-        </Grid>
-        <Grid item xs={12}>
-          <Controller host={host} players={players} numOfPlayers={numOfPlayers} roomId={roomId}/>
+                {listUser.map((user, index) => (
+                  <Hidden xsDown implementation="css">
+                    <Box
+                      key={index}
+                      display="flex"
+                      bgcolor="#00000000"
+                      justifyContent="center"
+                      alignItems="center"
+                      style={{
+                        width: "200px",
+                        height: "200px",
+                      }}
+                    >
+                      <Paper className={classes.paper}>
+                        <Grid
+                          container
+                          justify="center"
+                          alignItems="center"
+                          style={{ height: "100%", width: "100%" }}
+                        >
+                          <Grid
+                            item
+                            xs={12}
+                            style={{
+                              height: "50%",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                            }}
+                          >
+                            {user.icon}
+                          </Grid>
+                          <Grid
+                            item
+                            xs={12}
+                            style={{
+                              height: "10%",
+                              textAlign: "center",
+                            }}
+                          >
+                            <Typography
+                              style={{
+                                color: "white",
+                                fontWeight: "bold",
+                                fontSize: "12px",
+                              }}
+                            >
+                              {user.name}
+                            </Typography>
+                          </Grid>
+                          <Grid
+                            item
+                            xs={12}
+                            style={{
+                              height: "10%",
+                              textAlign: "center",
+                            }}
+                          >
+                            <Typography
+                              style={{ color: "white", fontSize: "14px" }}
+                            >
+                              {user.fullname}
+                            </Typography>
+                          </Grid>
+                          <Grid
+                            item
+                            xs={12}
+                            style={{
+                              height: "30%",
+                              display: "flex",
+                              alignItems: "center",
+                              justifyContent: "center",
+                            }}
+                          >
+                            <Button
+                              variant="contained"
+                              style={{
+                                backgroundColor: "rgba(255,255,255,0.3)",
+                                boxShadow: "none",
+                                color: "white",
+                                borderRadius: "20px",
+                                height: "50%",
+                                width: "60%",
+                                fontWeight: "bold",
+                                fontSize: "12px",
+                              }}
+                            >
+                              REMOVE
+                            </Button>
+                          </Grid>
+                        </Grid>
+                      </Paper>
+                    </Box>
+                  </Hidden>
+                ))}
+              </Box>
+            </Paper>
+          </Grid>
         </Grid>
       </Grid>
-      <Grid item lg={4} xs={12}>
-        <GameInfo gameSetting ={gameSetting}/>
-        <Chat name={roomName} room={roomName} />
+      <Grid item xs={4}>
+        <ChatBot />
       </Grid>
-      <Snackbar
-    anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
-    open={message.open}
-    onClose={handleClose}
-    message={message.text}
-    key='toast'
-    />
     </Grid>
-    
-  ) : (
-    <h5>There is no game for you. Please select a room!</h5>
   );
 };
 

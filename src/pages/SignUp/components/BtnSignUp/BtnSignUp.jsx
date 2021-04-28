@@ -18,6 +18,9 @@ const BtnSignUp = (props) => {
       variant="contained"
       onClick={handleSubmit}
       className={classes.submit}
+      style={{
+        marginTop: "5%",
+      }}
     >
       Sign Up
     </Button>

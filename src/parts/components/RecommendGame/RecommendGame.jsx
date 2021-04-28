@@ -7,7 +7,7 @@ import rg3 from "assets/images/3.jpg";
 import rg4 from "assets/images/4.jpg";
 import useStyles from "./style";
 
-const RecommendGame = () => {
+const RecommendGame = (props) => {
   const rgRef1 = useRef();
   const rgRef2 = useRef();
   const rgRef3 = useRef();
@@ -78,28 +78,14 @@ const RecommendGame = () => {
     return () => clearInterval(interval);
   }, [indexImage]);
 
-  const classes = useStyles();
+  const classes = useStyles(props.userState)();
   return (
     <Paper className={classes.paper}>
       <Paper className={classes.subPaper}>
-        <Typography
-          style={{
-            color: "white",
-            fontSize: "1.7rem",
-            paddingLeft: "3%",
-            paddingTop: "3%",
-          }}
-        >
+        <Typography className={classes.typography1}>
           Experience 3D Game
         </Typography>
-        <Typography
-          style={{
-            color: "rgb(132, 132, 138)",
-            fontSize: "0.875rem",
-            paddingLeft: "3%",
-            paddingTop: "2%",
-          }}
-        >
+        <Typography className={classes.typography2}>
           Tips: Should not play more than 180 minutes
         </Typography>
       </Paper>
