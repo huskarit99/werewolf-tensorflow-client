@@ -1,4 +1,5 @@
 import React from "react";
+import { Star } from "@material-ui/icons";
 import {
   Grid,
   Paper,
@@ -51,7 +52,7 @@ const Room = () => {
               style={{
                 overflow: "auto",
                 width: "96%",
-                maxHeight: "70vh",
+                maxHeight: "75vh",
                 backgroundColor: "#00000000",
                 boxShadow: "none",
               }}
@@ -111,7 +112,15 @@ const Room = () => {
                                 fontSize: "12px",
                               }}
                             >
-                              {user.name}
+                              {user.name}{" "}
+                              <Star
+                                style={{
+                                  height: "12px",
+                                  width: "12px",
+                                  backgroundColor: "#00000000",
+                                  color: "yellow",
+                                }}
+                              />
                             </Typography>
                           </Grid>
                           <Grid
@@ -138,7 +147,7 @@ const Room = () => {
                               justifyContent: "center",
                             }}
                           >
-                            <Button
+                            {/* <Button
                               variant="contained"
                               style={{
                                 backgroundColor: "rgba(255,255,255,0.3)",
@@ -152,7 +161,16 @@ const Room = () => {
                               }}
                             >
                               REMOVE
-                            </Button>
+                            </Button> */}
+                            {/* <Typography
+                              style={{
+                                color: "white",
+                                fontWeight: "bold",
+                                fontSize: "18px",
+                              }}
+                            >
+                              You
+                            </Typography> */}
                           </Grid>
                         </Grid>
                       </Paper>

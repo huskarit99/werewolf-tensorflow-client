@@ -29,8 +29,8 @@ const PrivateMenu = () => {
     },
     {
       icon: <VideogameAsset style={{ color: "white" }} />,
-      name: "Play Game",
-      link: "play-game",
+      name: "Lobby",
+      link: "lobby",
     },
   ];
 
@@ -41,8 +41,6 @@ const PrivateMenu = () => {
   const handleLogout = () => {
     clearToken();
   };
-
-  console.log(indexPrivateMenu);
 
   return (
     <List>

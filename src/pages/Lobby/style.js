@@ -7,11 +7,19 @@ const useStyles = makeStyles(() => ({
     height: "90%",
     borderRadius: "20px",
     boxShadow: "none",
+  },
+  listItem: {
     "&:hover": {
       backgroundColor: "rgba(255,255,255,0.4)",
-      width: "95%",
-      height: "95%",
-    }
+    },
+  },
+  avatar: {
+    display: "inline",
+    backgroundColor: "#00000000",
+    "& > *": {
+      width: "16px",
+      height: "16px",
+    },
   }
 }));
 

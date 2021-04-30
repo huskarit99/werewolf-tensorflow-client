@@ -3,13 +3,11 @@ import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles(() => ({
   typography: {
     color: "white",
-    margin: "0",
-    marginTop: "2%",
     fontSize: "0.875rem",
   },
   textField: {
-    width: "70%",
-    marginTop: "1%",
+    margin: "0",
+    width: "90%",
     border: "1px solid #84848A",
     borderRadius: "5px",
     "&:hover": {

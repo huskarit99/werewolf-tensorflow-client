@@ -15,9 +15,6 @@ const useStyles = makeStyles(() => ({
     "&:hover": {
       border: "1px solid #004c9e",
     },
-    "&selected": {
-      border: "1px solid red",
-    },
     "& .MuiInputBase-input": {
       color: "white"
     }
