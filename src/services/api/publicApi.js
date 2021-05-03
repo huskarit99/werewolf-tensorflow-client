@@ -26,7 +26,7 @@ const signInApi = async (username, password) => {
 
 const signUpApi = async (fullname, username, password) => {
   try {
-    const PATH = ENDPOINT + '/users';
+    const PATH = ENDPOINT + '/user';
     const response = await Axios({
       method: "post",
       url: PATH,

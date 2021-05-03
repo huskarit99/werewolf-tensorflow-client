@@ -1,5 +1,6 @@
 import React, { useRef } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { createBrowserHistory } from "history";
 import { Grid, Typography, Paper } from "@material-ui/core/";
 
 import useStyles from "./style";
@@ -10,7 +11,7 @@ import TFPassword from "./components/TFPassword/TFPassword";
 import TFUsername from "./components/TFUsername/TFUsername";
 
 const SignUp = () => {
-  let history = useHistory();
+  const history = createBrowserHistory({ forceRefresh: true });
   const classes = useStyles();
   const fullnameRef = useRef();
   const usernameRef = useRef();
@@ -22,7 +23,7 @@ const SignUp = () => {
       usernameRef.current.value,
       passwordRef.current.value
     );
-    if (isSuccess) {
+    if (isSuccess === true) {
       history.push("/");
     }
   };

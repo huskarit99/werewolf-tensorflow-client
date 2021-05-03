@@ -31,4 +31,29 @@ const authTokenApi = async () => {
   }
 }
 
+// const getInfoUser = async () => {
+//   const PATH = ENDPOINT + '/user';
+//   const currentUser = getToken();
+//   if (currentUser) {
+//     try {
+//       const response = await Axios({
+//         method: "post",
+//         url: PATH,
+//         headers: {
+//           Authorization: currentUser.token,
+//         },
+//       });
+//       if (response.data.isSuccess)
+//         return AuthenticationIsSuccess;
+//       else
+//         return AuthenticationIsFail;
+//     } catch (error) {
+//       console.error(error);
+//       return AuthenticationIsFail;
+//     }
+//   } else {
+//     return AuthenticationIsFail;
+//   }
+// }
+
 export { authTokenApi };

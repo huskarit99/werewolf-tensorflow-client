@@ -25,12 +25,12 @@ const PrivateMenu = () => {
     {
       icon: <PersonIcon style={{ color: "white" }} />,
       name: "Profile",
-      link: "profile",
+      link: "/profile",
     },
     {
       icon: <VideogameAsset style={{ color: "white" }} />,
       name: "Lobby",
-      link: "lobby",
+      link: "/lobby",
     },
   ];
 

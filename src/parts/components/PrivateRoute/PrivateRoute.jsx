@@ -22,7 +22,6 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   const setIndexPublicMenu = useSetRecoilState(indexPublicMenuState);
   const setIndexPrivateMenu = useSetRecoilState(indexPrivateMenuState);
 
-  console.log(Component.name);
   React.useEffect(() => {
     setIndexPublicMenu(indexOrder[Component.name]);
     setIndexPrivateMenu(indexOrder[Component.name]);
@@ -37,7 +36,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
           {...rest}
           render={() => {
             if (isAuthenticated === stateOfAuthentication.SUCCESS)
-              return <Redirect to="/dashboard" />;
+              return <Redirect to="/" />;
             else if (isAuthenticated === stateOfAuthentication.FAIL)
               return <Component />;
           }}
