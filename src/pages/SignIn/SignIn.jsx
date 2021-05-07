@@ -49,9 +49,11 @@ const SignIn = () => {
           Thank you for using WereWolf, remember that it will always be free to
           play.
         </Typography>
-        <TFUsername ref={usernameRef} />
-        <TFPassword ref={passwordRef} />
-        <BtnSignIn handleClick={handleSubmit} />
+        <form>
+          <TFUsername handleClick={handleSubmit} ref={usernameRef} />
+          <TFPassword handleClick={handleSubmit} ref={passwordRef} />
+          <BtnSignIn handleClick={handleSubmit} />
+        </form>
         <Typography
           component="h1"
           variant="h5"

@@ -52,10 +52,12 @@ const SignUp = () => {
           Thank you for using WereWolf, remember that it will always be free to
           create a new account.
         </Typography>
-        <TFFullname ref={fullnameRef} />
-        <TFUsername ref={usernameRef} />
-        <TFPassword ref={passwordRef} />
-        <BtnSignUp handleClick={handleSubmit} />
+        <form>
+          <TFFullname ref={fullnameRef} />
+          <TFUsername ref={usernameRef} />
+          <TFPassword ref={passwordRef} />
+          <BtnSignUp handleClick={handleSubmit} />
+        </form>
         <Typography
           component="h1"
           variant="h5"
