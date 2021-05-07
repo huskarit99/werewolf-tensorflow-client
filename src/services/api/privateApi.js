@@ -1,5 +1,7 @@
 import Axios from 'axios';
-import { getToken } from '../../utils/tokenUtil';
+
+import { getToken } from 'utils/tokenUtil';
+import { updateResponseEnum } from "utils/enumsUtil";
 
 const ENDPOINT = `http://localhost:${process.env.REACT_APP_API_URL}/api/private-controller`;
 
@@ -31,6 +33,72 @@ const authTokenApi = async () => {
   }
 }
 
+
+const updateUser = async (fullname, password) => {
+  const PATH = ENDPOINT + '/user';
+  const currentUser = getToken();
+  if (currentUser) {
+    try {
+      const response = await Axios({
+        method: "put",
+        url: PATH,
+        headers: {
+          Authorization: currentUser.token,
+        },
+        data: {
+          fullname: fullname,
+          password: password
+        }
+      });
+      if (response.data.isSuccess)
+        return {
+          isSuccess: true,
+          message: "Update successfully !!!"
+        }
+      else {
+        return {
+          isSuccess: false,
+          message: "Server Error !!!"
+        };
+      }
+    } catch (error) {
+      let message = "";
+      switch (error.response.data.code) {
+        case updateResponseEnum.FULLNAME_IS_EMPTY: {
+          message = "Fullname must be not empty !!!";
+          break;
+        }
+        case updateResponseEnum.PASSWORD_IS_EMPTY: {
+          message = "Password must be not empty !!!";
+          break;
+        }
+        case updateResponseEnum.PASSWORD_IS_LESS_THAN_6_LETTERS: {
+          message = "Password must be not less than 6 letters !!!";
+          break;
+        }
+        case updateResponseEnum.SERVER_ERROR: {
+          message = "Password must be not less than 6 letters !!!";
+          break;
+        }
+        default: {
+          message = "Server Error !!!";
+          break;
+        }
+      }
+      return {
+        isSuccess: false,
+        message: message
+      };
+
+    }
+  } else {
+    return {
+      isSuccess: false,
+      message: "Client Error !!!"
+    };
+  }
+}
+
 const getUser = async () => {
   const PATH = ENDPOINT + '/user';
   const currentUser = getToken();
@@ -56,4 +124,4 @@ const getUser = async () => {
   }
 }
 
-export { authTokenApi, getUser };
+export { authTokenApi, getUser, updateUser };

@@ -1,13 +1,16 @@
-import { Grid, Hidden, Divider, Button } from "@material-ui/core";
-import React, { Fragment, useEffect, useRef } from "react";
+import { Grid, Hidden, Divider } from "@material-ui/core";
+import React, { Fragment, useEffect, useRef, useState } from "react";
 
 import useStyles from "./style";
-import { getUser } from "services/api/privateApi";
+import { getUser, updateUser } from "services/api/privateApi";
 import Fullname from "./components/Fullname/Fullname";
 import Username from "./components/Username/Username";
 import Password from "./components/Password/Password";
 import ButtonSave from "./components/ButtonSave/ButtonSave";
 import RecommendGame from "parts/components/RecommendGame/RecommendGame";
+
+const colorErrorAlert = "#CD2948";
+const colorSuccessAlert = "#0ED855";
 
 const Profile = () => {
   const classes = useStyles();
@@ -15,6 +18,8 @@ const Profile = () => {
   const fullnameRef = useRef();
   const passwordRef = useRef("");
   const editFullnameRef = useRef();
+  const [errorAlert, setErrorAlert] = useState(<Fragment></Fragment>);
+
   useEffect(() => {
     getUser().then((result) => {
       fullnameRef.current.value = result.user.fullname;
@@ -34,9 +39,24 @@ const Profile = () => {
   };
 
   const handleSave = () => {
-    console.log(usernameRef.current.value);
-    console.log(fullnameRef.current.value);
-    console.log(passwordRef.current.value);
+    updateUser(fullnameRef.current.value, passwordRef.current.value).then(
+      (res) => {
+        let colorAlert = colorErrorAlert;
+        if (res.isSuccess) {
+          colorAlert = colorSuccessAlert;
+        }
+        setErrorAlert(
+          <p
+            style={{
+              color: colorAlert,
+              marginTop: "5px",
+            }}
+          >
+            {res.message}
+          </p>
+        );
+      }
+    );
   };
 
   return (
@@ -71,7 +91,9 @@ const Profile = () => {
             <Grid item xs={12} style={{ height: "2%" }}>
               <Divider className={classes.divider1} />
             </Grid>
-            <Grid item xs={12} style={{ height: "30px" }}></Grid>
+            <Grid item xs={12} style={{ height: "30px" }}>
+              {errorAlert}
+            </Grid>
             <Grid item xs={12}>
               <ButtonSave handleClick={handleSave} />
             </Grid>
