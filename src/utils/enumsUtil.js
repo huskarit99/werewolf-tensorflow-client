@@ -51,4 +51,9 @@ const updateResponseEnum = {
   PASSWORD_IS_LESS_THAN_6_LETTERS: 'password_is_less_than_6_letters'
 }
 
-export { stateOfAuthentication, operatorType, signInResponseEnum, signUpResponseEnum, updateResponseEnum, jwtEnum };
+const colorAlertEnum = {
+  ERROR: "#CD2948",
+  SUCCESS: "#0ED855",
+}
+
+export { stateOfAuthentication, operatorType, signInResponseEnum, signUpResponseEnum, updateResponseEnum, jwtEnum, colorAlertEnum };

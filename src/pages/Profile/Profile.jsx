@@ -2,15 +2,13 @@ import { Grid, Hidden, Divider } from "@material-ui/core";
 import React, { Fragment, useEffect, useRef, useState } from "react";
 
 import useStyles from "./style";
-import { getUser, updateUser } from "services/api/privateApi";
+import { colorAlertEnum } from "utils/enumsUtil";
 import Fullname from "./components/Fullname/Fullname";
 import Username from "./components/Username/Username";
 import Password from "./components/Password/Password";
 import ButtonSave from "./components/ButtonSave/ButtonSave";
+import { getUser, updateUser } from "services/api/privateApi";
 import RecommendGame from "parts/components/RecommendGame/RecommendGame";
-
-const colorErrorAlert = "#CD2948";
-const colorSuccessAlert = "#0ED855";
 
 const Profile = () => {
   const classes = useStyles();
@@ -41,9 +39,9 @@ const Profile = () => {
   const handleSave = () => {
     updateUser(fullnameRef.current.value, passwordRef.current.value).then(
       (res) => {
-        let colorAlert = colorErrorAlert;
+        let colorAlert = colorAlertEnum.ERROR;
         if (res.isSuccess) {
-          colorAlert = colorSuccessAlert;
+          colorAlert = colorAlertEnum.SUCCESS;
         }
         setErrorAlert(
           <p
