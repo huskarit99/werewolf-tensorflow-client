@@ -1,5 +1,7 @@
 import Axios from 'axios';
-import { setToken } from '../../utils/tokenUtil';
+
+import { setToken } from 'utils/tokenUtil';
+import { signInResponseEnum } from 'utils/enumsUtil';
 
 const ENDPOINT = `http://localhost:${process.env.REACT_APP_API_URL}/api/public-controller`;
 
@@ -16,11 +18,45 @@ const signInApi = async (username, password) => {
     });
     if (response.data.isSuccess) {
       setToken(username, response.data.token);
+      return {
+        isSuccess: true,
+      }
     }
-    return response.data.isSuccess;
+    return {
+      isSuccess: false,
+      message: "Client Error !!!"
+    }
   } catch (error) {
-    console.error(error);
-    return false;
+    let message = "";
+    switch (error.response.data.code) {
+      case signInResponseEnum.USERNAME_IS_EMPTY: {
+        message = "Username must be not empty !!!";
+        break;
+      }
+      case signInResponseEnum.PASSWORD_IS_EMPTY: {
+        message = "Password must be not empty !!!";
+        break;
+      }
+      case signInResponseEnum.WRONG_USERNAME: {
+        message = "Username went wrong !!!";
+        break;
+      }
+      case signInResponseEnum.WRONG_PASSWORD: {
+        message = "Password went wrong !!!";
+        break;
+      }
+      case signInResponseEnum.SERVER_ERROR: {
+        message = "Server Error !!!";
+        break;
+      }
+      default: {
+        message = "Server error !!!!";
+      }
+    }
+    return {
+      isSuccess: false,
+      message: message
+    };
   }
 }
 
