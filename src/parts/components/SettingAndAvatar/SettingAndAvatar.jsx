@@ -8,6 +8,16 @@ import useStyles from "./style";
 import userState from "state/userState";
 import { getUser } from "services/api/privateApi";
 
+const colorAvatar = [
+  "red",
+  "green",
+  "blue",
+  "orange",
+  "yellow",
+  "gray",
+  "black",
+];
+
 const SettingAndAvatar = () => {
   const [user, setUser] = useRecoilState(userState);
   const [fullname, setFullname] = useState("");
@@ -35,7 +45,7 @@ const SettingAndAvatar = () => {
     <Hidden smDown>
       <Grid container style={{ marginTop: "2vh" }}>
         <Grid item xs={3}>
-          <Link to="/">
+          <Link to="/profile">
             <SettingsIcon className={classes.icon} />
           </Link>
         </Grid>
@@ -56,7 +66,14 @@ const SettingAndAvatar = () => {
               </Grid>
             </Grid>
             <Grid item xs={4}>
-              <Avatar>T</Avatar>
+              <Avatar
+                style={{
+                  backgroundColor: colorAvatar[Math.floor(Math.random() * 7)],
+                  color: "white",
+                }}
+              >
+                {username[0]}
+              </Avatar>
             </Grid>
           </Grid>
         </Grid>
