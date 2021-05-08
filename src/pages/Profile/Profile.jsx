@@ -1,13 +1,15 @@
+import { useRecoilState } from "recoil";
 import { Grid, Hidden, Divider } from "@material-ui/core";
 import React, { Fragment, useEffect, useRef, useState } from "react";
 
 import useStyles from "./style";
+import userState from "state/userState";
 import { colorAlertEnum } from "utils/enumsUtil";
 import Fullname from "./components/Fullname/Fullname";
 import Username from "./components/Username/Username";
 import Password from "./components/Password/Password";
 import ButtonSave from "./components/ButtonSave/ButtonSave";
-import { getUser, updateUser } from "services/api/privateApi";
+import { updateUser } from "services/api/privateApi";
 import RecommendGame from "parts/components/RecommendGame/RecommendGame";
 
 const Profile = () => {
@@ -16,14 +18,17 @@ const Profile = () => {
   const fullnameRef = useRef();
   const passwordRef = useRef("");
   const editFullnameRef = useRef();
+  const [user, setUser] = useRecoilState(userState);
   const [errorAlert, setErrorAlert] = useState(<Fragment></Fragment>);
 
   useEffect(() => {
-    getUser().then((result) => {
-      fullnameRef.current.value = result.user.fullname;
-      usernameRef.current.value = result.user.username;
-    });
-  });
+    if (fullnameRef.current && usernameRef.current) {
+      fullnameRef.current.value =
+        user.fullname && user.fullname !== "" ? user.fullname : "";
+      usernameRef.current.value =
+        user.username && user.username !== "" ? user.username : "";
+    }
+  }, [user]);
 
   const handleClickEditFullname = () => {
     fullnameRef.current.disabled = !fullnameRef.current.disabled;
@@ -41,6 +46,13 @@ const Profile = () => {
       (res) => {
         let colorAlert = colorAlertEnum.ERROR;
         if (res.isSuccess) {
+          setUser((prev) => {
+            return {
+              id: prev.id,
+              username: prev.username,
+              fullname: fullnameRef.current.value,
+            };
+          });
           colorAlert = colorAlertEnum.SUCCESS;
         }
         setErrorAlert(
