@@ -17,7 +17,7 @@ const SignIn = () => {
   const passwordRef = useRef();
   const [errorAlert, setErrorAlert] = useState(<Fragment></Fragment>);
 
-  const handleSubmit = async () => {
+  const handleSubmit = () => {
     signInApi(usernameRef.current.value, passwordRef.current.value).then(
       (res) => {
         if (res.isSuccess) {

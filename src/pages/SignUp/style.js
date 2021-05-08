@@ -17,6 +17,18 @@ const useStyles = makeStyles((theme) => ({
   link: {
     color: "#004c9e",
     textDecoration: "none"
+  },
+  typography2: {
+    width: "70%",
+    color: "#84848A",
+    fontSize: "0.875rem",
+    marginTop: "10px",
+    marginBottom: "20px",
+  },
+  typography1: {
+    color: "white",
+    fontSize: "2.3rem",
+    fontWeight: "bold"
   }
 }));
 

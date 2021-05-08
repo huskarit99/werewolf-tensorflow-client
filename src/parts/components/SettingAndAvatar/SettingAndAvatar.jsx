@@ -70,6 +70,7 @@ const SettingAndAvatar = () => {
                 style={{
                   backgroundColor: colorAvatar[Math.floor(Math.random() * 7)],
                   color: "white",
+                  textTransform: "uppercase",
                 }}
               >
                 {username[0]}

@@ -1,7 +1,7 @@
 import Axios from 'axios';
 
 import { setToken } from 'utils/tokenUtil';
-import { signInResponseEnum } from 'utils/enumsUtil';
+import { signInResponseEnum, signUpResponseEnum } from 'utils/enumsUtil';
 
 const ENDPOINT = `http://localhost:${process.env.REACT_APP_API_URL}/api/public-controller`;
 
@@ -74,11 +74,49 @@ const signUpApi = async (fullname, username, password) => {
     });
     if (response.data.isSuccess) {
       setToken(username, response.data.token);
+      return {
+        isSuccess: true,
+      }
     }
-    return response.data.isSuccess;
+    return {
+      isSuccess: false,
+      message: "Client Error !!!"
+    }
   } catch (error) {
-    console.error(error);
-    return false;
+    let message = "";
+    switch (error.response.data.code) {
+      case signUpResponseEnum.FULLNAME_IS_EMPTY: {
+        message = "Fullname must be not empty !!!";
+        break;
+      }
+      case signUpResponseEnum.USERNAME_IS_EMPTY: {
+        message = "Username must be not empty !!!";
+        break;
+      }
+      case signUpResponseEnum.PASSWORD_IS_EMPTY: {
+        message = "Password must be not empty !!!";
+        break;
+      }
+      case signUpResponseEnum.USERNAME_IS_UNAVAILABLE: {
+        message = "Username is unavailable !!!";
+        break;
+      }
+      case signUpResponseEnum.PASSWORD_IS_LESS_THAN_6_LETTERS: {
+        message = "Password must be not less than 6 letters !!!";
+        break;
+      }
+      case signUpResponseEnum.SERVER_ERROR: {
+        message = "Server Error !!!";
+        break;
+      }
+      default: {
+        message = "Server error !!!!";
+      }
+    }
+    return {
+      isSuccess: false,
+      message: message
+    };
   }
 }
 
