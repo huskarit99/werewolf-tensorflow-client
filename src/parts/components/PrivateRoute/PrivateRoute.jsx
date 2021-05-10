@@ -13,7 +13,7 @@ const indexOrder = {
   SignIn: 1,
   SignUp: 2,
   Profile: 1,
-  PlayGame: 2,
+  Lobby: 2,
   Room: 3,
 };
 

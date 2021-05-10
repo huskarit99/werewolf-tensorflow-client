@@ -30,7 +30,6 @@ const useStyles = makeStyles((theme) => ({
     width: "86%",
     backgroundColor: "white",
   },
-
   list: {
     maxHeight: "100%",
     overflow: "auto",
@@ -47,6 +46,16 @@ const useStyles = makeStyles((theme) => ({
     height: "35px",
     borderRadius: "10px",
   },
+  fullname: {
+    color: "white",
+    fontSize: "13px",
+    lineHeight: "1",
+  },
+  username: {
+    color: "#84848A",
+    fontSize: "11px",
+    lineHeight: "1",
+  }
 }));
 
 export default useStyles;

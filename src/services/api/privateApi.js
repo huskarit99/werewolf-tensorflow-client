@@ -25,14 +25,12 @@ const authTokenApi = async () => {
       else
         return AuthenticationIsFail;
     } catch (error) {
-      console.error(error);
       return AuthenticationIsFail;
     }
   } else {
     return AuthenticationIsFail;
   }
 }
-
 
 const updateUser = async (fullname, password) => {
   const PATH = ENDPOINT + '/user';
@@ -63,6 +61,11 @@ const updateUser = async (fullname, password) => {
       }
     } catch (error) {
       let message = "";
+      if (!error || !error.response || !error.response.data)
+        return {
+          isSuccess: false,
+          message: "Server Error !!!"
+        };
       switch (error.response.data.code) {
         case updateResponseEnum.FULLNAME_IS_EMPTY: {
           message = "Fullname must be not empty !!!";
@@ -89,7 +92,6 @@ const updateUser = async (fullname, password) => {
         isSuccess: false,
         message: message
       };
-
     }
   } else {
     return {
@@ -116,7 +118,8 @@ const getUser = async () => {
       else
         return { isSuccess: false };
     } catch (error) {
-      // console.error(error);
+      if (!error || !error.response || !error.response.data)
+        return { isSuccess: false };
       return { isSuccess: false };
     }
   } else {

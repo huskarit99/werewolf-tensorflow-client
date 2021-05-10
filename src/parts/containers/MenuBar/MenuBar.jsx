@@ -1,6 +1,6 @@
-import { useRecoilState } from "recoil";
-import Wolf from "assets/images/wolf.png";
+import { Link } from "react-router-dom";
 import React, { useEffect, Fragment } from "react";
+import { useRecoilState, useRecoilValue } from "recoil";
 import {
   List,
   Grid,
@@ -11,6 +11,7 @@ import {
 } from "@material-ui/core";
 
 import useStyles from "./style";
+import Wolf from "assets/images/wolf.png";
 import Loading from "pages/Loading/Loading";
 import Header from "parts/containers/Header/Header";
 import { authTokenApi } from "services/api/privateApi";
@@ -21,8 +22,12 @@ import OnlineList from "parts/components/OnlineList/OnlineList";
 import PrivateMenu from "parts/components/PrivateMenu/PrivateMenu";
 import RecommendGame from "parts/components/RecommendGame/RecommendGame";
 
+import { getToken } from "utils/tokenUtil";
+import socketState from "state/socketState";
+
 const MenuBar = (props) => {
   const classes = useStyles();
+  const socket = useRecoilValue(socketState);
   const [isAuthenticated, setIsAuthenticated] = useRecoilState(
     isAuthenticatedState
   );
@@ -31,11 +36,14 @@ const MenuBar = (props) => {
     authTokenApi().then((result) => {
       setIsAuthenticated(result);
       setDrawer(() => {
-        if (result === stateOfAuthentication.SUCCESS) return <PrivateMenu />;
-        else if (result === stateOfAuthentication.FAIL) return <PublicMenu />;
+        if (result === stateOfAuthentication.SUCCESS) {
+          const token = getToken().token;
+          socket.emit("react:connect-server", { token: token });
+          return <PrivateMenu />;
+        } else if (result === stateOfAuthentication.FAIL) return <PublicMenu />;
       });
     });
-  }, [setIsAuthenticated]);
+  }, [setIsAuthenticated, socket]);
 
   return (
     <Grid container style={{ minHeight: "100vh" }}>
@@ -59,7 +67,9 @@ const MenuBar = (props) => {
                     container
                   >
                     <Grid item xs={12}>
-                      <Avatar variant="rounded" src={Wolf} />
+                      <Link to="/">
+                        <Avatar variant="rounded" src={Wolf} />
+                      </Link>
                     </Grid>
                   </Grid>
                 </ListItem>

@@ -4,9 +4,9 @@ import { Grid } from "@material-ui/core";
 import { getToken } from "utils/tokenUtil";
 import { useLocation } from "react-router-dom";
 
-import HeaderTitle from "parts/components/HeaderTitle/HeaderTitle";
 import { stateOfAuthentication } from "utils/enumsUtil";
 import isAuthenticatedState from "state/isAuthenticatedState";
+import HeaderTitle from "parts/components/HeaderTitle/HeaderTitle";
 import SettingAndAvatar from "parts/components/SettingAndAvatar/SettingAndAvatar";
 
 const Header = () => {

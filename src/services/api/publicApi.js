@@ -28,6 +28,11 @@ const signInApi = async (username, password) => {
     }
   } catch (error) {
     let message = "";
+    if (!error || !error.response || !error.response.data)
+      return {
+        isSuccess: false,
+        message: "Server Error !!!"
+      };
     switch (error.response.data.code) {
       case signInResponseEnum.USERNAME_IS_EMPTY: {
         message = "Username must be not empty !!!";
@@ -50,7 +55,7 @@ const signInApi = async (username, password) => {
         break;
       }
       default: {
-        message = "Server error !!!!";
+        message = "Server Error !!!!";
       }
     }
     return {
@@ -84,6 +89,11 @@ const signUpApi = async (fullname, username, password) => {
     }
   } catch (error) {
     let message = "";
+    if (!error || !error.response || !error.response.data)
+      return {
+        isSuccess: false,
+        message: "Server Error !!!"
+      };
     switch (error.response.data.code) {
       case signUpResponseEnum.FULLNAME_IS_EMPTY: {
         message = "Fullname must be not empty !!!";
@@ -110,7 +120,7 @@ const signUpApi = async (fullname, username, password) => {
         break;
       }
       default: {
-        message = "Server error !!!!";
+        message = "Server Error !!!!";
       }
     }
     return {
