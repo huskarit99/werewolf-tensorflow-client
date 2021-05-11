@@ -16,11 +16,11 @@ const OnlineList = () => {
   );
 
   useEffect(() => {
-    socket.emit("onlineListPageFromReact");
+    socket.emit("react:get-list-online-players");
   }, []);
 
   useEffect(() => {
-    socket.on("listOnlinePlayersFromServer", (res) => {
+    socket.on("server:list-online-players", (res) => {
       setListOnlinePlayers(res);
     });
   }, [socket, setListOnlinePlayers]);
