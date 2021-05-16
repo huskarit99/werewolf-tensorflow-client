@@ -2,6 +2,7 @@ import React from "react";
 import { useRecoilValue, useSetRecoilState } from "recoil";
 import { Route, Redirect } from "react-router-dom";
 
+import roomState from "state/roomState";
 import Loading from "pages/Loading/Loading";
 import { stateOfAuthentication } from "utils/enumsUtil";
 import indexPublicMenuState from "state/indexPublicMenuState";
@@ -18,6 +19,7 @@ const indexOrder = {
 };
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
+  const room = useRecoilValue(roomState);
   const isAuthenticated = useRecoilValue(isAuthenticactedState);
   const setIndexPublicMenu = useSetRecoilState(indexPublicMenuState);
   const setIndexPrivateMenu = useSetRecoilState(indexPrivateMenuState);
@@ -26,6 +28,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     setIndexPublicMenu(indexOrder[Component.name]);
     setIndexPrivateMenu(indexOrder[Component.name]);
   }, [setIndexPublicMenu, setIndexPrivateMenu, Component]);
+
+  if (room !== null && Component.name !== "Room") {
+    return <Redirect to="/room" />;
+  }
 
   if (isAuthenticated === stateOfAuthentication.PROCESSING) {
     return <Route {...rest} render={() => <Loading />} />;

@@ -1,12 +1,13 @@
 import React from "react";
-import { useRecoilState, useRecoilValue } from "recoil";
 import { Link } from "react-router-dom";
 import HomeIcon from "@material-ui/icons/Home";
 import PersonIcon from "@material-ui/icons/Person";
 import ExitToAppIcon from "@material-ui/icons/ExitToApp";
 import { Grid, List, Typography } from "@material-ui/core";
 import VideogameAsset from "@material-ui/icons/VideogameAsset";
+import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 
+import roomState from "state/socketState";
 import socketState from "state/socketState";
 import { clearToken } from "utils/tokenUtil";
 import { useStyles, ListItem } from "./style";
@@ -15,6 +16,7 @@ import indexPrivateMenuState from "state/indexPrivateMenuState";
 const PrivateMenu = () => {
   const classes = useStyles();
   const socket = useRecoilValue(socketState);
+  const setRoom = useSetRecoilState(roomState);
 
   const [indexPrivateMenu, setIndexPrivateMenu] = useRecoilState(
     indexPrivateMenuState
@@ -43,6 +45,7 @@ const PrivateMenu = () => {
 
   const handleLogout = () => {
     socket.emit("react:disconnect-server");
+    setRoom(null);
     clearToken();
   };
 

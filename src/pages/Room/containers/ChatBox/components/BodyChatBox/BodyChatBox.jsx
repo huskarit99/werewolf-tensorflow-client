@@ -10,16 +10,16 @@ import {
   Avatar,
 } from "@material-ui/core";
 
-import "./BodyChatBot.css";
+import "./BodyChatBox.css";
 import useStyles from "./style";
 import messagesState from "state/messagesState";
 
-const BodyChatBot = () => {
+const BodyChatBox = () => {
   const messages = useRecoilValue(messagesState);
   const classes = useStyles();
 
   return (
-    <Paper className={classes.paperMessageBot}>
+    <Paper className={classes.paperMessageBox}>
       <List>
         {messages.length !== 0 &&
           messages.map((message, index) => (
@@ -62,4 +62,4 @@ const BodyChatBot = () => {
   );
 };
 
-export default BodyChatBot;
+export default BodyChatBox;

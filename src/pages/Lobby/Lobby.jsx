@@ -1,11 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Group } from "@material-ui/icons";
+import { useRecoilValue, useRecoilState } from "recoil";
 import { useHistory } from "react-router-dom";
 import {
   Grid,
   Paper,
   Typography,
-  Avatar,
   Button,
   Hidden,
   List,
@@ -14,44 +14,26 @@ import {
 } from "@material-ui/core";
 
 import useStyles from "./style";
-import wolfIcon from "assets/images/wolfIcon.png";
-import mageIcon from "assets/images/mageIcon.png";
-import hunterIcon from "assets/images/hunterIcon.png";
-import shieldIcon from "assets/images/shieldIcon.png";
+import socketState from "state/socketState";
+import listRoomState from "state/listRoomState";
 import SearchAndCreateRoom from "./containers/SearchAndCreateRoom/SearchAndCreateRoom";
-
-const avaRoom = {
-  0: wolfIcon,
-  1: mageIcon,
-  2: hunterIcon,
-  3: shieldIcon,
-};
 
 const Lobby = () => {
   let history = useHistory();
+  const [listRoom, setListRoom] = useRecoilState(listRoomState);
   const classes = useStyles();
+  const socket = useRecoilValue(socketState);
 
-  const listRoom = [];
-  for (let i = 0; i < 15; i++)
-    listRoom.push({
-      nameRoom: "SBTC",
-      codeRoom: "hfhsdfsdfldfkfjsdfsdfksfd",
-      playersInRoom: Math.floor(Math.random() * 10),
-      maxPlayerInRoom: 10,
-      usernameOfHost: "thaihoc",
-      icon: (
-        <Avatar
-          variant="square"
-          className={classes.avatar}
-          style={{
-            textAlign: "center",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          src={avaRoom[Math.floor(Math.random() * 4)]}
-        />
-      ),
+  useEffect(() => {
+    socket.emit("react:list-room", (res) => {
+      setListRoom(res);
     });
+  }, []);
+  useEffect(() => {
+    socket.on("server:list-room", (res) => {
+      setListRoom(res);
+    });
+  }, [socket, setListRoom]);
 
   const handleClickJoinRoom = () => {
     history.push("/room");
@@ -123,53 +105,55 @@ const Lobby = () => {
             }}
           >
             <List>
-              {listRoom.map((room, index) => (
-                <ListItem key={index} className={classes.listItem}>
-                  <Grid container justify="center" alignItems="center">
-                    <Grid item xs={3}>
-                      <Typography style={{ color: "#fff" }}>
-                        {room.codeRoom}
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={5}>
-                      <Typography style={{ color: "#fff" }}>
-                        {room.nameRoom}
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={1}>
-                      {room.playersInRoom < room.maxPlayerInRoom - 3 ? (
+              {listRoom &&
+                listRoom.length >= 1 &&
+                listRoom.map((room, index) => (
+                  <ListItem key={index} className={classes.listItem}>
+                    <Grid container justify="center" alignItems="center">
+                      <Grid item xs={3}>
                         <Typography style={{ color: "#fff" }}>
-                          {room.playersInRoom}/{room.maxPlayerInRoom}
+                          {room.id}
                         </Typography>
-                      ) : room.playersInRoom >= room.maxPlayerInRoom - 1 ? (
-                        <Typography style={{ color: "red" }}>
-                          {room.playersInRoom}/{room.maxPlayerInRoom}
+                      </Grid>
+                      <Grid item xs={5}>
+                        <Typography style={{ color: "#fff" }}>
+                          {room.name}
                         </Typography>
-                      ) : (
-                        <Typography style={{ color: "yellow" }}>
-                          {room.playersInRoom}/{room.maxPlayerInRoom}
+                      </Grid>
+                      <Grid item xs={1}>
+                        {room.numberOfPlayersInRoom <= 2 ? (
+                          <Typography style={{ color: "white" }}>
+                            {room.numberOfPlayersInRoom}/{"5"}
+                          </Typography>
+                        ) : room.numberOfPlayersInRoom === 5 ? (
+                          <Typography style={{ color: "red" }}>
+                            {room.numberOfPlayersInRoom}/{"5"}
+                          </Typography>
+                        ) : (
+                          <Typography style={{ color: "yellow" }}>
+                            {room.numberOfPlayersInRoom}/{"5"}
+                          </Typography>
+                        )}
+                      </Grid>
+                      <Grid item xs={2}>
+                        <Typography style={{ color: "#fff" }}>
+                          {room.usernameOfHost}
                         </Typography>
-                      )}
+                      </Grid>
+                      <Grid item xs={1} style={{ textAlign: "center" }}>
+                        <Button
+                          style={{
+                            color: "#fff",
+                            backgroundColor: "#3f51b5",
+                          }}
+                          onClick={handleClickJoinRoom}
+                        >
+                          JOIN
+                        </Button>
+                      </Grid>
                     </Grid>
-                    <Grid item xs={2}>
-                      <Typography style={{ color: "#fff" }}>
-                        {room.usernameOfHost}
-                      </Typography>
-                    </Grid>
-                    <Grid item xs={1} style={{ textAlign: "center" }}>
-                      <Button
-                        style={{
-                          color: "#fff",
-                          backgroundColor: "#3f51b5",
-                        }}
-                        onClick={handleClickJoinRoom}
-                      >
-                        JOIN
-                      </Button>
-                    </Grid>
-                  </Grid>
-                </ListItem>
-              ))}
+                  </ListItem>
+                ))}
             </List>
           </Paper>
           <Paper

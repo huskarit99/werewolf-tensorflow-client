@@ -1,7 +1,7 @@
 import React, { useRef } from "react";
 import { Grid, InputBase, Typography } from "@material-ui/core";
 
-const FooterChatBot = (props) => {
+const FooterChatBox = (props) => {
   const messageRef = useRef();
   const handleSend = () => {
     if (messageRef.current.value) {
@@ -40,4 +40,4 @@ const FooterChatBot = (props) => {
   );
 };
 
-export default FooterChatBot;
+export default FooterChatBox;

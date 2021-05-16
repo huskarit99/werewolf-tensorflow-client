@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
 
-const HeaderChatBot = () => {
+const HeaderChatBox = () => {
   return (
     <Typography style={{ color: "white", fontWeight: "bold" }}>
       Live Chat
@@ -9,4 +9,4 @@ const HeaderChatBot = () => {
   );
 };
 
-export default HeaderChatBot;
+export default HeaderChatBox;

@@ -4,11 +4,11 @@ import { Grid, Paper, Hidden } from "@material-ui/core";
 
 import useStyles from "./style";
 import messagesState from "state/messagesState";
-import BodyChatBot from "./components/BodyChatBot/BodyChatBot";
-import HeaderChatBot from "./components/HeaderChatBot/HeaderChatBot";
-import FooterChatBot from "./components/FooterChatBot/FooterChatBot";
+import BodyChatBox from "./components/BodyChatBox/BodyChatBox";
+import HeaderChatBox from "./components/HeaderChatBox/HeaderChatBox";
+import FooterChatBox from "./components/FooterChatBox/FooterChatBox";
 
-const ChatBot = () => {
+const ChatBox = () => {
   const setMessages = useSetRecoilState(messagesState);
 
   const handleSend = (text) => {
@@ -25,7 +25,7 @@ const ChatBot = () => {
   const classes = useStyles();
   return (
     <Hidden smDown>
-      <Paper className={classes.paperChatBot}>
+      <Paper className={classes.paperChatBox}>
         <Grid container direction="column" style={{ minHeight: "75vh" }}>
           <Grid
             item
@@ -36,13 +36,13 @@ const ChatBot = () => {
               paddingBottom: "5%",
             }}
           >
-            <HeaderChatBot />
+            <HeaderChatBox />
           </Grid>
           <Grid item xs={12}>
-            <BodyChatBot />
+            <BodyChatBox />
           </Grid>
           <Grid item xs={12}>
-            <FooterChatBot handleSend={(text) => handleSend(text)} />
+            <FooterChatBox handleSend={(text) => handleSend(text)} />
           </Grid>
         </Grid>
       </Paper>
@@ -50,4 +50,4 @@ const ChatBot = () => {
   );
 };
 
-export default ChatBot;
+export default ChatBox;

@@ -1,4 +1,5 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
+import { useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
 import { Star } from "@material-ui/icons";
 import {
   Grid,
@@ -6,14 +7,15 @@ import {
   Box,
   Typography,
   Avatar,
-  Button,
   Hidden,
 } from "@material-ui/core";
 
 // import ListRoom from "./containers/ListRoom/ListRoom";
-
-import ChatBot from "./containers/ChatBot/ChatBot";
 import useStyles from "./style";
+import roomState from "state/roomState";
+import socketState from "state/socketState";
+import listRoomState from "state/listRoomState";
+import ChatBox from "./containers/ChatBox/ChatBox";
 
 // import { useRecoilValue } from "recoil";
 // import socketState from "state/socketState";
@@ -39,9 +41,23 @@ for (let i = 0; i < 10; i++)
 
 const Room = () => {
   const classes = useStyles();
-  // const socket = useRecoilValue(socketState);
-  // const [name] = useState("ThaiHoc");
-  // const history = useHistory();
+  const setRoom = useSetRecoilState(roomState);
+  const [listRoom, setListRoom] = useRecoilState(listRoomState);
+  const socket = useRecoilValue(socketState);
+  useEffect(() => {
+    socket.emit("react:list-room");
+  }, []);
+
+  useEffect(() => {
+    socket.on("server:list-room", (res) => {
+      setListRoom(res);
+    });
+    socket.on("server:get-in-room", (res) => {
+      setRoom(res);
+      // redirect
+    });
+  }, [socket, setListRoom, setRoom]);
+
   return (
     <Grid container>
       <Grid item xs={8}>
@@ -183,7 +199,7 @@ const Room = () => {
         </Grid>
       </Grid>
       <Grid item xs={4}>
-        <ChatBot />
+        <ChatBox />
       </Grid>
     </Grid>
   );

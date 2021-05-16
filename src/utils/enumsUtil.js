@@ -52,8 +52,9 @@ const updateResponseEnum = {
 }
 
 const colorAlertEnum = {
-  ERROR: "#CD2948",
-  SUCCESS: "#0ED855",
+  ERROR: "red",
+  SUCCESS: "green",
+  WARNING: "yellow"
 }
 
 export { stateOfAuthentication, operatorType, signInResponseEnum, signUpResponseEnum, updateResponseEnum, jwtEnum, colorAlertEnum };

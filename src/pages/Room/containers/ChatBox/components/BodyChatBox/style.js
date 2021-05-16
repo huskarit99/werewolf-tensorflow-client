@@ -1,7 +1,7 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
-  paperMessageBot: {
+  paperMessageBox: {
     minHeight: "55vh",
     maxHeight: "55vh",
     overflow: "auto",
