@@ -54,7 +54,7 @@ const BodyTable = (props) => {
                   <Button
                     className={classes.button}
                     onClick={() => {
-                      props.handleJoin();
+                      props.handleJoin(room.id);
                     }}
                   >
                     JOIN

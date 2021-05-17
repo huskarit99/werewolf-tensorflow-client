@@ -1,9 +1,11 @@
 import React, { useEffect } from "react";
-import { useRecoilValue, useRecoilState } from "recoil";
 import { useHistory } from "react-router-dom";
 import { Grid, Hidden } from "@material-ui/core";
+import { useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
 
+import { getUser } from "services/api/privateApi";
 import useStyles from "./style";
+import roomState from "state/roomState";
 import socketState from "state/socketState";
 import listRoomState from "state/listRoomState";
 import BodyTable from "./containers/BodyTable/BodyTable";
@@ -12,9 +14,10 @@ import SearchAndCreateRoom from "./containers/SearchAndCreateRoom/SearchAndCreat
 
 const Lobby = () => {
   let history = useHistory();
-  const [listRoom, setListRoom] = useRecoilState(listRoomState);
   const classes = useStyles();
   const socket = useRecoilValue(socketState);
+  const setRoom = useSetRecoilState(roomState);
+  const [listRoom, setListRoom] = useRecoilState(listRoomState);
 
   useEffect(() => {
     socket.emit("react:list-room", (res) => {
@@ -25,10 +28,20 @@ const Lobby = () => {
     socket.on("server:list-room", (res) => {
       setListRoom(res);
     });
-  }, [socket, setListRoom]);
+    socket.on("get-in-room", (res) => {
+      setRoom(res);
+      history.push("/room");
+    });
+  }, [socket]);
 
-  const handleClickJoinRoom = () => {
-    history.push("/room");
+  const handleClickJoinRoom = (id) => {
+    getUser().then((res) => {
+      socket.emit("react:join-room", {
+        id: id,
+        usernameOfPlayer: res.user.username,
+        fullnameOfPlayer: res.user.fullname,
+      });
+    });
   };
 
   return (
