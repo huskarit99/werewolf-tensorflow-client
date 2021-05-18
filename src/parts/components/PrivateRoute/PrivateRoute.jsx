@@ -1,8 +1,10 @@
-import React from "react";
-import { useRecoilValue, useSetRecoilState } from "recoil";
+import React, { useEffect } from "react";
 import { Route, Redirect } from "react-router-dom";
+import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
 
+import { getToken } from "utils/tokenUtil";
 import roomState from "state/roomState";
+import socketState from "state/socketState";
 import Loading from "pages/Loading/Loading";
 import { stateOfAuthentication } from "utils/enumsUtil";
 import indexPublicMenuState from "state/indexPublicMenuState";
@@ -19,15 +21,27 @@ const indexOrder = {
 };
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const room = useRecoilValue(roomState);
+  const socket = useRecoilValue(socketState);
+  const [room, setRoom] = useRecoilState(roomState);
   const isAuthenticated = useRecoilValue(isAuthenticactedState);
   const setIndexPublicMenu = useSetRecoilState(indexPublicMenuState);
   const setIndexPrivateMenu = useSetRecoilState(indexPrivateMenuState);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setIndexPublicMenu(indexOrder[Component.name]);
     setIndexPrivateMenu(indexOrder[Component.name]);
   }, [setIndexPublicMenu, setIndexPrivateMenu, Component]);
+
+  useEffect(() => {
+    const token = getToken() !== null ? getToken().token : null;
+    socket.emit("react:detail-room", token);
+  }, []);
+
+  useEffect(() => {
+    socket.on("server:detail-room", (res) => {
+      setRoom(res);
+    });
+  }, [socket, setRoom]);
 
   if (room !== null && Component.name !== "Room") {
     return <Redirect to="/room" />;

@@ -88,6 +88,7 @@ const Room = () => {
                                   height: "65%",
                                   fontSize: "2rem",
                                   backgroundColor: "red",
+                                  textTransform: "uppercase",
                                 }}
                               >
                                 {player.username[0]}
