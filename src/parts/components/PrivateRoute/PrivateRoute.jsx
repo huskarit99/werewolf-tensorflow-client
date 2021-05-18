@@ -46,6 +46,9 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   if (room !== null && Component.name !== "Room") {
     return <Redirect to="/room" />;
   }
+  if (room === null && Component.name === "Room") {
+    return <Redirect to="/" />;
+  }
 
   if (isAuthenticated === stateOfAuthentication.PROCESSING) {
     return <Route {...rest} render={() => <Loading />} />;

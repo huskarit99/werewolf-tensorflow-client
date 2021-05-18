@@ -24,6 +24,9 @@ const Room = () => {
     socket.on("server:update-room", (res) => {
       setRoom(res);
     });
+    socket.on("server:force-get-out-room", () => {
+      setRoom(null);
+    });
   }, [socket]);
 
   return (
