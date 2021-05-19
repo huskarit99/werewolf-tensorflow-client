@@ -11,7 +11,7 @@ const FooterChatBox = (props) => {
   };
 
   return (
-    <Grid container style={{ marginTop: "5%" }}>
+    <Grid container alignItems="center" style={{ height: "100%" }}>
       <Grid item xs={9}>
         <InputBase
           style={{ color: "white", marginLeft: "10%", fontSize: "1rem" }}

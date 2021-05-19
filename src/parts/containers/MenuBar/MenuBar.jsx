@@ -28,9 +28,8 @@ import socketState from "state/socketState";
 const MenuBar = (props) => {
   const classes = useStyles();
   const socket = useRecoilValue(socketState);
-  const [isAuthenticated, setIsAuthenticated] = useRecoilState(
-    isAuthenticatedState
-  );
+  const [isAuthenticated, setIsAuthenticated] =
+    useRecoilState(isAuthenticatedState);
   const [drawer, setDrawer] = React.useState(<Fragment />);
   useEffect(() => {
     authTokenApi().then((result) => {

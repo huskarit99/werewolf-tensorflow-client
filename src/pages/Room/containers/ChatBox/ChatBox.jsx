@@ -26,11 +26,12 @@ const ChatBox = () => {
   return (
     <Hidden smDown>
       <Paper className={classes.paperChatBox}>
-        <Grid container direction="column" style={{ minHeight: "75vh" }}>
+        <Grid container style={{ height: "100%" }}>
           <Grid
             item
             xs={12}
             style={{
+              height: "15%",
               paddingTop: "10%",
               paddingLeft: "10%",
               paddingBottom: "5%",
@@ -38,10 +39,10 @@ const ChatBox = () => {
           >
             <HeaderChatBox />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} style={{ height: "73%" }}>
             <BodyChatBox />
           </Grid>
-          <Grid item xs={12}>
+          <Grid item xs={12} style={{ height: "12%" }}>
             <FooterChatBox handleSend={(text) => handleSend(text)} />
           </Grid>
         </Grid>

@@ -2,8 +2,7 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   paperMessageBox: {
-    minHeight: "55vh",
-    maxHeight: "55vh",
+    height: "100%",
     overflow: "auto",
     paddingLeft: "4%",
     paddingRight: "4%",

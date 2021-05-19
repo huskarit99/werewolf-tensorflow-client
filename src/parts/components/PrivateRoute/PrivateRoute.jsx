@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
-import { Route, Redirect } from "react-router-dom";
+import { Route, Redirect, useHistory } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
 
-import { getToken } from "utils/tokenUtil";
 import roomState from "state/roomState";
+import { getToken } from "utils/tokenUtil";
 import socketState from "state/socketState";
 import Loading from "pages/Loading/Loading";
 import { stateOfAuthentication } from "utils/enumsUtil";
@@ -21,6 +21,7 @@ const indexOrder = {
 };
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
+  const history = useHistory();
   const socket = useRecoilValue(socketState);
   const [room, setRoom] = useRecoilState(roomState);
   const isAuthenticated = useRecoilValue(isAuthenticactedState);
@@ -40,13 +41,16 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   useEffect(() => {
     socket.on("server:detail-room", (res) => {
       setRoom(res);
+      if (res) {
+        history.push("/room");
+      }
     });
   }, [socket, setRoom]);
 
-  if (room !== null && Component.name !== "Room") {
+  if (room && Component.name !== "Room") {
     return <Redirect to="/room" />;
   }
-  if (room === null && Component.name === "Room") {
+  if (!room && Component.name === "Room") {
     return <Redirect to="/" />;
   }
 
