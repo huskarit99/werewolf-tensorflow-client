@@ -20,9 +20,10 @@ const Header = () => {
     <Grid
       container
       justify="center"
-      style={{ minHeight: "12vh", marginTop: "7vh" }}
+      alignItems="center"
+      style={{ height: "100%" }}
     >
-      <Grid item xs={8}>
+      <Grid item xs={8} style={{ height: "100%" }}>
         <HeaderTitle username={username} path={location.pathname} />
       </Grid>
       {isAuthenticated === stateOfAuthentication.SUCCESS ? (

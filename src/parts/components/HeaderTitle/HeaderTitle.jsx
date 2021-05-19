@@ -1,6 +1,6 @@
 import React from "react";
 import { useRecoilValue } from "recoil";
-import { Typography } from "@material-ui/core";
+import { Typography, Paper } from "@material-ui/core";
 
 import useStyles from "./style";
 import { stateOfAuthentication } from "utils/enumsUtil";
@@ -11,30 +11,32 @@ const HeaderTitle = (props) => {
 
   const classes = useStyles();
   return (
-    <React.Fragment>
+    <div style={{ display: "flex", height: "100%", alignItems: "center" }}>
       {props.path === "/" ? (
         isAuthenticated === stateOfAuthentication.SUCCESS &&
         props.username !== null ? (
-          <Typography variant="h3" className={classes.typography}>
+          <Typography variant="h4" className={classes.typography}>
             Welcome back, {props.username}
           </Typography>
         ) : (
-          <Typography variant="h3" className={classes.typography}>
+          <Typography variant="h4" className={classes.typography}>
             Welcome to The WereWolf
           </Typography>
         )
       ) : props.path === "/lobby" ? (
-        <Typography variant="h3" className={classes.typography}>
+        <Typography variant="h4" className={classes.typography}>
           LOBBY LIST
         </Typography>
+      ) : props.path === "/profile" ? (
+        <Typography variant="h4" className={classes.typography}>
+          PROFILE
+        </Typography>
       ) : (
-        props.path === "/profile" && (
-          <Typography variant="h3" className={classes.typography}>
-            PROFILE
-          </Typography>
+        props.path === "/room" && (
+          <Paper style={{ height: "100%", width: "100%" }}></Paper>
         )
       )}
-    </React.Fragment>
+    </div>
   );
 };
 

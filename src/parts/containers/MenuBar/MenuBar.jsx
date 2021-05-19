@@ -82,11 +82,11 @@ const MenuBar = (props) => {
         </div>
       </Grid>
       <Grid item xs={9}>
-        <Grid container direction="column">
-          <Grid item xs={12}>
+        <Grid container>
+          <Grid item xs={12} style={{ height: "20vh" }}>
             <Header />
           </Grid>
-          <Grid item xs={12} style={{ overflow: "scroll" }}>
+          <Grid item xs={12} style={{ overflow: "scroll", height: "80vh" }}>
             <main>
               {isAuthenticated !== stateOfAuthentication.PROCESSING ? (
                 isAuthenticated === stateOfAuthentication.SUCCESS ? (
