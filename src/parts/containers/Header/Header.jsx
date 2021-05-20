@@ -27,7 +27,7 @@ const Header = () => {
         <HeaderTitle username={username} path={location.pathname} />
       </Grid>
       {isAuthenticated === stateOfAuthentication.SUCCESS ? (
-        <Grid item xs={4}>
+        <Grid item xs={4} style={{ height: "100%" }}>
           <SettingAndAvatar />
         </Grid>
       ) : (

@@ -43,16 +43,32 @@ const SettingAndAvatar = () => {
 
   return (
     <Hidden smDown>
-      <Grid container style={{ marginTop: "2vh" }}>
-        <Grid item xs={3}>
+      <Grid container style={{ height: "100%" }}>
+        <Grid
+          item
+          xs={3}
+          style={{
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
           <Link to="/profile">
             <SettingsIcon className={classes.icon} />
           </Link>
         </Grid>
-        <Grid item xs={9}>
+        <Grid
+          item
+          xs={9}
+          style={{
+            height: "100%",
+            display: "flex",
+            alignItems: "center",
+          }}
+        >
           <Grid container>
             <Grid item xs={8}>
-              <Grid container direction="column" justify="center">
+              <Grid container>
                 <Grid item xs={12} className={classes.item}>
                   <Typography className={classes.fullname}>
                     {fullname}
@@ -65,7 +81,7 @@ const SettingAndAvatar = () => {
                 </Grid>
               </Grid>
             </Grid>
-            <Grid item xs={4}>
+            <Grid item xs={3}>
               <Avatar
                 style={{
                   backgroundColor: colorAvatar[Math.floor(Math.random() * 7)],
@@ -76,6 +92,7 @@ const SettingAndAvatar = () => {
                 {username[0]}
               </Avatar>
             </Grid>
+            <Grid item xs={1} />
           </Grid>
         </Grid>
       </Grid>

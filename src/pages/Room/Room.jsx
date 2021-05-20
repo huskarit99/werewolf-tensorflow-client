@@ -46,7 +46,7 @@ const Room = () => {
   };
 
   return (
-    <Grid container style={{ height: "72vh" }}>
+    <Grid container style={{ height: "75vh" }}>
       <Grid item xs={8} style={{ height: "100%" }}>
         <Grid container style={{ height: "100%" }}>
           <Grid item xs={12}>
@@ -55,7 +55,7 @@ const Room = () => {
                 overflow: "auto",
                 width: "96%",
                 height: "100%",
-                backgroundColor: "#2A2D3B",
+                backgroundColor: "#00000000",
                 boxShadow: "none",
               }}
             >

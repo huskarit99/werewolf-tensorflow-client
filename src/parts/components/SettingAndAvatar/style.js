@@ -2,11 +2,11 @@ import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(() => ({
   icon: {
-    color: "white",
-    backgroundColor: "#3f51b5",
+    color: "blue",
+    backgroundColor: "#00000000",
     borderRadius: "5px",
-    width: "30px",
-    height: "30px",
+    width: "35px",
+    height: "35px",
   },
   username: {
     color: "#84848A",
@@ -18,8 +18,6 @@ const useStyles = makeStyles(() => ({
     lineHeight: "1.5"
   },
   item: {
-    textAlign: "right",
-    marginRight: "1.5vh",
   }
 }))
 
