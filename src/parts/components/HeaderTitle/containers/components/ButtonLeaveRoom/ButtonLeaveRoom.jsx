@@ -10,7 +10,7 @@ const ButtonLeaveRoom = (props) => {
 
   return (
     <Grid item xs={4} className={classes.root}>
-      <Button style={{ minHeight: "0" }}>
+      <Button style={{ minHeight: "0", minWidth: "0", padding: "0" }}>
         <FontAwesomeIcon
           className={classes.icon}
           style={{ width: "40px", height: "40px" }}
