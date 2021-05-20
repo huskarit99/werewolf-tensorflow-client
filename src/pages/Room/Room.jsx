@@ -36,7 +36,7 @@ const Room = () => {
     socket.on("server:force-get-out-room", () => {
       setRoom(null);
     });
-  }, [socket]);
+  }, [socket, setRoom]);
 
   const handleRemove = (roomId, usernameOfPlayer) => {
     socket.emit("react:host-force-leave-room", {
@@ -211,7 +211,7 @@ const Room = () => {
         </Grid>
       </Grid>
       <Grid item xs={4} style={{ height: "100%" }}>
-        <ChatBox />
+        <ChatBox room={room} username={username} />
       </Grid>
     </Grid>
   );

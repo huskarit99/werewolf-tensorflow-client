@@ -7,23 +7,31 @@
     max-width: 100%;
   }
   
-  .messageText {
-    width: 100%;
-    letter-spacing: 0;
-    float: left;
-    font-size: 13px;
-    word-wrap: break-word;
-  }
-  
-  .messageContainer {
-    display: flex;
-    margin-top: 5%;
-  }
+.colorWhite {
+  color: white,
+}
 
-  .justifyStart {
-    justify-content: flex-start;
-  }
+.messageText {
+  width: 100%;
+  letter-spacing: 0;
+  float: left;
+  font-size: 13px;
+  word-wrap: break-word;
+}
 
-  .backgroundBlue {
-    background: #24242E;
-  }
+.messageContainer {
+  display: flex;
+  margin-top: 5%;
+}
+
+.justifyStart {
+  justify-content: flex-start;
+}
+
+.backgroundBlue {
+  background: #0084FF;
+}
+
+.backgroundGray {
+  background: #24242E;
+}

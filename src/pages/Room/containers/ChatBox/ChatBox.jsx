@@ -1,25 +1,19 @@
 import React from "react";
-import { useSetRecoilState } from "recoil";
+import { useRecoilValue } from "recoil";
 import { Grid, Paper, Hidden } from "@material-ui/core";
 
 import useStyles from "./style";
-import messagesState from "state/messagesState";
+import { getToken } from "utils/tokenUtil";
+import socketState from "state/socketState";
 import BodyChatBox from "./components/BodyChatBox/BodyChatBox";
 import HeaderChatBox from "./components/HeaderChatBox/HeaderChatBox";
 import FooterChatBox from "./components/FooterChatBox/FooterChatBox";
 
-const ChatBox = () => {
-  const setMessages = useSetRecoilState(messagesState);
-
-  const handleSend = (text) => {
-    setMessages((oldMessages) => {
-      return [
-        ...oldMessages,
-        {
-          text: text,
-        },
-      ];
-    });
+const ChatBox = (props) => {
+  const socket = useRecoilValue(socketState);
+  const handleSend = (message) => {
+    const token = getToken() !== null ? getToken().token : null;
+    socket.emit("react:send-message", { token: token, message: message });
   };
 
   const classes = useStyles();
@@ -40,7 +34,7 @@ const ChatBox = () => {
             <HeaderChatBox />
           </Grid>
           <Grid item xs={12} style={{ height: "73%" }}>
-            <BodyChatBox />
+            <BodyChatBox room={props.room} username={props.username} />
           </Grid>
           <Grid item xs={12} style={{ height: "12%" }}>
             <FooterChatBox handleSend={(text) => handleSend(text)} />
