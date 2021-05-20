@@ -1,7 +1,9 @@
+import { useRecoilValue } from "recoil";
 import React, { useRef, useState } from "react";
 import { Grid, Paper } from "@material-ui/core";
 
 import useStyles from "./style";
+import socketState from "state/socketState";
 import { getUser } from "services/api/privateApi";
 import TFCodeRoom from "./components/TFCodeRoom/TFCodeRoom";
 import BtnSearchRoom from "./components/BtnSearchRoom/BtnSearchRoom";
@@ -10,12 +12,19 @@ import CreateRoomModal from "parts/components/modals/CreateRoomModal/CreateRoomM
 
 const SearchAndCreateRoom = () => {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
   const coderoomRef = useRef();
+  const [open, setOpen] = useState(false);
+  const socket = useRecoilValue(socketState);
 
   const handleSearch = () => {
     const id = coderoomRef.current.value;
-    getUser().then((res) => {});
+    getUser().then((res) => {
+      socket.emit("react:join-room", {
+        id: id,
+        usernameOfPlayer: res.user.username,
+        fullnameOfPlayer: res.user.fullname,
+      });
+    });
   };
   const handleCreate = () => {
     setOpen(!open);
