@@ -1,5 +1,5 @@
 import { useRecoilState } from "recoil";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import SettingsIcon from "@material-ui/icons/Settings";
 import { Avatar, Grid, Typography, Hidden } from "@material-ui/core";
@@ -19,6 +19,7 @@ const colorAvatar = [
 ];
 
 const SettingAndAvatar = () => {
+  let location = useLocation();
   const [user, setUser] = useRecoilState(userState);
   const [fullname, setFullname] = useState("");
   const [username, setUsername] = useState("");
@@ -53,9 +54,11 @@ const SettingAndAvatar = () => {
             alignItems: "center",
           }}
         >
-          <Link to="/profile">
-            <SettingsIcon className={classes.icon} />
-          </Link>
+          {location.pathname !== "/room" && (
+            <Link to="/profile">
+              <SettingsIcon className={classes.icon} />
+            </Link>
+          )}
         </Grid>
         <Grid
           item

@@ -10,9 +10,13 @@ const useStyles = makeStyles(() => ({
   icon: {
     borderRadius: "5px",
     backgroundColor: "#00000000",
-    color: "red",
-    height: "40px",
-    width: "40px",
+    height: "35px",
+    width: "35px",
+  },
+  button: {
+    minHeight: "0",
+    minWidth: "0",
+    padding: "0"
   }
 }));
 

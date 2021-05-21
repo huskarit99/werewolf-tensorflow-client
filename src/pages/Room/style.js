@@ -2,16 +2,11 @@ import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
   paper: {
-    backgroundColor: "rgba(255,255,255,0.2)",
-    width: "90%",
-    height: "90%",
-    borderRadius: "20px",
+    overflow: "auto",
+    width: "96%",
+    height: "100%",
+    backgroundColor: "#00000000",
     boxShadow: "none",
-    "&:hover": {
-      backgroundColor: "rgba(255,255,255,0.4)",
-      width: "95%",
-      height: "95%",
-    }
   }
 }));
 

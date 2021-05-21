@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Paper, Grid } from "@material-ui/core";
+import { Paper, Grid, Hidden } from "@material-ui/core";
 import { useRecoilValue, useRecoilState } from "recoil";
 
 import useStyles from "./style";
@@ -27,18 +27,20 @@ const RoomTitle = () => {
   }, [socket]);
 
   return (
-    <div className={classes.root}>
-      <Paper className={classes.paper}>
-        <Grid container style={{ height: "100%" }}>
-          <Grid item xs={11} style={{ height: "100%" }}>
-            <Grid item xs={12} style={{ height: "30%" }} />
-            <RoomId id={room ? room.id : ""} />
-            <RoomName name={room ? room.name : ""} />
+    <Hidden xsDown>
+      <div className={classes.root}>
+        <Paper className={classes.paper}>
+          <Grid container style={{ height: "100%" }}>
+            <Grid item xs={10} style={{ height: "100%" }}>
+              <Grid item xs={12} style={{ height: "30%" }} />
+              <RoomId id={room ? room.id : ""} />
+              <RoomName name={room ? room.name : ""} />
+            </Grid>
+            <ButtonLeaveRoom handleClick={handleLeaveRoom} />
           </Grid>
-          <ButtonLeaveRoom handleClick={handleLeaveRoom} />
-        </Grid>
-      </Paper>
-    </div>
+        </Paper>
+      </div>
+    </Hidden>
   );
 };
 

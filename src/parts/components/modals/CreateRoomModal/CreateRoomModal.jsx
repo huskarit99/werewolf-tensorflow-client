@@ -1,5 +1,4 @@
 import { v4 as uuidv4 } from "uuid";
-// import { createBrowserHistory } from "history";
 import { useHistory } from "react-router-dom";
 import { useSetRecoilState, useRecoilValue } from "recoil";
 import React, { useRef, useState, Fragment, useEffect } from "react";
@@ -15,14 +14,14 @@ import {
 } from "@material-ui/core";
 
 import roomState from "state/roomState";
+import userState from "state/userState";
 import socketState from "state/socketState";
 import { colorAlertEnum } from "utils/enumsUtil";
 import { DialogContent, DialogActions, DialogTitle, useStyles } from "./style";
-import { getUser } from "services/api/privateApi";
 
 const CreateRoomModal = (props) => {
-  // const history = createBrowserHistory({ forceRefresh: true });
   const history = useHistory();
+  const user = useRecoilValue(userState);
   const socket = useRecoilValue(socketState);
   const setRoom = useSetRecoilState(roomState);
   const [messageAlert, setMessageAlert] = useState(<Fragment />);
@@ -51,19 +50,17 @@ const CreateRoomModal = (props) => {
         </p>
       );
     } else {
-      getUser().then((res) => {
-        setRoom({
-          id: idRef.current.value,
-          name: nameRef.current.value,
-          fullnameOfHost: res.user.fullname,
-          usernameOfHost: res.user.username,
-        });
-        socket.emit("react:create-room", {
-          id: idRef.current.value,
-          name: nameRef.current.value,
-          fullnameOfHost: res.user.fullname,
-          usernameOfHost: res.user.username,
-        });
+      setRoom({
+        id: idRef.current.value,
+        name: nameRef.current.value,
+        fullnameOfHost: user.fullname,
+        usernameOfHost: user.username,
+      });
+      socket.emit("react:create-room", {
+        id: idRef.current.value,
+        name: nameRef.current.value,
+        fullnameOfHost: user.fullname,
+        usernameOfHost: user.username,
       });
     }
   };

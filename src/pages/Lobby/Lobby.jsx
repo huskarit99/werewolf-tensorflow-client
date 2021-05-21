@@ -3,8 +3,8 @@ import { useHistory } from "react-router-dom";
 import { Grid, Hidden } from "@material-ui/core";
 import { useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
 
-import { getUser } from "services/api/privateApi";
 import useStyles from "./style";
+import userState from "state/userState";
 import roomState from "state/roomState";
 import socketState from "state/socketState";
 import listRoomState from "state/listRoomState";
@@ -15,6 +15,7 @@ import SearchAndCreateRoom from "./containers/SearchAndCreateRoom/SearchAndCreat
 const Lobby = () => {
   let history = useHistory();
   const classes = useStyles();
+  const user = useRecoilValue(userState);
   const socket = useRecoilValue(socketState);
   const setRoom = useSetRecoilState(roomState);
   const [listRoom, setListRoom] = useRecoilState(listRoomState);
@@ -35,12 +36,10 @@ const Lobby = () => {
   }, [socket]);
 
   const handleClickJoinRoom = (id) => {
-    getUser().then((res) => {
-      socket.emit("react:join-room", {
-        id: id,
-        usernameOfPlayer: res.user.username,
-        fullnameOfPlayer: res.user.fullname,
-      });
+    socket.emit("react:join-room", {
+      id: id,
+      usernameOfPlayer: user.username,
+      fullnameOfPlayer: user.fullname,
     });
   };
 
