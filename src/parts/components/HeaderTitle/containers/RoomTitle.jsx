@@ -30,7 +30,7 @@ const RoomTitle = () => {
     <div className={classes.root}>
       <Paper className={classes.paper}>
         <Grid container style={{ height: "100%" }}>
-          <Grid item xs={8} style={{ height: "100%" }}>
+          <Grid item xs={11} style={{ height: "100%" }}>
             <Grid item xs={12} style={{ height: "30%" }} />
             <RoomId id={room ? room.id : ""} />
             <RoomName name={room ? room.name : ""} />

@@ -6,7 +6,7 @@ import useStyles from "./style";
 const RoomId = (props) => {
   const classes = useStyles();
   return (
-    <Grid item xs={12} style={{ height: "20%" }}>
+    <Grid item xs={12} className={classes.root}>
       <Typography className={classes.typography}>
         {"Room ID: "}
         {props ? props.id : ""}

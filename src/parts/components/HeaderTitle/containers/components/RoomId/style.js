@@ -1,6 +1,11 @@
 import { makeStyles } from '@material-ui/core/styles';
 
 const useStyles = makeStyles(() => ({
+  root: {
+    display: "flex",
+    height: "20%",
+    alignItems: "center"
+  },
   typography: {
     marginLeft: "2%",
     fontSize: "1rem",

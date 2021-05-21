@@ -9,7 +9,7 @@ const ButtonLeaveRoom = (props) => {
   const classes = useStyles();
 
   return (
-    <Grid item xs={4} className={classes.root}>
+    <Grid item xs={1} className={classes.root}>
       <Button style={{ minHeight: "0", minWidth: "0", padding: "0" }}>
         <FontAwesomeIcon
           className={classes.icon}
