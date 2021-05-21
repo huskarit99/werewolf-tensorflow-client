@@ -22,28 +22,16 @@ const PlayerBox = (props) => {
       bgcolor="#00000000"
       justifyContent="center"
       alignItems="center"
-      style={{
-        width: "200px",
-        height: "200px",
-      }}
+      className={classes.box}
     >
       <Paper className={classes.paper}>
         <Grid
           container
           justify="center"
           alignItems="center"
-          style={{ height: "100%", width: "100%" }}
+          className={classes.container}
         >
-          <Grid
-            item
-            xs={12}
-            style={{
-              height: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+          <Grid item xs={12} className={classes.item1}>
             <Avatar
               style={{
                 backgroundColor: player.isOnline ? "green" : "red",
@@ -53,14 +41,7 @@ const PlayerBox = (props) => {
               {player.username[0] + player.username[1]}
             </Avatar>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            style={{
-              height: "10%",
-              textAlign: "center",
-            }}
-          >
+          <Grid item xs={12} className={classes.item2}>
             <Typography className={classes.typography}>
               {player.username}{" "}
               {player.username === room.member[0].username && (
@@ -68,28 +49,12 @@ const PlayerBox = (props) => {
               )}
             </Typography>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            style={{
-              height: "10%",
-              textAlign: "center",
-            }}
-          >
+          <Grid item xs={12} className={classes.item2}>
             <Typography style={{ color: "white", fontSize: "14px" }}>
               {player.fullname}
             </Typography>
           </Grid>
-          <Grid
-            item
-            xs={12}
-            style={{
-              height: "30%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+          <Grid item xs={12} className={classes.item3}>
             {username === room.member[0].username &&
               player.username !== username && (
                 <Button

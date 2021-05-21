@@ -44,6 +44,30 @@ const useStyles = makeStyles(() => ({
     color: "white",
     fontWeight: "bold",
     fontSize: "18px",
+  },
+  box: {
+    width: "200px",
+    height: "200px",
+  },
+  container: {
+    height: "100%",
+    width: "100%"
+  },
+  item1: {
+    height: "50%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  item2: {
+    height: "10%",
+    textAlign: "center",
+  },
+  item3: {
+    height: "30%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
   }
 }));
 
