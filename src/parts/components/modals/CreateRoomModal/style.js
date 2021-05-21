@@ -31,11 +31,11 @@ const useStyles = makeStyles(() => ({
   },
   textField: {
     display: "inline-block",
-    border: "1px thin #202124",
+    border: "1px solid #3f51b5",
     borderRadius: "5px",
     color: "white",
     "&:hover": {
-      border: "1px thin #3f51b5",
+      border: "1px solid #3f51b5",
     },
     "& .MuiInputBase-input": {
       fontSize: "0.875rem",
@@ -115,8 +115,8 @@ const DialogTitle = withStyles(styles)((props) => {
 const DialogContent = withStyles((theme) => ({
   root: {
     padding: theme.spacing(2),
-    borderTop: "1px solid white",
-    borderBottom: "1px solid white",
+    borderTop: "1px solid rgb(150,150,150)",
+    borderBottom: "1px solid rgb(150,150,150)",
   },
 }))(MuiDialogContent);
 
