@@ -7,6 +7,16 @@ import userState from "state/userState";
 import socketState from "state/socketState";
 import listOnlinePlayersState from "state/listOnlinePlayersState";
 
+const colorAvatar = [
+  "red",
+  "green",
+  "blue",
+  "orange",
+  "yellow",
+  "gray",
+  "black",
+];
+
 const OnlineList = () => {
   const classes = useStyles();
   const user = useRecoilValue(userState);
@@ -52,8 +62,14 @@ const OnlineList = () => {
                         className={classes.avatar}
                         variant="rounded"
                         sizes="5px"
+                        style={{
+                          backgroundColor:
+                            colorAvatar[Math.floor(Math.random() * 7)],
+                          color: "white",
+                          textTransform: "uppercase",
+                        }}
                       >
-                        H
+                        {User.username[0]}
                       </Avatar>
                     </Grid>
                     <Grid item xs={9}>

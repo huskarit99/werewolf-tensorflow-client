@@ -16,9 +16,10 @@ const BodyChatBox = (props) => {
   const classes = useStyles();
 
   const isOnline = {};
-  for (let player of props.room.member) {
-    isOnline[player.username] = player.isOnline;
-  }
+  if (props.room && props.room.member)
+    for (let player of props.room.member) {
+      isOnline[player.username] = player.isOnline;
+    }
 
   return (
     <Paper className={classes.paperMessageBox}>

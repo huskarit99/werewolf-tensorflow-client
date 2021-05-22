@@ -1,19 +1,32 @@
+import {
+  List,
+  ListItem,
+  DialogContent as MuiDialogContent,
+  DialogActions as MuiDialogActions,
+  DialogTitle as MuiDialogTitle,
+  Typography,
+  IconButton,
+} from "@material-ui/core";
 import CloseIcon from "@material-ui/icons/Close";
-import IconButton from "@material-ui/core/IconButton";
-import Typography from "@material-ui/core/Typography";
-import MuiDialogTitle from "@material-ui/core/DialogTitle";
-import MuiDialogContent from "@material-ui/core/DialogContent";
-import MuiDialogActions from "@material-ui/core/DialogActions";
+import SettingsIcon from "@material-ui/icons/Settings";
 import { withStyles, makeStyles } from "@material-ui/core/styles";
 
-const styles = () => ({
+const styles = (theme) => ({
   root: {
     margin: 0,
     padding: "0",
   },
   closeButton: {
-    padding: "0",
+    position: "absolute",
+    right: theme.spacing(1),
+    top: theme.spacing(1),
     color: "white",
+  },
+  icon: {
+    borderRadius: "5px",
+    backgroundColor: "#00000000",
+    height: "35px",
+    width: "35px",
   },
 });
 
@@ -40,18 +53,20 @@ const useStyles = makeStyles(() => ({
     "& .MuiInputBase-input": {
       fontSize: "0.875rem",
       color: "white",
-      width: "300px",
+      width: "50px",
+      textAlign: "center",
     },
   },
   div: {
     display: "inline-block",
-    width: "80px",
+    width: "40px",
     height: "40px",
   },
   bodyDialog: {
     display: "flex",
     alignItems: "center",
-    height: "150px",
+    height: "300px",
+    width: "400px",
     backgroundColor: "rgb(46, 46, 56)",
   },
   typography: {
@@ -61,7 +76,7 @@ const useStyles = makeStyles(() => ({
     alignItems: "center",
     height: "100%",
   },
-  button: {
+  buttonSave: {
     background: "#3f51b5",
     color: "white",
     textTransform: "none",
@@ -75,9 +90,33 @@ const useStyles = makeStyles(() => ({
       border: "1px solid #3f51b5",
     },
   },
+  buttonCancle: {
+    color: "#3f51b5",
+    background: "#00000000",
+    border: "1px solid #3f51b5",
+    fontWeight: "bold",
+    textTransform: "none",
+    paddingTop: "8px",
+    paddingBottom: "8px",
+    minWidth: "100px",
+    "&:hover": {
+      background: "#3f51b5",
+      color: "white",
+    },
+  },
+  itemSave: {
+    width: "100%",
+    textAlign: "start",
+    paddingLeft: "15px",
+  },
+  itemCancle: {
+    width: "100%",
+    textAlign: "end",
+    paddingRight: "15px",
+  },
   footerDialog: {
     display: "flex",
-    height: "60px",
+    height: "80px",
     alignItems: "center",
     backgroundColor: "rgb(46, 46, 56)",
   },
@@ -87,39 +126,42 @@ const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
   return (
     <MuiDialogTitle disableTypography className={classes.root} {...other}>
-      <div style={{ display: "flex", width: "100%", height: "100%" }}>
-        <div style={{ display: "inline-block", width: "70%", height: "100%" }}>
-          <div
-            style={{
-              display: "flex",
-              width: "100%",
-              height: "100%",
-              justifyContent: "flex-start",
-              alignItems: "center",
-            }}
-          >
-            <Typography variant="h6">{children}</Typography>
-          </div>
-        </div>
-        <div style={{ display: "inline-block", width: "30%", height: "100%" }}>
-          <div
-            style={{
-              display: "flex",
-              width: "100%",
-              height: "100%",
-              justifyContent: "flex-end",
-            }}
-          >
-            {onClose ? (
-              <IconButton
-                aria-label="close"
-                className={classes.closeButton}
-                onClick={onClose}
-              >
-                <CloseIcon />
-              </IconButton>
-            ) : null}
-          </div>
+      {onClose ? (
+        <IconButton
+          aria-label="close"
+          className={classes.closeButton}
+          onClick={onClose}
+        >
+          <CloseIcon />
+        </IconButton>
+      ) : null}
+      <div style={{ width: "100%", height: "100%" }}>
+        <div
+          style={{
+            display: "flex",
+            width: "100%",
+            height: "100%",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <List>
+            <ListItem
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                padding: "0",
+              }}
+            >
+              <SettingsIcon
+                className={classes.icon}
+                style={{ color: "blue" }}
+              />
+            </ListItem>
+            <ListItem style={{ padding: "0" }}>
+              <Typography variant="h6">{children}</Typography>
+            </ListItem>
+          </List>
         </div>
       </div>
     </MuiDialogTitle>
@@ -137,7 +179,7 @@ const DialogContent = withStyles((theme) => ({
 const DialogActions = withStyles((theme) => ({
   root: {
     margin: 0,
-    padding: "16px",
+    padding: 0,
   },
 }))(MuiDialogActions);
 

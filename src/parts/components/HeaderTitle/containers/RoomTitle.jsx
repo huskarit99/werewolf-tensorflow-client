@@ -8,7 +8,7 @@ import { getToken } from "utils/tokenUtil";
 import socketState from "state/socketState";
 import RoomId from "./components/RoomId/RoomId";
 import RoomName from "./components/RoomName/RoomName";
-import ButtonLeaveRoom from "./components/ButtonLeaveRoom/ButtonLeaveRoom";
+import ButtonLeaveAndSettingRoom from "./components/ButtonLeaveAndSettingRoom/ButtonLeaveAndSettingRoom";
 
 const RoomTitle = () => {
   const classes = useStyles();
@@ -36,7 +36,7 @@ const RoomTitle = () => {
               <RoomId id={room ? room.id : ""} />
               <RoomName name={room ? room.name : ""} />
             </Grid>
-            <ButtonLeaveRoom handleClick={handleLeaveRoom} />
+            <ButtonLeaveAndSettingRoom handleClickLeaveRoom={handleLeaveRoom} />
           </Grid>
         </Paper>
       </div>

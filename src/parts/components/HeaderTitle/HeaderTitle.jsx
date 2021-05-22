@@ -26,7 +26,7 @@ const HeaderTitle = (props) => {
         )
       ) : props.path === "/lobby" ? (
         <Typography variant="h4" className={classes.typography}>
-          LOBBY LIST
+          LOBBY
         </Typography>
       ) : props.path === "/profile" ? (
         <Typography variant="h4" className={classes.typography}>

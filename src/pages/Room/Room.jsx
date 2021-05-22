@@ -8,6 +8,7 @@ import roomState from "state/roomState";
 import socketState from "state/socketState";
 import ChatBox from "./containers/ChatBox/ChatBox";
 import PlayerBox from "./containers/PlayerBox/PlayerBox";
+import RuleForRoom from "./containers/RuleForRoom/RuleForRoom";
 
 const Room = () => {
   const classes = useStyles();
@@ -32,10 +33,10 @@ const Room = () => {
   };
 
   return (
-    <Grid container style={{ height: "75vh" }}>
-      <Grid item xs={8} style={{ height: "100%" }}>
+    <Grid container style={{ overflow: "hidden", height: "75vh" }}>
+      <Grid item xs={8} style={{ overflow: "hidden", height: "100%" }}>
         <Grid container style={{ height: "100%" }}>
-          <Grid item xs={12}>
+          <Grid item xs={12} style={{ height: "100%" }}>
             <Paper className={classes.paper}>
               <Hidden xsDown implementation="css">
                 <Box
@@ -59,12 +60,13 @@ const Room = () => {
                       />
                     ))}
                 </Box>
+                <RuleForRoom room={room} />
               </Hidden>
             </Paper>
           </Grid>
         </Grid>
       </Grid>
-      <Grid item xs={4} style={{ height: "100%" }}>
+      <Grid item xs={4} style={{ overflow: "hidden", height: "100%" }}>
         <ChatBox room={room} username={user.username} />
       </Grid>
     </Grid>
