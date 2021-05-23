@@ -41,13 +41,13 @@ const useStyles = (stateUser) =>
       alignItems: "center",
       padding: "0 25px 0 25px",
       width: "100%",
-      height: "14%",
+      height: "15%",
       margin: "0",
     },
     item3: {
       padding: "0 25px 0 25px",
       width: "100%",
-      height: "2%",
+      height: "1px",
       margin: "0",
     },
     item4: {
@@ -55,7 +55,7 @@ const useStyles = (stateUser) =>
       alignItems: "center",
       padding: "0 25px 0 25px",
       width: "100%",
-      height: "14%",
+      height: "15%",
       margin: "0",
     },
     button: {

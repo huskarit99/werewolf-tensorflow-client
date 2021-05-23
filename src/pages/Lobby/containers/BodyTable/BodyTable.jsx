@@ -51,14 +51,16 @@ const BodyTable = (props) => {
                   </Typography>
                 </Grid>
                 <Grid item xs={1} style={{ textAlign: "center" }}>
-                  <Button
-                    className={classes.button}
-                    onClick={() => {
-                      props.handleJoin(room.id);
-                    }}
-                  >
-                    JOIN
-                  </Button>
+                  {room.isPlaying == 0 && (
+                    <Button
+                      className={classes.button}
+                      onClick={() => {
+                        props.handleJoin(room.id);
+                      }}
+                    >
+                      JOIN
+                    </Button>
+                  )}
                 </Grid>
               </Grid>
             </ListItem>
