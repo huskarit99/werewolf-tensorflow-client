@@ -87,7 +87,7 @@ const Room = () => {
         ) : (
           <div className={classes.div2}>
             <div style={{ width: "640px", height: "480px" }}>
-              <PlayingGame />
+              <PlayingGame username={user.username} />
             </div>
           </div>
         )}

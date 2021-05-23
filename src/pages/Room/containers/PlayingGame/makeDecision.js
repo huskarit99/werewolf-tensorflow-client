@@ -5,9 +5,9 @@ export default function makeDecision(fingerPose) {
     fingerPose[2][1] === "No Curl" &&
     fingerPose[3][1] === "No Curl" &&
     fingerPose[4][1] === "No Curl"
-  )
+  ) {
     return 5;
-  else {
+  } else {
     if (
       fingerPose[1][1] === "No Curl" &&
       fingerPose[2][1] === "No Curl" &&
@@ -26,7 +26,7 @@ export default function makeDecision(fingerPose) {
         if (fingerPose[1][1] === "No Curl" && fingerPose[2][1] === "No Curl")
           return 2;
         else {
-          if (fingerPose[1][1] === "No Curl") console.log("1");
+          if (fingerPose[1][1] === "No Curl") return 1;
           else {
             if (
               fingerPose[0][1] === "No Curl" &&
@@ -49,4 +49,5 @@ export default function makeDecision(fingerPose) {
       }
     }
   }
+  return "none";
 }

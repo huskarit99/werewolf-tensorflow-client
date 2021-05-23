@@ -1,6 +1,7 @@
 import * as fp from "fingerpose";
 import Webcam from "react-webcam";
 import * as tf from "@tensorflow/tfjs";
+import { useRecoilValue } from "recoil";
 import React, { useRef, useEffect, Fragment } from "react";
 import * as handpose from "@tensorflow-models/handpose";
 
@@ -8,11 +9,16 @@ import "./PlayingGame.css";
 import useStyles from "./style";
 import { drawHand } from "./utilities";
 import makeDecision from "./makeDecision";
+import socketState from "state/socketState";
 
-const PlayingGame = () => {
+const PlayingGame = (props) => {
   const classes = useStyles();
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
+  const socket = useRecoilValue(socketState);
+  let currentValueDetect = "none";
+  let prevValueDetect = "none";
+  let decision = 0;
 
   const runHandpose = async () => {
     const net = await handpose.load();
@@ -52,7 +58,24 @@ const PlayingGame = () => {
         ]);
         const gesture = await GE.estimate(hand[0].landmarks, 4);
         const fingerPose = gesture.poseData;
-        console.log(makeDecision(fingerPose));
+
+        prevValueDetect = currentValueDetect;
+        currentValueDetect = makeDecision(fingerPose);
+        if (
+          prevValueDetect === currentValueDetect &&
+          currentValueDetect !== "none"
+        ) {
+          decision += 1;
+        } else {
+          decision = 0;
+        }
+        if (decision === 10) {
+          decision = 0;
+          socket.emit("react:detect-finger", {
+            username: props.username,
+            resultDetect: currentValueDetect,
+          });
+        }
       }
       const ctx = canvasRef.current.getContext("2d");
       drawHand(hand, ctx);
