@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React from "react";
 import { useRecoilValue } from "recoil";
 import { Redirect } from "react-router-dom";
 import { Grid, Hidden } from "@material-ui/core";
@@ -6,24 +6,28 @@ import { Grid, Hidden } from "@material-ui/core";
 import { stateOfAuthentication } from "utils/enumsUtil";
 import isAuthenticatedState from "state/isAuthenticatedState";
 import RecommendGame from "parts/components/RecommendGame/RecommendGame";
+import BackgroundDownloadGame from "parts/components/BackgroundDownloadGame/BackgroundDownloadGame";
 
 const Home = (props) => {
-  const isAuthenticacted = useRecoilValue(isAuthenticatedState);
+  const isAuthenticated = useRecoilValue(isAuthenticatedState);
+
   if (props.location.pathname !== props.match.path) return <Redirect to="/" />;
   else
     return (
-      <Fragment>
-        <Grid container style={{ minHeight: "81vh" }}>
-          <Grid item xs={8}></Grid>
-          <Hidden smDown>
-            <Grid item xs={4}>
-              {isAuthenticacted === stateOfAuthentication.SUCCESS && (
-                <RecommendGame userState="login" />
-              )}
+      <Hidden smDown>
+        {isAuthenticated === stateOfAuthentication.SUCCESS ? (
+          <Grid container style={{ height: "81vh", overflow: "hidden" }}>
+            <Grid item xs={8} style={{ height: "100%", width: "100%" }}>
+              <BackgroundDownloadGame />
             </Grid>
-          </Hidden>
-        </Grid>
-      </Fragment>
+            <Grid item xs={4}>
+              <RecommendGame userState="login" />
+            </Grid>
+          </Grid>
+        ) : (
+          <BackgroundDownloadGame />
+        )}
+      </Hidden>
     );
 };
 

@@ -8,16 +8,6 @@ import useStyles from "./style";
 import userState from "state/userState";
 import { getUser } from "services/api/privateApi";
 
-const colorAvatar = [
-  "red",
-  "green",
-  "blue",
-  "orange",
-  "yellow",
-  "gray",
-  "black",
-];
-
 const SettingAndAvatar = () => {
   let location = useLocation();
   const [user, setUser] = useRecoilState(userState);
@@ -45,30 +35,14 @@ const SettingAndAvatar = () => {
   return (
     <Hidden smDown>
       <Grid container style={{ height: "100%" }}>
-        <Grid
-          item
-          xs={3}
-          style={{
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
+        <Grid item xs={3} className={classes.item1}>
           {location.pathname !== "/room" && (
             <Link to="/profile">
               <SettingsIcon className={classes.icon} />
             </Link>
           )}
         </Grid>
-        <Grid
-          item
-          xs={9}
-          style={{
-            height: "100%",
-            display: "flex",
-            alignItems: "center",
-          }}
-        >
+        <Grid item xs={9} className={classes.item2}>
           <Grid container>
             <Grid item xs={8}>
               <Grid container>
@@ -85,15 +59,7 @@ const SettingAndAvatar = () => {
               </Grid>
             </Grid>
             <Grid item xs={3}>
-              <Avatar
-                style={{
-                  backgroundColor: colorAvatar[Math.floor(Math.random() * 7)],
-                  color: "white",
-                  textTransform: "uppercase",
-                }}
-              >
-                {username[0]}
-              </Avatar>
+              <Avatar className={classes.avatar}>{username[0]}</Avatar>
             </Grid>
             <Grid item xs={1} />
           </Grid>

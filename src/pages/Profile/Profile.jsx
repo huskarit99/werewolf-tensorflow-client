@@ -19,7 +19,7 @@ const Profile = () => {
   const passwordRef = useRef("");
   const editFullnameRef = useRef();
   const [user, setUser] = useRecoilState(userState);
-  const [errorAlert, setErrorAlert] = useState(<Fragment></Fragment>);
+  const [errorAlert, setErrorAlert] = useState(<Fragment />);
 
   useEffect(() => {
     if (fullnameRef.current && usernameRef.current) {
@@ -70,7 +70,7 @@ const Profile = () => {
   };
 
   return (
-    <Fragment>
+    <Hidden xsDown>
       <Grid container style={{ minHeight: "81vh" }}>
         <Grid item xs={8}>
           <Grid container className={classes.root}>
@@ -115,7 +115,7 @@ const Profile = () => {
           </Grid>
         </Hidden>
       </Grid>
-    </Fragment>
+    </Hidden>
   );
 };
 

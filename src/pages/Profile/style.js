@@ -4,13 +4,12 @@ const useStyles = makeStyles(() => ({
   root: {
     height: "30%",
     marginTop: "10%",
-    width: "80%"
-
+    width: "95%",
   },
   fieldInput: {
     width: "100%",
     marginLeft: "20px",
-    height: "30%"
+    height: "30%",
   },
   divider1: {
     backgroundColor: "#3A3A3A",

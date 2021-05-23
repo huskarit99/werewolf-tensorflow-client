@@ -86,13 +86,13 @@ const MenuBar = (props) => {
           <Grid item xs={12} style={{ height: "20vh" }}>
             <Header />
           </Grid>
-          <Grid item xs={12} style={{ overflow: "scroll", height: "80vh" }}>
+          <Grid item xs={12} style={{ overflow: "hidden", height: "81vh" }}>
             <main>
               {isAuthenticated !== stateOfAuthentication.PROCESSING ? (
                 isAuthenticated === stateOfAuthentication.SUCCESS ? (
                   props.children
                 ) : (
-                  <Grid container style={{ minHeight: "81vh" }}>
+                  <Grid container style={{ height: "81vh" }}>
                     <Grid item xs={7}>
                       {props.children}
                     </Grid>
