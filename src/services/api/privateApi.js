@@ -1,15 +1,16 @@
-import Axios from 'axios';
+import Axios from "axios";
 
-import { getToken } from 'utils/tokenUtil';
+import { getToken } from "utils/tokenUtil";
 import { updateResponseEnum } from "utils/enumsUtil";
 
-const ENDPOINT = `http://localhost:${process.env.REACT_APP_API_URL}/api/private-controller`;
+// const ENDPOINT = `http://localhost:${process.env.REACT_APP_API_URL}/api/private-controller`;
+const ENDPOINT = `https://werewolf-tensorflow-server.herokuapp.com/api/private-controller`;
 
 const AuthenticationIsSuccess = 1;
 const AuthenticationIsFail = 0;
 
 const authTokenApi = async () => {
-  const PATH = ENDPOINT + '/auth-token';
+  const PATH = ENDPOINT + "/auth-token";
   const currentUser = getToken();
   if (currentUser) {
     try {
@@ -20,20 +21,18 @@ const authTokenApi = async () => {
           Authorization: currentUser.token,
         },
       });
-      if (response.data.isSuccess)
-        return AuthenticationIsSuccess;
-      else
-        return AuthenticationIsFail;
+      if (response.data.isSuccess) return AuthenticationIsSuccess;
+      else return AuthenticationIsFail;
     } catch (error) {
       return AuthenticationIsFail;
     }
   } else {
     return AuthenticationIsFail;
   }
-}
+};
 
 const updateUser = async (fullname, password) => {
-  const PATH = ENDPOINT + '/user';
+  const PATH = ENDPOINT + "/user";
   const currentUser = getToken();
   if (currentUser) {
     try {
@@ -45,18 +44,18 @@ const updateUser = async (fullname, password) => {
         },
         data: {
           fullname: fullname,
-          password: password
-        }
+          password: password,
+        },
       });
       if (response.data.isSuccess)
         return {
           isSuccess: true,
-          message: "Update successfully !!!"
-        }
+          message: "Update successfully !!!",
+        };
       else {
         return {
           isSuccess: false,
-          message: "Server Error !!!"
+          message: "Server Error !!!",
         };
       }
     } catch (error) {
@@ -64,7 +63,7 @@ const updateUser = async (fullname, password) => {
       if (!error || !error.response || !error.response.data)
         return {
           isSuccess: false,
-          message: "Server Error !!!"
+          message: "Server Error !!!",
         };
       switch (error.response.data.code) {
         case updateResponseEnum.FULLNAME_IS_EMPTY: {
@@ -90,19 +89,19 @@ const updateUser = async (fullname, password) => {
       }
       return {
         isSuccess: false,
-        message: message
+        message: message,
       };
     }
   } else {
     return {
       isSuccess: false,
-      message: "Client Error !!!"
+      message: "Client Error !!!",
     };
   }
-}
+};
 
 const getUser = async () => {
-  const PATH = ENDPOINT + '/user';
+  const PATH = ENDPOINT + "/user";
   const currentUser = getToken();
   if (currentUser) {
     try {
@@ -113,10 +112,8 @@ const getUser = async () => {
           Authorization: currentUser.token,
         },
       });
-      if (response.data.isSuccess)
-        return response.data;
-      else
-        return { isSuccess: false };
+      if (response.data.isSuccess) return response.data;
+      else return { isSuccess: false };
     } catch (error) {
       if (!error || !error.response || !error.response.data)
         return { isSuccess: false };
@@ -125,6 +122,6 @@ const getUser = async () => {
   } else {
     return { isSuccess: false };
   }
-}
+};
 
 export { authTokenApi, getUser, updateUser };

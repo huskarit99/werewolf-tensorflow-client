@@ -1,13 +1,14 @@
-import Axios from 'axios';
+import Axios from "axios";
 
-import { setToken } from 'utils/tokenUtil';
-import { signInResponseEnum, signUpResponseEnum } from 'utils/enumsUtil';
+import { setToken } from "utils/tokenUtil";
+import { signInResponseEnum, signUpResponseEnum } from "utils/enumsUtil";
 
-const ENDPOINT = `http://localhost:${process.env.REACT_APP_API_URL}/api/public-controller`;
+// const ENDPOINT = `http://localhost:${process.env.REACT_APP_API_URL}/api/public-controller`;
+const ENDPOINT = `https://werewolf-tensorflow-server.herokuapp.com/api/public-controller`;
 
 const signInApi = async (username, password) => {
   try {
-    const PATH = ENDPOINT + '/auth-user';
+    const PATH = ENDPOINT + "/auth-user";
     const response = await Axios({
       method: "post",
       url: PATH,
@@ -20,18 +21,18 @@ const signInApi = async (username, password) => {
       setToken(username, response.data.token);
       return {
         isSuccess: true,
-      }
+      };
     }
     return {
       isSuccess: false,
-      message: "Client Error !!!"
-    }
+      message: "Client Error !!!",
+    };
   } catch (error) {
     let message = "";
     if (!error || !error.response || !error.response.data)
       return {
         isSuccess: false,
-        message: "Server Error !!!"
+        message: "Server Error !!!",
       };
     switch (error.response.data.code) {
       case signInResponseEnum.USERNAME_IS_EMPTY: {
@@ -60,14 +61,14 @@ const signInApi = async (username, password) => {
     }
     return {
       isSuccess: false,
-      message: message
+      message: message,
     };
   }
-}
+};
 
 const signUpApi = async (fullname, username, password) => {
   try {
-    const PATH = ENDPOINT + '/user';
+    const PATH = ENDPOINT + "/user";
     const response = await Axios({
       method: "post",
       url: PATH,
@@ -81,18 +82,18 @@ const signUpApi = async (fullname, username, password) => {
       setToken(username, response.data.token);
       return {
         isSuccess: true,
-      }
+      };
     }
     return {
       isSuccess: false,
-      message: "Client Error !!!"
-    }
+      message: "Client Error !!!",
+    };
   } catch (error) {
     let message = "";
     if (!error || !error.response || !error.response.data)
       return {
         isSuccess: false,
-        message: "Server Error !!!"
+        message: "Server Error !!!",
       };
     switch (error.response.data.code) {
       case signUpResponseEnum.FULLNAME_IS_EMPTY: {
@@ -125,9 +126,9 @@ const signUpApi = async (fullname, username, password) => {
     }
     return {
       isSuccess: false,
-      message: message
+      message: message,
     };
   }
-}
+};
 
 export { signInApi, signUpApi };
