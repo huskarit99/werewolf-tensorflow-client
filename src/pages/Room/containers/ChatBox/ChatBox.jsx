@@ -3,8 +3,8 @@ import { useRecoilValue } from "recoil";
 import { Grid, Paper, Hidden } from "@material-ui/core";
 
 import useStyles from "./style";
-import { getToken } from "utils/tokenUtil";
-import socketState from "state/socketState";
+import { getToken } from "../../../../utils/tokenUtil";
+import socketState from "../../../../state/socketState";
 import BodyChatBox from "./components/BodyChatBox/BodyChatBox";
 import HeaderChatBox from "./components/HeaderChatBox/HeaderChatBox";
 import FooterChatBox from "./components/FooterChatBox/FooterChatBox";

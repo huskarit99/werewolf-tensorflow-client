@@ -2,11 +2,11 @@ import React from "react";
 import { Typography, Hidden, Avatar, Paper } from "@material-ui/core";
 
 import useStyles from "./style";
-import witch from "assets/images/witch.png";
-import guard from "assets/images/guard.png";
-import hunter from "assets/images/hunter.png";
-import villager from "assets/images/villager.png";
-import werewolf from "assets/images/werewolf.png";
+import witch from "../../../../assets/images/witch.png";
+import guard from "../../../../assets/images/guard.png";
+import hunter from "../../../../assets/images/hunter.png";
+import villager from "../../../../assets/images/villager.png";
+import werewolf from "../../../../assets/images/werewolf.png";
 const RuleForRoom = (props) => {
   const numberOfWolf = props && props.room ? props.room.wolf : 0;
   const numberOfWitch = props && props.room ? props.room.witch : 0;

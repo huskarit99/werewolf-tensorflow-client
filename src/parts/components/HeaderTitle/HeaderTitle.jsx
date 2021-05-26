@@ -4,8 +4,8 @@ import { Typography } from "@material-ui/core";
 
 import useStyles from "./style";
 import RoomTitle from "./containers/RoomTitle";
-import { stateOfAuthentication } from "utils/enumsUtil";
-import isAuthenticatedState from "state/isAuthenticatedState";
+import { stateOfAuthentication } from "../../../utils/enumsUtil";
+import isAuthenticatedState from "../../../state/isAuthenticatedState";
 
 const HeaderTitle = (props) => {
   const isAuthenticated = useRecoilValue(isAuthenticatedState);

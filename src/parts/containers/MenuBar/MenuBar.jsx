@@ -11,16 +11,16 @@ import {
 } from "@material-ui/core";
 
 import useStyles from "./style";
-import Wolf from "assets/images/wolf.png";
-import Loading from "pages/Loading/Loading";
-import Header from "parts/containers/Header/Header";
-import { authTokenApi } from "services/api/privateApi";
-import { stateOfAuthentication } from "utils/enumsUtil";
-import isAuthenticatedState from "state/isAuthenticatedState";
-import PublicMenu from "parts/components/PublicMenu/PublicMenu";
-import OnlineList from "parts/components/OnlineList/OnlineList";
-import PrivateMenu from "parts/components/PrivateMenu/PrivateMenu";
-import RecommendGame from "parts/components/RecommendGame/RecommendGame";
+import Wolf from "../../../assets/images/wolf.png";
+import Loading from "../../../pages/Loading/Loading";
+import Header from "../../../parts/containers/Header/Header";
+import { authTokenApi } from "../../../services/api/privateApi";
+import { stateOfAuthentication } from "../../../utils/enumsUtil";
+import isAuthenticatedState from "../../../state/isAuthenticatedState";
+import PublicMenu from "../../../parts/components/PublicMenu/PublicMenu";
+import OnlineList from "../../../parts/components/OnlineList/OnlineList";
+import PrivateMenu from "../../../parts/components/PrivateMenu/PrivateMenu";
+import RecommendGame from "../../../parts/components/RecommendGame/RecommendGame";
 
 import { getToken } from "utils/tokenUtil";
 import socketState from "state/socketState";

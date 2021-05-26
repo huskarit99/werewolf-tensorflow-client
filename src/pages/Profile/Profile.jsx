@@ -3,14 +3,14 @@ import { Grid, Hidden, Divider } from "@material-ui/core";
 import React, { Fragment, useEffect, useRef, useState } from "react";
 
 import useStyles from "./style";
-import userState from "state/userState";
-import { colorAlertEnum } from "utils/enumsUtil";
-import { updateUser } from "services/api/privateApi";
+import userState from "../../state/userState";
+import { colorAlertEnum } from "../../utils/enumsUtil";
+import { updateUser } from "../../services/api/privateApi";
 import Fullname from "./components/Fullname/Fullname";
 import Username from "./components/Username/Username";
 import Password from "./components/Password/Password";
 import ButtonSave from "./components/ButtonSave/ButtonSave";
-import RecommendGame from "parts/components/RecommendGame/RecommendGame";
+import RecommendGame from "../../parts/components/RecommendGame/RecommendGame";
 
 const Profile = () => {
   const classes = useStyles();

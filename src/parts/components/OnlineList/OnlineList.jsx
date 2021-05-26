@@ -3,9 +3,9 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { List, Avatar, ListItem, Typography, Grid } from "@material-ui/core";
 
 import useStyles from "./style";
-import userState from "state/userState";
-import socketState from "state/socketState";
-import listOnlinePlayersState from "state/listOnlinePlayersState";
+import userState from "../../../state/userState";
+import socketState from "../../../state/socketState";
+import listOnlinePlayersState from "../../../state/listOnlinePlayersState";
 
 const colorAvatar = [
   "red",

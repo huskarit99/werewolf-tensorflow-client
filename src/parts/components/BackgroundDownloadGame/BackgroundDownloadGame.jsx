@@ -10,9 +10,9 @@ import {
 } from "@material-ui/core";
 
 import useStyles from "./style";
-import backgroundDownload from "assets/images/3.jpg";
-import { stateOfAuthentication } from "utils/enumsUtil";
-import isAuthenticatedState from "state/isAuthenticatedState";
+import backgroundDownload from "../../../assets/images/3.jpg";
+import { stateOfAuthentication } from "../../../utils/enumsUtil";
+import isAuthenticatedState from "../../../state/isAuthenticatedState";
 
 const BackgroundDownloadGame = () => {
   let stateUser = "nonLogin";

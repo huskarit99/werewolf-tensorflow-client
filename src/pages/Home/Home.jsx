@@ -3,10 +3,10 @@ import { useRecoilValue } from "recoil";
 import { Redirect } from "react-router-dom";
 import { Grid, Hidden } from "@material-ui/core";
 
-import { stateOfAuthentication } from "utils/enumsUtil";
-import isAuthenticatedState from "state/isAuthenticatedState";
-import RecommendGame from "parts/components/RecommendGame/RecommendGame";
-import BackgroundDownloadGame from "parts/components/BackgroundDownloadGame/BackgroundDownloadGame";
+import { stateOfAuthentication } from "../../utils/enumsUtil";
+import isAuthenticatedState from "../../state/isAuthenticatedState";
+import RecommendGame from "../../parts/components/RecommendGame/RecommendGame";
+import BackgroundDownloadGame from "../../parts/components/BackgroundDownloadGame/BackgroundDownloadGame";
 
 const Home = (props) => {
   const isAuthenticated = useRecoilValue(isAuthenticatedState);

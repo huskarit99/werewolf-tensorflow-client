@@ -4,10 +4,10 @@ import { Grid, Hidden } from "@material-ui/core";
 import { useRecoilValue, useRecoilState, useSetRecoilState } from "recoil";
 
 import useStyles from "./style";
-import userState from "state/userState";
-import roomState from "state/roomState";
-import socketState from "state/socketState";
-import listRoomState from "state/listRoomState";
+import userState from "../../state/userState";
+import roomState from "../../state/roomState";
+import socketState from "../../state/socketState";
+import listRoomState from "../../state/listRoomState";
 import BodyTable from "./containers/BodyTable/BodyTable";
 import HeaderTable from "./containers/HeaderTable/HeaderTable";
 import SearchAndCreateRoom from "./containers/SearchAndCreateRoom/SearchAndCreateRoom";

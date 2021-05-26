@@ -1,10 +1,10 @@
 import React, { useRef } from "react";
 import { Paper, Typography } from "@material-ui/core";
 
-import rg1 from "assets/images/1.jpg";
-import rg2 from "assets/images/2.jpg";
-import rg3 from "assets/images/3.jpg";
-import rg4 from "assets/images/4.jpg";
+import rg1 from "../../../assets/images/1.jpg";
+import rg2 from "../../../assets/images/2.jpg";
+import rg3 from "../../../assets/images/3.jpg";
+import rg4 from "../../../assets/images/4.jpg";
 import useStyles from "./style";
 
 const RecommendGame = (props) => {

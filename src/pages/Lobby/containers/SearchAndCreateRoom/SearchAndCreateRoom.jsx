@@ -3,12 +3,12 @@ import React, { useRef, useState } from "react";
 import { Grid, Paper } from "@material-ui/core";
 
 import useStyles from "./style";
-import userState from "state/userState";
-import socketState from "state/socketState";
+import userState from "../../../../state/userState";
+import socketState from "../../../../state/socketState";
 import TFCodeRoom from "./components/TFCodeRoom/TFCodeRoom";
 import BtnSearchRoom from "./components/BtnSearchRoom/BtnSearchRoom";
 import BtnCreateRoom from "./components/BtnCreateRoom/BtnCreateRoom";
-import CreateRoomModal from "parts/components/modals/CreateRoomModal/CreateRoomModal";
+import CreateRoomModal from "../../../../parts/components/modals/CreateRoomModal/CreateRoomModal";
 
 const SearchAndCreateRoom = () => {
   const classes = useStyles();

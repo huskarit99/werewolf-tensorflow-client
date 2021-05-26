@@ -12,15 +12,15 @@ import {
   Avatar,
 } from "@material-ui/core";
 
-import roomState from "state/roomState";
-import socketState from "state/socketState";
-import { colorAlertEnum } from "utils/enumsUtil";
+import roomState from "../../../../state/roomState";
+import socketState from "../../../../state/socketState";
+import { colorAlertEnum } from "../../../../utils/enumsUtil";
 import { DialogContent, DialogActions, DialogTitle, useStyles } from "./style";
 
-import wolfIcon from "assets/images/wolfIcon.png";
-import witchIcon from "assets/images/witchIcon.png";
-import hunterIcon from "assets/images/hunterIcon.png";
-import shieldIcon from "assets/images/shieldIcon.png";
+import wolfIcon from "../../../../assets/images/wolfIcon.png";
+import witchIcon from "../../../../assets/images/witchIcon.png";
+import hunterIcon from "../../../../assets/images/hunterIcon.png";
+import shieldIcon from "../../../../assets/images/shieldIcon.png";
 
 const SettingRoomModal = (props) => {
   const socket = useRecoilValue(socketState);

@@ -7,7 +7,7 @@ import AssignmentIndIcon from "@material-ui/icons/AssignmentInd";
 import { List, Grid, Typography } from "@material-ui/core";
 
 import { useStyles, ListItem } from "./style";
-import indexPublicMenuState from "state/indexPublicMenuState";
+import indexPublicMenuState from "../../../state/indexPublicMenuState";
 
 const listMenu = [
   {
@@ -29,9 +29,8 @@ const listMenu = [
 
 const PublicMenu = () => {
   const classes = useStyles();
-  const [indexPublicMenu, setIndexPublicMenu] = useRecoilState(
-    indexPublicMenuState
-  );
+  const [indexPublicMenu, setIndexPublicMenu] =
+    useRecoilState(indexPublicMenuState);
 
   const handleClick = (index) => {
     setIndexPublicMenu(index);

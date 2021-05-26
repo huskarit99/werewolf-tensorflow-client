@@ -2,14 +2,14 @@ import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 
 import "./App.css";
-import Home from "pages/Home/Home";
-import Room from "pages/Room/Room";
-import Lobby from "pages/Lobby/Lobby";
-import SignIn from "pages/SignIn/SignIn";
-import SignUp from "pages/SignUp/SignUp";
-import Profile from "pages/Profile/Profile";
-import MenuBar from "parts/containers/MenuBar/MenuBar";
-import PrivateRoute from "parts/components/PrivateRoute/PrivateRoute";
+import Home from "./pages/Home/Home";
+import Room from "./pages/Room/Room";
+import Lobby from "./pages/Lobby/Lobby";
+import SignIn from "./pages/SignIn/SignIn";
+import SignUp from "./pages/SignUp/SignUp";
+import Profile from "./pages/Profile/Profile";
+import MenuBar from "./parts/containers/MenuBar/MenuBar";
+import PrivateRoute from "./parts/components/PrivateRoute/PrivateRoute";
 
 const App = () => {
   return (

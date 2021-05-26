@@ -5,8 +5,8 @@ import SettingsIcon from "@material-ui/icons/Settings";
 import { Avatar, Grid, Typography, Hidden } from "@material-ui/core";
 
 import useStyles from "./style";
-import userState from "state/userState";
-import { getUser } from "services/api/privateApi";
+import userState from "../../../state/userState";
+import { getUser } from "../../../services/api/privateApi";
 
 const SettingAndAvatar = () => {
   let location = useLocation();

@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { Route, Redirect, useHistory } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
 
-import roomState from "state/roomState";
-import { getToken } from "utils/tokenUtil";
-import socketState from "state/socketState";
-import Loading from "pages/Loading/Loading";
-import { stateOfAuthentication } from "utils/enumsUtil";
-import indexPublicMenuState from "state/indexPublicMenuState";
-import isAuthenticactedState from "state/isAuthenticatedState";
-import indexPrivateMenuState from "state/indexPrivateMenuState";
+import roomState from "../../../state/roomState";
+import { getToken } from "../../../utils/tokenUtil";
+import socketState from "../../../state/socketState";
+import Loading from "../../../pages/Loading/Loading";
+import { stateOfAuthentication } from "../../../utils/enumsUtil";
+import indexPublicMenuState from "../../../state/indexPublicMenuState";
+import isAuthenticactedState from "../../../state/isAuthenticatedState";
+import indexPrivateMenuState from "../../../state/indexPrivateMenuState";
 
 const indexOrder = {
   "/": 0,

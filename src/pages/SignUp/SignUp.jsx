@@ -4,8 +4,8 @@ import React, { useRef, useState, Fragment } from "react";
 import { Grid, Typography, Paper } from "@material-ui/core/";
 
 import useStyles from "./style";
-import { colorAlertEnum } from "utils/enumsUtil";
-import { signUpApi } from "services/api/publicApi";
+import { colorAlertEnum } from "../../utils/enumsUtil";
+import { signUpApi } from "../../services/api/publicApi";
 import BtnSignUp from "./components/BtnSignUp/BtnSignUp";
 import TFFullname from "./components/TFFullname/TFFullname";
 import TFPassword from "./components/TFPassword/TFPassword";

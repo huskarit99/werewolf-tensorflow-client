@@ -9,7 +9,7 @@ import "./PlayingGame.css";
 import useStyles from "./style";
 import { drawHand } from "./utilities";
 import makeDecision from "./makeDecision";
-import socketState from "state/socketState";
+import socketState from "../../../../state/socketState";
 
 const PlayingGame = (props) => {
   const classes = useStyles();

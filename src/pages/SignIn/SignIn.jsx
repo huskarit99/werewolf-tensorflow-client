@@ -4,11 +4,11 @@ import { Grid, Typography, Paper } from "@material-ui/core";
 
 import useStyles from "./style";
 import { createBrowserHistory } from "history";
-import { signInApi } from "services/api/publicApi";
+import { signInApi } from "../../services/api/publicApi";
 import BtnSignIn from "./components/BtnSignIn/BtnSignIn";
 import TFPassword from "./components/TFPassword/TFPassword";
 import TFUsername from "./components/TFUsername/TFUsername";
-import { colorAlertEnum } from "utils/enumsUtil";
+import { colorAlertEnum } from "../../utils/enumsUtil";
 
 const SignIn = () => {
   const history = createBrowserHistory({ forceRefresh: true });

@@ -13,10 +13,10 @@ import {
   ListItem,
 } from "@material-ui/core";
 
-import roomState from "state/roomState";
-import userState from "state/userState";
-import socketState from "state/socketState";
-import { colorAlertEnum } from "utils/enumsUtil";
+import roomState from "../../../../state/roomState";
+import userState from "../../../../state/userState";
+import socketState from "../../../../state/socketState";
+import { colorAlertEnum } from "../../../../utils/enumsUtil";
 import { DialogContent, DialogActions, DialogTitle, useStyles } from "./style";
 
 const CreateRoomModal = (props) => {

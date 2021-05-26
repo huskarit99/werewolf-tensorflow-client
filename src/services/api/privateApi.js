@@ -1,7 +1,7 @@
 import Axios from "axios";
 
-import { getToken } from "utils/tokenUtil";
-import { updateResponseEnum } from "utils/enumsUtil";
+import { getToken } from "../../utils/tokenUtil";
+import { updateResponseEnum } from "../../utils/enumsUtil";
 
 // const ENDPOINT = `http://localhost:${process.env.REACT_APP_API_URL}/api/private-controller`;
 const ENDPOINT = `https://werewolf-tensorflow-server.herokuapp.com/api/private-controller`;

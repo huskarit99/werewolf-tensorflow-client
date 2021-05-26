@@ -7,11 +7,11 @@ import { Grid, List, Typography } from "@material-ui/core";
 import VideogameAsset from "@material-ui/icons/VideogameAsset";
 import { useRecoilState, useRecoilValue, useSetRecoilState } from "recoil";
 
-import roomState from "state/socketState";
-import socketState from "state/socketState";
-import { clearToken } from "utils/tokenUtil";
+import roomState from "../../../state/socketState";
+import socketState from "../../../state/socketState";
+import { clearToken } from "../../../utils/tokenUtil";
 import { useStyles, ListItem } from "./style";
-import indexPrivateMenuState from "state/indexPrivateMenuState";
+import indexPrivateMenuState from "../../../state/indexPrivateMenuState";
 
 const PrivateMenu = () => {
   const classes = useStyles();

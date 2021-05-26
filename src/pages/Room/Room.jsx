@@ -3,9 +3,9 @@ import { useRecoilValue, useRecoilState } from "recoil";
 import { Grid, Paper, Box, Hidden, Button } from "@material-ui/core";
 
 import useStyles from "./style";
-import userState from "state/userState";
-import roomState from "state/roomState";
-import socketState from "state/socketState";
+import userState from "../../state/userState";
+import roomState from "../../state/roomState";
+import socketState from "../../state/socketState";
 import ChatBox from "./containers/ChatBox/ChatBox";
 import PlayerBox from "./containers/PlayerBox/PlayerBox";
 import RuleForRoom from "./containers/RuleForRoom/RuleForRoom";
