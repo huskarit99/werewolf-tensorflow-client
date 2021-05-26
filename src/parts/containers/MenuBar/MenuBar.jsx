@@ -11,7 +11,7 @@ import {
 } from "@material-ui/core";
 
 import useStyles from "./style";
-import Wolf from "../../../assets/images/wolf.png";
+import Wolf from "../../../images/wolf.png";
 import Loading from "../../../pages/Loading/Loading";
 import Header from "../../../parts/containers/Header/Header";
 import { authTokenApi } from "../../../services/api/privateApi";

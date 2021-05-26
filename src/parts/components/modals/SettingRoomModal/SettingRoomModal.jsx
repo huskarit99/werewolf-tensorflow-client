@@ -17,10 +17,10 @@ import socketState from "../../../../state/socketState";
 import { colorAlertEnum } from "../../../../utils/enumsUtil";
 import { DialogContent, DialogActions, DialogTitle, useStyles } from "./style";
 
-import wolfIcon from "../../../../assets/images/wolfIcon.png";
-import witchIcon from "../../../../assets/images/witchIcon.png";
-import hunterIcon from "../../../../assets/images/hunterIcon.png";
-import shieldIcon from "../../../../assets/images/shieldIcon.png";
+import wolfIcon from "../../../../images/wolfIcon.png";
+import witchIcon from "../../../../images/witchIcon.png";
+import hunterIcon from "../../../../images/hunterIcon.png";
+import shieldIcon from "../../../../images/shieldIcon.png";
 
 const SettingRoomModal = (props) => {
   const socket = useRecoilValue(socketState);

@@ -10,7 +10,7 @@ import {
 } from "@material-ui/core";
 
 import useStyles from "./style";
-import backgroundDownload from "../../../assets/images/3.jpg";
+import backgroundDownload from "../../../images/3.jpg";
 import { stateOfAuthentication } from "../../../utils/enumsUtil";
 import isAuthenticatedState from "../../../state/isAuthenticatedState";
 
