@@ -22,8 +22,8 @@ import OnlineList from "../../../parts/components/OnlineList/OnlineList";
 import PrivateMenu from "../../../parts/components/PrivateMenu/PrivateMenu";
 import RecommendGame from "../../../parts/components/RecommendGame/RecommendGame";
 
-import { getToken } from "utils/tokenUtil";
-import socketState from "state/socketState";
+import { getToken } from "../../../utils/tokenUtil";
+import socketState from "../../../state/socketState";
 
 const MenuBar = (props) => {
   const classes = useStyles();
