@@ -1,0 +1,33 @@
+{
+  "files": {
+    "main.css": "/werewolf-tensorflow-client/static/css/main.d93a3dc0.chunk.css",
+    "main.js": "/werewolf-tensorflow-client/static/js/main.95089eb6.chunk.js",
+    "main.js.map": "/werewolf-tensorflow-client/static/js/main.95089eb6.chunk.js.map",
+    "runtime-main.js": "/werewolf-tensorflow-client/static/js/runtime-main.390cc194.js",
+    "runtime-main.js.map": "/werewolf-tensorflow-client/static/js/runtime-main.390cc194.js.map",
+    "static/js/2.f6c64048.chunk.js": "/werewolf-tensorflow-client/static/js/2.f6c64048.chunk.js",
+    "static/js/2.f6c64048.chunk.js.map": "/werewolf-tensorflow-client/static/js/2.f6c64048.chunk.js.map",
+    "index.html": "/werewolf-tensorflow-client/index.html",
+    "static/css/main.d93a3dc0.chunk.css.map": "/werewolf-tensorflow-client/static/css/main.d93a3dc0.chunk.css.map",
+    "static/js/2.f6c64048.chunk.js.LICENSE.txt": "/werewolf-tensorflow-client/static/js/2.f6c64048.chunk.js.LICENSE.txt",
+    "static/media/1.f18f1fa9.jpg": "/werewolf-tensorflow-client/static/media/1.f18f1fa9.jpg",
+    "static/media/2.6664970b.jpg": "/werewolf-tensorflow-client/static/media/2.6664970b.jpg",
+    "static/media/3.25631876.jpg": "/werewolf-tensorflow-client/static/media/3.25631876.jpg",
+    "static/media/4.4a3d4f37.jpg": "/werewolf-tensorflow-client/static/media/4.4a3d4f37.jpg",
+    "static/media/guard.a8d7d2f2.png": "/werewolf-tensorflow-client/static/media/guard.a8d7d2f2.png",
+    "static/media/hunter.721bf70e.png": "/werewolf-tensorflow-client/static/media/hunter.721bf70e.png",
+    "static/media/hunterIcon.ddf3d727.png": "/werewolf-tensorflow-client/static/media/hunterIcon.ddf3d727.png",
+    "static/media/shieldIcon.48019cbb.png": "/werewolf-tensorflow-client/static/media/shieldIcon.48019cbb.png",
+    "static/media/villager.c0f96348.png": "/werewolf-tensorflow-client/static/media/villager.c0f96348.png",
+    "static/media/werewolf.cc27784e.png": "/werewolf-tensorflow-client/static/media/werewolf.cc27784e.png",
+    "static/media/witch.f7b86f4e.png": "/werewolf-tensorflow-client/static/media/witch.f7b86f4e.png",
+    "static/media/witchIcon.15b49972.png": "/werewolf-tensorflow-client/static/media/witchIcon.15b49972.png",
+    "static/media/wolfIcon.9e072855.png": "/werewolf-tensorflow-client/static/media/wolfIcon.9e072855.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.390cc194.js",
+    "static/js/2.f6c64048.chunk.js",
+    "static/css/main.d93a3dc0.chunk.css",
+    "static/js/main.95089eb6.chunk.js"
+  ]
+}
