@@ -7,6 +7,7 @@ import guard from "../../../../assets/images/guard.png";
 import hunter from "../../../../assets/images/hunter.png";
 import villager from "../../../../assets/images/villager.png";
 import werewolf from "../../../../assets/images/werewolf.png";
+
 const RuleForRoom = (props) => {
   const numberOfWolf = props && props.room ? props.room.wolf : 0;
   const numberOfWitch = props && props.room ? props.room.witch : 0;
