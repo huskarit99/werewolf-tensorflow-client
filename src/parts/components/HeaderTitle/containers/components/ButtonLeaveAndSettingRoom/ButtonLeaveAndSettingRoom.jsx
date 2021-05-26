@@ -6,9 +6,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSignOutAlt } from "@fortawesome/free-solid-svg-icons";
 
 import useStyles from "./style";
-import userState from "state/userState";
-import roomState from "state/roomState";
-import SettingRoomModal from "parts/components/modals/SettingRoomModal/SettingRoomModal";
+import userState from "../../../../../../state/userState";
+import roomState from "../../../../../../state/roomState";
+import SettingRoomModal from "../../../../../../parts/components/modals/SettingRoomModal/SettingRoomModal";
 
 const ButtonLeaveAndSettingRoom = (props) => {
   const classes = useStyles();

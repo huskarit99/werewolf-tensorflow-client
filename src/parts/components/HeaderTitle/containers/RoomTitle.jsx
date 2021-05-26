@@ -3,9 +3,9 @@ import { Paper, Grid, Hidden } from "@material-ui/core";
 import { useRecoilValue, useRecoilState } from "recoil";
 
 import useStyles from "./style";
-import roomState from "state/roomState";
-import { getToken } from "utils/tokenUtil";
-import socketState from "state/socketState";
+import roomState from "../../../../state/roomState";
+import { getToken } from "../../../../utils/tokenUtil";
+import socketState from "../../../../state/socketState";
 import RoomId from "./components/RoomId/RoomId";
 import RoomName from "./components/RoomName/RoomName";
 import ButtonLeaveAndSettingRoom from "./components/ButtonLeaveAndSettingRoom/ButtonLeaveAndSettingRoom";
