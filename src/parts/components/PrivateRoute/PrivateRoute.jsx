@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Route, Redirect, useHistory } from "react-router-dom";
+import { Route, Redirect, useHistory, useLocation } from "react-router-dom";
 import { useRecoilValue, useSetRecoilState, useRecoilState } from "recoil";
 
 import roomState from "../../../state/roomState";
@@ -13,14 +13,15 @@ import indexPrivateMenuState from "../../../state/indexPrivateMenuState";
 
 const indexOrder = {
   "/": 0,
-  SignIn: 1,
-  SignUp: 2,
-  Profile: 1,
-  Lobby: 2,
-  Room: 3,
+  "/sign-in": 1,
+  "/sign-up": 2,
+  "/profile": 1,
+  "/lobby": 2,
+  "/room": 3,
 };
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
+  const location = useLocation();
   const history = useHistory();
   const socket = useRecoilValue(socketState);
   const [room, setRoom] = useRecoilState(roomState);
@@ -29,8 +30,8 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   const setIndexPrivateMenu = useSetRecoilState(indexPrivateMenuState);
 
   useEffect(() => {
-    setIndexPublicMenu(indexOrder[Component.name]);
-    setIndexPrivateMenu(indexOrder[Component.name]);
+    setIndexPublicMenu(indexOrder[location.pathname]);
+    setIndexPrivateMenu(indexOrder[location.pathname]);
   }, [setIndexPublicMenu, setIndexPrivateMenu, Component]);
 
   useEffect(() => {
@@ -47,17 +48,17 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
     });
   }, [socket, setRoom]);
 
-  if (room && Component.name !== "Room") {
+  if (room && location.pathname !== "/room") {
     return <Redirect to="/room" />;
   }
-  if (!room && Component.name === "Room") {
+  if (!room && location.pathname === "/room") {
     return <Redirect to="/" />;
   }
 
   if (isAuthenticated === stateOfAuthentication.PROCESSING) {
     return <Route {...rest} render={() => <Loading />} />;
   } else {
-    if (Component.name === "SignIn" || Component.name === "SignUp") {
+    if (location.pathname === "/sign-in" || location.pathname === "/sign-up") {
       return (
         <Route
           {...rest}
