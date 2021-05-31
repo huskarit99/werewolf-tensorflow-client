@@ -25,10 +25,9 @@ const ChatBox = (props) => {
             item
             xs={12}
             style={{
-              height: "15%",
+              height: "10%",
               paddingTop: "10%",
               paddingLeft: "10%",
-              paddingBottom: "5%",
             }}
           >
             <HeaderChatBox />

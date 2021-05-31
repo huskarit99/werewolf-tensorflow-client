@@ -1,4 +1,5 @@
 import { React, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { Grid, Paper, Box, Hidden, Button } from "@material-ui/core";
 
@@ -12,6 +13,7 @@ import RuleForRoom from "./containers/RuleForRoom/RuleForRoom";
 import PlayingGame from "./containers/PlayingGame/PlayingGame";
 
 const Room = () => {
+  let history = useHistory();
   const classes = useStyles();
   const user = useRecoilValue(userState);
   const socket = useRecoilValue(socketState);
@@ -23,6 +25,7 @@ const Room = () => {
     });
     socket.on("server:force-get-out-room", () => {
       setRoom(null);
+      history.push("/lobby");
     });
   }, [socket, setRoom]);
 

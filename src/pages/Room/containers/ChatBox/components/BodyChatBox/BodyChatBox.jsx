@@ -16,14 +16,15 @@ const BodyChatBox = (props) => {
   const classes = useStyles();
 
   const isOnline = {};
-  if (props.room && props.room.member)
+  if (props.room && props.room.member) {
     for (let player of props.room.member) {
       isOnline[player.username] = player.isOnline;
     }
+  }
 
   return (
     <Paper className={classes.paperMessageBox}>
-      <List>
+      <List style={{ paddingTop: "0px" }}>
         {props &&
           props.room &&
           props.room.messages &&
@@ -31,52 +32,52 @@ const BodyChatBox = (props) => {
           props.room.messages.map((message, index) => (
             <ListItem key={index}>
               <Grid container>
-                <Grid item xs={12}>
-                  <Grid
-                    container
-                    style={{
-                      height: "30px",
-                      display: "flex",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Grid item xs={2}>
-                      <Avatar
-                        style={{
-                          width: "25px",
-                          height: "25px",
-                          textTransform: "uppercase",
-                          fontSize: "0.875rem",
-                          color: "white",
-                          backgroundColor: isOnline[message.username]
-                            ? "green"
-                            : "red",
-                        }}
-                      >
-                        {message.username[0]}
-                      </Avatar>
-                    </Grid>
-                    <Grid item xs={10}>
-                      <Typography
-                        style={{
-                          fontSize: "12px",
-                          color: "white",
-                          fontWeight: "bold",
-                        }}
-                      >
-                        {message.username}
-                      </Typography>
+                {message.username !== "admin" && (
+                  <Grid item xs={12}>
+                    <Grid
+                      container
+                      style={{
+                        height: "30px",
+                        display: "flex",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Grid item xs={2}>
+                        <Avatar
+                          style={{
+                            backgroundColor: isOnline[message.username]
+                              ? "green"
+                              : "red",
+                          }}
+                          className={classes.avatar}
+                        >
+                          {message.username[0]}
+                        </Avatar>
+                      </Grid>
+                      <Grid item xs={10}>
+                        <Typography className={classes.typography}>
+                          {message.username}
+                        </Typography>
+                      </Grid>
                     </Grid>
                   </Grid>
-                </Grid>
+                )}
                 <Grid item xs={12}>
                   <div className="messageContainer justifyStart">
                     {props.username !== message.username ? (
-                      <div className="messageBox backgroundGray">
-                        <p className="messageText colorWhite">
-                          {ReactEmoji.emojify(message.message)}
-                        </p>
-                      </div>
+                      message.username !== "admin" ? (
+                        <div className="messageBox backgroundGray">
+                          <p className="messageText colorWhite">
+                            {ReactEmoji.emojify(message.message)}
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="messageAlert backgroundTransparent">
+                          <p className="messageText colorGray">
+                            {message.message}
+                          </p>
+                        </div>
+                      )
                     ) : (
                       <div className="messageBox backgroundBlue">
                         <p className="messageText colorWhite">

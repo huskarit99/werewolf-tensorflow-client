@@ -1,8 +1,8 @@
 import { useRecoilState } from "recoil";
-import { Link, useLocation } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 import SettingsIcon from "@material-ui/icons/Settings";
-import { Avatar, Grid, Typography, Hidden } from "@material-ui/core";
+import { Avatar, Grid, Typography, Hidden, Button } from "@material-ui/core";
 
 import useStyles from "./style";
 import userState from "../../../state/userState";
@@ -38,7 +38,9 @@ const SettingAndAvatar = () => {
         <Grid item xs={3} className={classes.item1}>
           {location.pathname !== "/room" && (
             <Link to="/profile">
-              <SettingsIcon className={classes.icon} />
+              <Button className={classes.button}>
+                <SettingsIcon className={classes.icon} />
+              </Button>
             </Link>
           )}
         </Grid>

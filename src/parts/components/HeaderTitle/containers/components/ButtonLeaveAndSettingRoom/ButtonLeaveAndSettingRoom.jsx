@@ -25,19 +25,19 @@ const ButtonLeaveAndSettingRoom = (props) => {
       {user &&
         room &&
         room.member &&
-        user.username === room.member[0].username && (
+        user.username === room.member[0].username &&
+        room.isPlaying == 0 && (
           <Button className={classes.button} style={{ marginRight: "20px" }}>
             <SettingsIcon
               className={classes.icon}
-              style={{ color: "blue" }}
               onClick={handleClickSettingRoom}
             />
           </Button>
         )}
-      <Button className={classes.button} style={{ color: "red" }}>
+      <Button className={classes.button}>
         <FontAwesomeIcon
           className={classes.icon}
-          style={{ width: "35px", height: "35px" }}
+          style={{ width: "25px", height: "23px" }}
           icon={faSignOutAlt}
           onClick={() => props.handleClickLeaveRoom()}
         />

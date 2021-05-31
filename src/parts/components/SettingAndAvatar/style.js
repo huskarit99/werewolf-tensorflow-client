@@ -12,11 +12,21 @@ const colorAvatar = [
 
 const useStyles = makeStyles(() => ({
   icon: {
-    color: "blue",
+    color: "white",
     backgroundColor: "#00000000",
-    borderRadius: "5px",
-    width: "35px",
-    height: "35px",
+    width: "1.5rem",
+    height: "1.5rem",
+  },
+  button: {
+    borderRadius: "35px",
+    backgroundColor: "rgba(255,255,255,0.3)",
+    padding: "8px",
+    minWidth: "0px",
+    width: "40px",
+    height: "40px",
+    "&:hover": {
+      backgroundColor: "rgba(255,255,255,0.35)",
+    },
   },
   username: {
     color: "#84848A",

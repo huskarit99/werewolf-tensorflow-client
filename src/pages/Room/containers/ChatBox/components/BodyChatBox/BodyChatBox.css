@@ -6,6 +6,14 @@
     display: inline-block;
     max-width: 100%;
   }
+.messageAlert {
+  background: rgba(255,255,255,0);
+  border-radius: 20px;
+  color : rgb(200, 200, 200);
+  padding: 1px 15px;
+  display: inline-block;
+  max-width: 100%;
+}
   
 .colorWhite {
   color: white,
@@ -21,7 +29,7 @@
 
 .messageContainer {
   display: flex;
-  margin-top: 5%;
+  margin-top: 2%;
 }
 
 .justifyStart {
@@ -34,4 +42,8 @@
 
 .backgroundGray {
   background: #24242E;
+}
+
+.backgroundTransparent {
+  background: rgba(255,255,255,0);
 }

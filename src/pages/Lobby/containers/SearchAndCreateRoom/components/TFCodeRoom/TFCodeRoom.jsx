@@ -18,7 +18,7 @@ const TFCodeRoom = forwardRef((props, coderoomRef) => {
           variant="outlined"
           inputRef={coderoomRef}
           className={classes.textField}
-          placeholder="coderoom"
+          placeholder="Enter a coderoom"
           InputProps={{
             startAdornment: (
               <InputAdornment position="start">

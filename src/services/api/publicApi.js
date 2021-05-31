@@ -3,8 +3,8 @@ import Axios from "axios";
 import { setToken } from "../../utils/tokenUtil";
 import { signInResponseEnum, signUpResponseEnum } from "../../utils/enumsUtil";
 
-// const ENDPOINT = `http://localhost:${process.env.REACT_APP_API_URL}/api/public-controller`;
-const ENDPOINT = `https://werewolf-tensorflow-server.herokuapp.com/api/public-controller`;
+const ENDPOINT = `http://localhost:${process.env.REACT_APP_API_URL}/api/public-controller`;
+// const ENDPOINT = `https://werewolf-tensorflow-server.herokuapp.com/api/public-controller`;
 
 const signInApi = async (username, password) => {
   try {
