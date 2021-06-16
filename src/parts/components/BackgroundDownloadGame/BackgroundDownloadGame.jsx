@@ -34,7 +34,7 @@ const BackgroundDownloadGame = () => {
               fontSize: "2rem",
             }}
           >
-            {"WereWolf HCMUS: 2021"}
+            {"WereWolf TensorFlow HCMUS: 2021"}
           </Typography>
         </Grid>
         <Grid item xs={12} className={classes.item3}>
@@ -44,7 +44,12 @@ const BackgroundDownloadGame = () => {
           />
         </Grid>
         <Grid item xs={12} className={classes.item4}>
-          <Button className={classes.button}>{"DownLoad"}</Button>
+          <a
+            style={{ textDecoration: "none" }}
+            href="https://drive.google.com/file/d/1C2sOqaQIBigmqAUwtLvLNjpdihVGnN28/view?usp=sharing"
+          >
+            <Button className={classes.button}>{"DownLoad"}</Button>
+          </a>
         </Grid>
       </Grid>
     </Paper>

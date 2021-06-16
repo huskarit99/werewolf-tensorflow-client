@@ -5,6 +5,8 @@ import rg1 from "../../../images/1.jpg";
 import rg2 from "../../../images/2.jpg";
 import rg3 from "../../../images/3.jpg";
 import rg4 from "../../../images/4.jpg";
+import rg5 from "../../../images/5.jpg";
+import rg6 from "../../../images/6.jpg";
 import useStyles from "./style";
 
 const RecommendGame = (props) => {
@@ -12,6 +14,8 @@ const RecommendGame = (props) => {
   const rgRef2 = useRef();
   const rgRef3 = useRef();
   const rgRef4 = useRef();
+  const rgRef5 = useRef();
+  const rgRef6 = useRef();
   const [indexImage, setIndexImage] = React.useState(2);
 
   const showImage = (index) => {
@@ -33,13 +37,21 @@ const RecommendGame = (props) => {
         rgRef4.current.style.display = "block";
         break;
       }
+      case 5: {
+        rgRef5.current.style.display = "block";
+        break;
+      }
+      case 6: {
+        rgRef6.current.style.display = "block";
+        break;
+      }
       default: {
       }
     }
   };
 
   const hiddenImage = (index) => {
-    index = index === 0 ? 4 : index;
+    index = index === 0 ? 6 : index;
     switch (index) {
       case 1: {
         rgRef1.current.style.display = "none";
@@ -57,6 +69,14 @@ const RecommendGame = (props) => {
         rgRef4.current.style.display = "none";
         break;
       }
+      case 5: {
+        rgRef5.current.style.display = "none";
+        break;
+      }
+      case 6: {
+        rgRef6.current.style.display = "none";
+        break;
+      }
       default: {
       }
     }
@@ -66,8 +86,8 @@ const RecommendGame = (props) => {
     const interval = setInterval(() => {
       setIndexImage((indexImage) => {
         indexImage = indexImage + 1;
-        indexImage = indexImage === 5 ? 1 : indexImage;
-        indexImage = indexImage === 0 ? 4 : indexImage;
+        indexImage = indexImage === 7 ? 1 : indexImage;
+        indexImage = indexImage === 0 ? 6 : indexImage;
         return indexImage;
       });
       const prevIndex = indexImage - 1;
@@ -109,6 +129,20 @@ const RecommendGame = (props) => {
         ref={rgRef4}
         className={classes.image}
         src={rg4}
+        style={{ display: "none" }}
+      />
+      <img
+        alt=""
+        ref={rgRef5}
+        className={classes.image}
+        src={rg5}
+        style={{ display: "none" }}
+      />
+      <img
+        alt=""
+        ref={rgRef6}
+        className={classes.image}
+        src={rg6}
         style={{ display: "none" }}
       />
     </Paper>
