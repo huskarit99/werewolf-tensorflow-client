@@ -31,7 +31,7 @@ const BackgroundDownloadGame = () => {
             className={classes.typography}
             style={{
               color: "white",
-              fontSize: "2rem",
+              fontSize: "1.75rem",
             }}
           >
             {"WereWolf TensorFlow HCMUS: 2021"}
