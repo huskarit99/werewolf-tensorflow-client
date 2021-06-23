@@ -46,7 +46,7 @@ const BackgroundDownloadGame = () => {
         <Grid item xs={12} className={classes.item4}>
           <a
             style={{ textDecoration: "none" }}
-            href="https://drive.google.com/file/d/1C2sOqaQIBigmqAUwtLvLNjpdihVGnN28/view?usp=sharing"
+            href="https://drive.google.com/file/d/19--ClWLv5Rxf7YSTeFaeS_pc7sLMAWpC/view?usp=sharing"
           >
             <Button className={classes.button}>{"DownLoad"}</Button>
           </a>
